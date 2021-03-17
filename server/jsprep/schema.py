@@ -1,40 +1,24 @@
 import graphene
-from graphene_django import DjangoObjectType
+from graphene.relay import Node
+from graphene_mongo.fields import MongoengineConnectionField
+from .models import Shop
+from .types import BikeType, ShopType
+from .mutations import CreateBikeMutation, UpdateBikeMutation, DeleteBikeMutation
 
-from .models import UserModel
 
-class UserType(DjangoObjectType):
-    class Meta:
-        model = UserModel
+class Mutations(graphene.ObjectType):
+    create_bike = CreateBikeMutation.Field()
+    update_bike = UpdateBikeMutation.Field()
+    delete_bike = DeleteBikeMutation.Field()
+
 
 class Query(graphene.ObjectType):
-    users = graphene.List(UserType)
+    node = Node.Field()
+    bikes = MongoengineConnectionField(BikeType)
+    shop_list = graphene.List(ShopType)
 
-    def resolve_users(self, info):
-        return UserModel.objects.all()
-
-
-class CreateUser(graphene.Mutation):
-    # id = graphene.Int()
-    first_name = graphene.String()
-    last_name = graphene.String()
-
-    class Arguments:
-        first_name = graphene.String()
-        last_name = graphene.String()
-
-    def mutate(self, info, first_name, last_name):
-        user = UserModel(first_name=first_name, last_name=last_name)
-        user.save()
-
-        return CreateUser(
-            # id=user._id,
-            first_name=user.first_name,
-            last_name=user.last_name,
-        )
+    def resolve_shop_list(self, info):
+        return Shop.objects.all()
 
 
-class Mutation(graphene.ObjectType):
-    create_user = CreateUser.Field()
-
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = graphene.Schema(query=Query, mutation=Mutations, types=[BikeType, ShopType])

@@ -1,6 +1,7 @@
 import os
 from decouple import config
 from pathlib import Path
+from mongoengine import connect
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -55,18 +56,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'jsprep.wsgi.application'
 
 
-# Mongo Database
+# # Database
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        "CLIENT": {
-           "name": config('_MONGODB_NAME'),
-           "host":config('_MONGODB_HOST'), # url to connect to your MongoDB starts with 'mongodb+srv://...'
-           "username": config('_MONGODB_USER'),
-           "password": config('_MONGODB_PASSWD'), 
-           "authMechanism": "SCRAM-SHA-1",
-        }, 
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
 
@@ -108,6 +104,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+connect(host=config('_MONGODB_URI'))
+
 GRAPHENE = {
     'SCHEMA': 'jsprep.schema.schema'
 }
