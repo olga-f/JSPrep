@@ -57,10 +57,12 @@ mutation($input: BikeInput!) {
       type
     }
   }
-} 
+}
 
 ```
-query variables:
+
+variables:
+
 ```
 {
   "input": {
@@ -70,6 +72,20 @@ query variables:
     "size": "XX",
     "wheelSize": 2.0,
     "type": "smalltype"
+  }
+}
+```
+
+---
+
+Query all bikes from database
+
+```
+query {
+  bikesList {
+    name
+    brand
+    year
   }
 }
 ```
