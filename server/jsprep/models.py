@@ -1,27 +1,45 @@
 from mongoengine import Document
+from datetime import datetime
 from mongoengine.fields import (
-    FloatField,
     StringField,
     ListField,
     URLField,
     ObjectIdField,
+    ReferenceField,
+    IntField,
+    DateTimeField
 )
+from enum import Enum
 
 
-class Shop(Document):
-    meta = {"collection": "shop"}
+class Unit(Document):
+    meta = {"collection": "unit", "ordering": "position"}
     ID = ObjectIdField()
-    name = StringField()
-    address = StringField()
-    website = URLField()
+    title = StringField()
+    about = ListField(StringField())
+    description = StringField()
+    image_url = URLField()
+    date_created = DateTimeField(default=datetime.utcnow)
+    position = IntField(default=0)
 
+class ExerciseCategory(Enum):
+    T = "Tutorial"
+    C = "Challenge"
+    V = "Video"
 
-class Bike(Document):
-    meta = {"collection": "bike"}
+    @classmethod
+    def choices(cls):
+        return [(tag, tag.value) for tag in cls] 
+
+class Exercise(Document):
+    meta = {"collection": "exercise", "ordering": "position"}
     ID = ObjectIdField()
+    unit = ReferenceField("Unit")
     name = StringField()
-    brand = StringField()
-    year = StringField()
-    size = ListField(StringField())
-    wheel_size = FloatField()
-    type = StringField()
+    description = StringField()
+    content = StringField()
+  #  category = StringField()
+    code = StringField()
+    test = StringField()
+    position = IntField(default=0)
+    date_created = DateTimeField(default=datetime.utcnow) 

@@ -1,14 +1,12 @@
 from graphene import relay
 from graphene_mongo import MongoengineObjectType
-from .models import Bike, Shop
+from .models import Exercise, Unit
 
 
-class BikeType(MongoengineObjectType):
+class UnitType(MongoengineObjectType):
     class Meta:
-        model = Bike
-        interfaces = (relay.Node,)
+        model = Unit
 
-
-class ShopType(MongoengineObjectType):
+class ExerciseType(MongoengineObjectType):
     class Meta:
-        model = Shop
+        model = Exercise

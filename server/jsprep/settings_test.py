@@ -1,7 +1,7 @@
-from .settings import *  # flake8: noqa
+from .settings import *
 from mongoengine import disconnect
 
 disconnect()
 connect(
-    "graphene-mongo-test", host="mongomock://localhost", alias="default"
+    "testdb", host="mongomock://localhost", alias="default"
 )
