@@ -1,28 +1,66 @@
-# capstone
+# JSPrep.org website
 
-## Server
+JS Prep
 
-#### Getting started.
+##### Table of Contents
+
+- [Description](#description)
+- [Client](#client)
+  - [Getting started](#getting-started)
+- [Server](#server)
+  - [Setup](#setup)
+    - [Virtual environment](virtual-environment)
+    - [Dependencies](dependencies)
+    - [MongoDB database](mongodb-database)
+  - [GraphQL Query and Mutation Examples](#graphql-query-and-mutation-examples)
+  - [Testing](#testing)
+- [YouTube presentation](#youtube)
+
+## Description
+
+This repository holds the source code for the https://jsprep.org site.
+
+This site is a progressive web application built with React, GraphQL, backed by Django.
+
+## Client
+
+### Getting started
 
 First, you'll need to get the source of the project. Do this by cloning the whole JSPrep repository:
 
-`git clone git@github.com:olga-f/capstone.git`
+`git clone git@github.com:olga-f/jsprep.org.git`
 
 `cd server`
 
-#### Create a virtual environment in which we can install the dependencies.
+## Server
+
+### Setup
+
+First, you'll need to get the source of the project. Do this by cloning the whole JSPrep repository:
+
+`git clone git@github.com:olga-f/jsprep.org.git`
+
+`cd server`
+
+#### Virtual environment
+
+Create a virtual environment in which you can install the dependencies:
 
 `python -m venv env`
 
 `source env/Scripts/activate`
 
-#### Now we can install our dependencies.
+#### Dependencies
+
+Now install the dependencies:
 
 `pip install -r requirements.txt`
 
-#### Set up a MongoDB connection and create a database.
+#### MongoDB database
 
-> 🔹 [MongoDB Atlas] (https://www.mongodb.com/) offers Free Shared Clusters.
+Set up a MongoDB connection and create a database
+
+> 🔹 [MongoDB Atlas](https://www.mongodb.com/) offers Free Shared Clusters.
 
 1. Add `.env` file with your mongodb credentials to the `server` folder.
 
@@ -30,7 +68,6 @@ First, you'll need to get the source of the project. Do this by cloning the whol
 SECRET_KEY=gozaXXXXXXXXXXXXXXXXXXXXXXXX
 DEBUG=True
 _MONGODB_URI=mongodb+srv://XXXXXXX:XXXXXXXXXXX@clusterX.XXXXXX.mongodb.net/test?retryWrites=true&w=majority
-
 ```
 
 2. Run the following command:
@@ -43,7 +80,9 @@ _MONGODB_URI=mongodb+srv://XXXXXXX:XXXXXXXXXXX@clusterX.XXXXXX.mongodb.net/test?
 
 Now head on over to http://127.0.0.1:8000/graphql and run some queries!
 
-_For example:_
+> If you want, you can create units and exercises without using the React front-end app.
+
+### GraphQL Query and Mutation Examples
 
 ```
 mutation($input: UnitInput!) {
@@ -56,7 +95,6 @@ mutation($input: UnitInput!) {
     }
   }
 }
-
 ```
 
 _with variables:_
@@ -74,7 +112,7 @@ _with variables:_
 
 ---
 
-_Query all units from the database_
+_Query all units from the database:_
 
 ```
 query {
@@ -86,10 +124,41 @@ query {
     position
   }
 }
-
 ```
 
-_Query all exercises from the Unit (do not forget to add the variable id of the Unit) from the database._
+---
+
+_Create exercise:_
+
+```
+mutation ($data: ExerciseInput!, $enum: ExerciseCategory) {
+  createExercise (exerciseData: $data, categoryEnum: $enum) {
+    exercise {
+      name
+      unit {
+        id
+      }
+    }
+
+  }
+}
+```
+
+_with variables:_
+
+```
+{
+  "data": {
+    "unit": "60570791cd82a786dc25de50",
+    "name": "Test Exercise"
+  },
+  "enum": "CHALLENGE"
+}
+```
+
+---
+
+_Query all unit exercises from the database:_
 
 ```
 query ($id: ID!) {
@@ -104,9 +173,13 @@ query ($id: ID!) {
 }
 ```
 
+---
+
+### Testing
+
 For run tests, you need to:
 
-1. Activate your virtual environment:
+- activate your virtual environment:
 
 ```
 cd server
@@ -116,8 +189,10 @@ cd server
 source env/Scripts/activate
 ```
 
-2. Run **pytest**:
+- run **pytest**:
 
 ```
 pytest -v
 ```
+
+## YouTube

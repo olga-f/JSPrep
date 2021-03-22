@@ -1,9 +1,13 @@
 import graphene
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Exercise, ExerciseCategory
+from .models import Exercise
 from .types import ExerciseType
+from enum import Enum
 
-
+class ExerciseCategory(Enum):
+    TUTORIAL = "T"
+    CHALLENGE = "C"
+    VIDEO = "V"
 
 class ExerciseInput(graphene.InputObjectType):
     id = graphene.ID()
@@ -11,7 +15,7 @@ class ExerciseInput(graphene.InputObjectType):
     name = graphene.String()
     description = graphene.String()
     content=graphene.String()
-   # category = graphene.Enum.from_enum(ExerciseCategory)
+    category = graphene.String()
     code = graphene.String()
     test = graphene.String()
     position = graphene.Int()
@@ -22,8 +26,9 @@ class CreateExerciseMutation(graphene.Mutation):
 
     class Arguments:
         exercise_data = ExerciseInput(required=True)
+        category_enum = graphene.Argument(graphene.Enum.from_enum(ExerciseCategory))
 
-    def mutate(self, info, exercise_data=None):
+    def mutate(self, info, exercise_data=None, category_enum=None):
         exercises = Exercise.objects.all()
         num_exercises = exercises.count()
         if (exercises is not None):
@@ -40,9 +45,9 @@ class CreateExerciseMutation(graphene.Mutation):
             name=exercise_data.name,
             description=exercise_data.description,
             content=exercise_data.content,
-      #      category=exercise_data.category,
             code=exercise_data.code,
             test=exercise_data.test,
+            category=category_enum,
             position=num_exercises + 1
         )
         exercise.save()

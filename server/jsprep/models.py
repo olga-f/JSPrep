@@ -9,7 +9,6 @@ from mongoengine.fields import (
     IntField,
     DateTimeField
 )
-from enum import Enum
 
 
 class Unit(Document):
@@ -22,14 +21,6 @@ class Unit(Document):
     date_created = DateTimeField(default=datetime.utcnow)
     position = IntField(default=0)
 
-class ExerciseCategory(Enum):
-    T = "Tutorial"
-    C = "Challenge"
-    V = "Video"
-
-    @classmethod
-    def choices(cls):
-        return [(tag, tag.value) for tag in cls] 
 
 class Exercise(Document):
     meta = {"collection": "exercise", "ordering": "position"}
@@ -38,7 +29,7 @@ class Exercise(Document):
     name = StringField()
     description = StringField()
     content = StringField()
-  #  category = StringField()
+    category = StringField(max_length=1,default='T')
     code = StringField()
     test = StringField()
     position = IntField(default=0)
