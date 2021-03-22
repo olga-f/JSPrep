@@ -110,7 +110,7 @@ _with variables:_
 }
 ```
 
----
+
 
 _Query all units from the database:_
 
@@ -126,7 +126,7 @@ query {
 }
 ```
 
----
+
 
 _Create exercise:_
 
@@ -156,7 +156,7 @@ _with variables:_
 }
 ```
 
----
+
 
 _Query all unit exercises from the database:_
 
@@ -173,7 +173,7 @@ query ($id: ID!) {
 }
 ```
 
----
+
 
 ### Testing
 
