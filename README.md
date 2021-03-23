@@ -22,6 +22,9 @@ This repository holds the source code for the https://jsprep.org site.
 
 This site is a progressive web application built with React, GraphQL, backed by Django.
 
+The `client` folder contains all necessary code for running React front-end application.
+The `server` folder contains the back-end Django application.
+
 ## Client
 
 ### Getting started
@@ -110,8 +113,6 @@ _with variables:_
 }
 ```
 
-
-
 _Query all units from the database:_
 
 ```
@@ -125,8 +126,6 @@ query {
   }
 }
 ```
-
-
 
 _Create exercise:_
 
@@ -156,8 +155,6 @@ _with variables:_
 }
 ```
 
-
-
 _Query all unit exercises from the database:_
 
 ```
@@ -172,8 +169,6 @@ query ($id: ID!) {
   }
 }
 ```
-
-
 
 ### Testing
 

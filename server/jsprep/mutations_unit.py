@@ -1,3 +1,4 @@
+from .util import order_objects_by_position
 import graphene
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Unit, Exercise
@@ -20,25 +21,25 @@ class CreateUnitMutation(graphene.Mutation):
         unit_data = UnitInput(required=True)
 
     def mutate(self, info, unit_data=None):
-        units = Unit.objects.all()
-        num_units = units.count()
-        if (units is not None):
-            last_unit = units.order_by('-position').first()
-            if (last_unit is not None):
-                last_position = last_unit.position
-                if (last_position is not None and last_position != num_units):
-                    for idx, val in enumerate(Unit.objects):
-                        val.position=idx + 1
-                        val.save()
+        num_units = len(Unit.objects)
+        sort=False
+        if (unit_data.position is not None):
+            position = unit_data.position
+            sort=True
+        else:
+            position =num_units + 1
 
         unit = Unit(
             title=unit_data.title,
             about=unit_data.about,
             description=unit_data.description,
             image_url=unit_data.image_url,
-            position=num_units + 1
+            position=position
         )
         unit.save()
+        if (sort is True):
+            units = Unit.objects.all()
+            order_objects_by_position(units)
 
         return CreateUnitMutation(unit=unit)
 
@@ -65,6 +66,9 @@ class UpdateUnitMutation(graphene.Mutation):
             unit.image_url = unit_data.image_url
         if unit_data.position:
             unit.position = unit_data.position
+            unit.save()
+            units= Unit.objects.all()
+            order_objects_by_position(units)
 
         unit.save()
 
