@@ -22,9 +22,6 @@ class ExerciseInput(graphene.InputObjectType):
     position = graphene.Int()
 
 
-
-
-
 class CreateExerciseMutation(graphene.Mutation):
     exercise = graphene.Field(ExerciseType)
 

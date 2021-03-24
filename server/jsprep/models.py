@@ -12,7 +12,6 @@ from mongoengine.fields import (
 
 
 class Unit(Document):
-    meta = {"collection": "unit", "ordering": "position"}
     ID = ObjectIdField()
     title = StringField()
     about = ListField(StringField())
@@ -23,7 +22,6 @@ class Unit(Document):
 
 
 class Exercise(Document):
-    meta = {"collection": "exercise", "ordering": "position"}
     ID = ObjectIdField()
     unit = ReferenceField("Unit")
     name = StringField()
