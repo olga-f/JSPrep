@@ -7,6 +7,7 @@ export const EXERCISE = gql`
       name
       description
       position
+      slug
     }
   }
 `;
