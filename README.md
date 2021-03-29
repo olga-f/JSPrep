@@ -118,7 +118,9 @@ _Query all units from the database:_
 ```
 query {
   unitList {
+    id
     title
+    slug
     about
     description
     imageUrl
@@ -161,6 +163,7 @@ _Query all unit exercises from the database:_
 query ($id: ID!) {
   exerciseList (unitId: $id) {
     name
+    slug
     unit {
       id
     }

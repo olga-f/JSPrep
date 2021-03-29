@@ -4,6 +4,7 @@ from .models import Exercise
 from .types import ExerciseType
 from .util import order_objects_by_position
 from enum import Enum
+from django.utils.text import slugify
 
 class ExerciseCategory(Enum):
     TUTORIAL = "T"
@@ -46,7 +47,8 @@ class CreateExerciseMutation(graphene.Mutation):
             code=exercise_data.code,
             test=exercise_data.test,
             category=category_enum,
-            position=position
+            position=position,
+            slug=slugify(exercise_data.name)
         )
         exercise.save()
         if (sort is True):
@@ -74,6 +76,7 @@ class UpdateExerciseMutation(graphene.Mutation):
                 exercise.unit = exercise_data.unit
             if exercise_data.name:
                 exercise.name = exercise_data.name
+                exercise.slug = slugify(exercise_data.name)
             if exercise_data.description:
                 exercise.description = exercise_data.description
             if exercise_data.content:
