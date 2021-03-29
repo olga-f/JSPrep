@@ -19,8 +19,7 @@ class Query(graphene.ObjectType):
     unit_list = graphene.List(UnitType)
     exercise = graphene.Field(ExerciseType, id=graphene.ID(required=True))
     exercise_list = graphene.List(ExerciseType, unit_id=graphene.ID(required=True))
-    unit_by_slug = graphene.Field(UnitType, slug=graphene.String(required=True))
-    exercise_by_slug = graphene.Field(ExerciseType, slug=graphene.String(required=True))
+    exercise_list_by_unit_slug = graphene.List(ExerciseType, slug=graphene.String(required=True))
 
 
     def resolve_unit_list(self, info):
@@ -34,13 +33,10 @@ class Query(graphene.ObjectType):
         if unit_id:            
             return Exercise.objects.filter(unit=unit_id).order_by('position')
    
-    def resolve_unit_by_slug(self, info, slug = None, **kwargs):
-        if slug:            
-            return Unit.objects.filter(slug=slug).first()
-
-    def resolve_exercise_by_slug(self, info, slug = None, **kwargs):
-        if slug:            
-            return Exercise.objects.filter(slug=slug).first()
+    def resolve_exercise_list_by_unit_slug(self, info, slug = None, **kwargs):
+        if slug:
+            unit = Unit.objects.filter(slug=slug).first()
+            return Exercise.objects.filter(unit=unit.id).order_by('position')
 
 
 schema = graphene.Schema(query=Query, mutation=Mutations, types=[UnitType, ExerciseType])
