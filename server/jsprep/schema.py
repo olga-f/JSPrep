@@ -17,15 +17,15 @@ class Mutations(graphene.ObjectType):
 
 class Query(graphene.ObjectType):
     unit_list = graphene.List(UnitType)
+    exercise = graphene.Field(ExerciseType, id=graphene.ID())
+    exercise_list = graphene.List(ExerciseType, unit_id=graphene.ID())
 
     def resolve_unit_list(self, info):
         return Unit.objects.order_by('position')
-    
-    exercise = graphene.Field(ExerciseType)
-    exercise_list = graphene.List(ExerciseType, unit_id=graphene.ID())
 
-    def resolve_exercise(self, info, id):
-        return Exercise.objects.get(pk=id)
+    def resolve_exercise(self, info, id = None, **kwargs):
+        if id:
+            return Exercise.objects.get(pk=id)
 
     def resolve_exercise_list(self, info, unit_id = None, **kwargs):
         if unit_id:            

@@ -1,0 +1,47 @@
+{
+  "name": "jsprep-front-end",
+  "version": "1.0.0",
+  "description": "JS Prep front-end",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:coverage": "jest --coverage",
+    "test:client": "npm test client/src",
+    "validate": "npm-run-all --parallel test:client"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "keywords": [
+    "react",
+    "react.js",
+    "next.js",
+    "graphql",
+    "apollo"
+  ],
+  "author": "Olga F. Andreiko",
+  "license": "MIT",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^13.0.11",
+    "@types/jest": "^26.0.21",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-jest": "^24.3.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^26.6.3",
+    "jest-runner-eslint": "^0.10.0",
+    "jest-watch-select-projects": "^2.0.0",
+    "jest-watch-typeahead": "^0.6.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
+  }
+}

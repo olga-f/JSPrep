@@ -7,3 +7,4 @@ dnspython==2.1.0
 pytest==6.2.2
 pytest-django==4.1.0
 mongomock==3.22.1
+django-cors-headers==3.7.0

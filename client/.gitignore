@@ -1,0 +1,9 @@
+node_modules/
+.cache/
+dist/
+coverage/
+.vscode/
+.env
+.next
+cypress/videos
+cypress/screenshots
