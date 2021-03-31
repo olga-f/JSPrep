@@ -8,7 +8,7 @@ from .fixtures import fixtures_data
 
 def test_exercise_data_query(fixtures_data):
     query = """{
-                exerciseList (unitId:"60570791cd82a786dc25de50") {
+                exerciseList {
                     name
                     description
                }
@@ -23,7 +23,11 @@ def test_exercise_data_query(fixtures_data):
                   
 
                 },
-                 {
+                {
+                    "name":"Test Exercise 2",
+                    "description": "Test Exercise Description 2"
+                },
+                {
                     "name":"Test Exercise 3",
                     "description": "Test Exercise Description 3"
                 }

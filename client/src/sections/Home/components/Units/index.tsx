@@ -11,7 +11,7 @@ export const Units = ({ list }: UnitProps): JSX.Element => {
             onClick={() => {
               router.push({
                 pathname: "/[unit]",
-                query: { unit: unit?.id },
+                query: { unit: unit?.slug },
               });
             }}
           >

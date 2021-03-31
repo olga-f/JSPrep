@@ -8,7 +8,8 @@ def fixture_exercise_data():
         name="Test Exercise 1",
         unit= "60570791cd82a786dc25de50",
         description= "Test Exercise Description 1",
-        position=1
+        position=1,
+        slug="test-exercise-1"
 
     )
     exercise_one.save()
@@ -17,7 +18,8 @@ def fixture_exercise_data():
         name="Test Exercise 2",
         unit= "10570791cd82a786dc25de50",
         description= "Test Exercise Description 2",
-        position=2
+        position=2,
+        slug="test-exercise-2"
 
     )
     exercise_two.save()
@@ -26,7 +28,8 @@ def fixture_exercise_data():
         name="Test Exercise 3",
         unit= "60570791cd82a786dc25de50",
         description= "Test Exercise Description 3",
-        position=3
+        position=3,
+        slug="test-exercise-3"
 
     )
     exercise_three.save()
@@ -38,7 +41,8 @@ def fixture_unit_data():
         title="Unit 1",
         about=["A", "B", "C", "D"],
         description="This is a test unit 1",
-        image_url="https://example.com/unit1.jpg"
+        image_url="https://example.com/unit1.jpg",
+        slug="unit-1"
     )
     unit_one.save()
 
@@ -48,6 +52,7 @@ def fixture_unit_data():
         about=["a", "b", "c"],
         description="THIS IS a test unit 2",
         image_url="https://example.com/unit2.jpg",
+        slug="unit-2"
     )
     unit_two.save()
 
@@ -56,12 +61,10 @@ def fixture_unit_data():
         title="Functional JavaScript",
         about=["Higher order functions","reduce, filter","Function composition", "Closure", "Partial application"],
         description="Functional programming - a paradigm for structuring our complex code",
-        image_url="https://cdn.pixabay.com/photo/2015/11/24/10/52/gears-1059756_960_720.png"
+        image_url="https://cdn.pixabay.com/photo/2015/11/24/10/52/gears-1059756_960_720.png",
+        slug="functional-javaScript"
     )
     unit_three.save()
-
-
-
 
 
 @pytest.fixture(scope="module")

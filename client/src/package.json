@@ -5,7 +5,6 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc",
     "codegen:schema": "npx apollo client:download-schema --endpoint=http://127.0.0.1:8000/graphql/",
     "codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=lib/**/*.ts --globalTypesFile=./lib/graphql/globalTypes.ts --target=typescript"
   },

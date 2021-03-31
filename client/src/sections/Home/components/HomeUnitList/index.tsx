@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client/react/hooks";
 import { UNIT_LIST } from "../../../../lib/graphql/queries";
-import { unitList as UnitsData } from "../../../../lib/graphql/queries/UnitList/__generated__/unitList";
+import { unitList as UnitsData } from "../../../../lib/graphql/queries/Unit/__generated__/unitList";
 import { Units } from "../Units";
 
 export const HomeUnitList = (): JSX.Element => {
@@ -19,4 +19,4 @@ export const HomeUnitList = (): JSX.Element => {
   };
 
   return <section>{renderHomeUnitList()}</section>;
-}
+};

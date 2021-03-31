@@ -4,24 +4,24 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: exercise
+// GraphQL query operation: exerciseBySlug
 // ====================================================
 
-export interface exercise_exercise {
+export interface exerciseBySlug_exerciseBySlug {
   __typename: "ExerciseType";
   /**
    * _id
    */
   id: string | null;
-  name: string | null;
-  description: string | null;
-  position: number | null;
+  name: string;
+  position: number;
+  slug: string;
 }
 
-export interface exercise {
-  exercise: exercise_exercise | null;
+export interface exerciseBySlug {
+  exerciseBySlug: exerciseBySlug_exerciseBySlug | null;
 }
 
-export interface exerciseVariables {
-  id: string;
+export interface exerciseBySlugVariables {
+  slug: string;
 }

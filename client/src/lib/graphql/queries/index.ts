@@ -1,3 +1,3 @@
-export * from "./UnitList";
-export * from "./ExerciseList";
+export * from "./Unit";
+export * from "./Exercise";
 

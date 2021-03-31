@@ -7,6 +7,7 @@
     "test": "jest --coverage",
     "test:coverage": "jest --coverage",
     "test:client": "npm test client/src",
+    "type-check": "tsc",
     "validate": "npm-run-all --parallel test:client"
   },
   "eslintConfig": {

@@ -1,18 +1,9 @@
 from .util import order_objects_by_position
 import graphene
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Unit, Exercise
-from .types import UnitType, ExerciseType
+from .models import Unit
+from .types import UnitInput, UnitType
 from django.utils.text import slugify
-
-
-class UnitInput(graphene.InputObjectType):
-    id = graphene.ID()
-    title = graphene.String()
-    about = graphene.List(graphene.String)
-    description = graphene.String()
-    image_url = graphene.String()
-    position = graphene.Int()
 
 
 class CreateUnitMutation(graphene.Mutation):

@@ -9,11 +9,7 @@
 
 export interface unitPaths_unitList {
   __typename: "UnitType";
-  /**
-   * _id
-   */
-  id: string | null;
-  title: string | null;
+  slug: string;
 }
 
 export interface unitPaths {

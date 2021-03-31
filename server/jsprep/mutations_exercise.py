@@ -1,7 +1,7 @@
 import graphene
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Exercise
-from .types import ExerciseType
+from .types import ExerciseInput, ExerciseType
 from .util import order_objects_by_position
 from enum import Enum
 from django.utils.text import slugify
@@ -10,18 +10,6 @@ class ExerciseCategory(Enum):
     TUTORIAL = "T"
     CHALLENGE = "C"
     VIDEO = "V"
-
-class ExerciseInput(graphene.InputObjectType):
-    id = graphene.ID()
-    unit = graphene.ID()
-    name = graphene.String()
-    description = graphene.String()
-    content=graphene.String()
-    category = graphene.String()
-    code = graphene.String()
-    test = graphene.String()
-    position = graphene.Int()
-
 
 class CreateExerciseMutation(graphene.Mutation):
     exercise = graphene.Field(ExerciseType)

@@ -1,12 +1,13 @@
-import { unitList } from "../../lib/graphql/queries/UnitList/__generated__/unitList";
-import { exerciseList } from "../../lib/graphql/queries/ExerciseList/__generated__/exerciseList";
+import {
+  exerciseListByUnitSlug,
+  exerciseListByUnitSlugVariables,
+} from "../graphql/queries/Exercise/__generated__/exerciseListByUnitSlug";
+import { unitList } from "../graphql/queries/Unit/__generated__/unitList";
 
 export interface UnitProps {
   list: unitList["unitList"];
 }
-// export interface MatchParams {
-//   title: string;
-// }
 export interface ExerciseProps {
-  list: exerciseList["exerciseList"];
+  list: exerciseListByUnitSlug["exerciseListByUnitSlug"];
+  unit: exerciseListByUnitSlugVariables["slug"];
 }

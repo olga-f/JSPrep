@@ -1,14 +1,12 @@
-//
-import { useQuery } from "@apollo/client/react/hooks";
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
-import { unitPaths as Paths } from "../../lib/graphql/queries/UnitList/__generated__/unitPaths";
 import {
   addApolloState,
   initializeApollo,
 } from "../../lib/graphql/apolloClient";
-import { EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
+import { GET_EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
+import { unitPaths_unitList as PathProps } from "../../lib/graphql/queries/Unit/__generated__/unitPaths";
 import { UnitExerciseList } from "../../sections/Unit/components";
 
 const UnitPage = (): JSX.Element => (
@@ -18,29 +16,32 @@ const UnitPage = (): JSX.Element => (
         <a>Go home</a>
       </Link>
     </p>
+
     <UnitExerciseList />
   </div>
 );
 
-export async function getStaticPaths() {
-  // get all the paths for units from a GraphQL
+export const getStaticPaths: GetStaticPaths = async () => {
+  // get all the paths for units from a GraphQL at build time
   const apolloClient = initializeApollo();
   const { data } = await apolloClient.query({
     query: UNIT_PATHS,
   });
 
- const paths = data.unitList.map((unit) => ({ params: { unit: unit.id} }));
+  const paths = data.unitList.map((item: PathProps) => ({
+    params: { unit: item.slug },
+  }));
   return { paths, fallback: false };
-}
+};
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const apolloClient = initializeApollo();
 
   // Static generation (SSG)
   await apolloClient.query({
-    query: EXERCISE_LIST,
+    query: GET_EXERCISE_LIST,
     variables: {
-      id: params?.unit,
+      slug: params?.unit,
     },
   });
 

@@ -13,10 +13,11 @@ export interface unitList_unitList {
    * _id
    */
   id: string | null;
-  title: string | null;
+  title: string;
   about: (string | null)[] | null;
   imageUrl: string | null;
-  position: number | null;
+  position: number;
+  slug: string;
 }
 
 export interface unitList {

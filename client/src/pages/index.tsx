@@ -1,11 +1,6 @@
-import { GetStaticProps } from 'next';
-import Link from 'next/link';
-import React from 'react';
-import { addApolloState, initializeApollo } from '../lib/graphql/apolloClient';
-
-import { UNIT_LIST } from '../lib/graphql/queries';
-import {HomeUnitList} from '../sections/Home/components';
-
+import Link from "next/link";
+import React from "react";
+import { HomeUnitList } from "../sections/Home/components";
 
 const HomePage = (): JSX.Element => (
   <div title="Users List | Next.js + TypeScript Example">
@@ -14,10 +9,8 @@ const HomePage = (): JSX.Element => (
         <a>Go home</a>
       </Link>
     </p>
-    <HomeUnitList/>
+    <HomeUnitList />
   </div>
-)
+);
 
-
-export default HomePage
-
+export default HomePage;

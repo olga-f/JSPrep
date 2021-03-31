@@ -1,26 +1,26 @@
 import { useQuery } from "@apollo/client/react/hooks";
 import { useRouter } from "next/router";
-import { EXERCISE_LIST } from "../../../../lib/graphql/queries";
-
+import { ParsedUrlQuery } from "node:querystring";
+import { GET_EXERCISE_LIST } from "../../../../lib/graphql/queries";
 import {
-  exerciseList as ExercisesData,
-  exerciseListVariables,
-} from "../../../../lib/graphql/queries/ExerciseList/__generated__/exerciseList";
+  exerciseListByUnitSlug as ExercisesData,
+  exerciseListByUnitSlugVariables as Vars,
+} from "../../../../lib/graphql/queries/Exercise/__generated__/exerciseListByUnitSlug";
 
 import { Exercises } from "../Exercises";
 
 export const UnitExerciseList = (): JSX.Element => {
   const router = useRouter();
-  const { unit } = router.query;
+ const { unit }: ParsedUrlQuery = router.query;
 
-  const { loading, data, error } = useQuery<
-    ExercisesData,
-    exerciseListVariables
-  >(EXERCISE_LIST, {
-    variables: {
-      id: unit.toString(),
-    },
-  });
+  const { loading, data, error } = useQuery<ExercisesData, Vars>(
+    GET_EXERCISE_LIST,
+    {
+      variables: {
+        slug: unit.toString(),
+      },
+    }
+  );
 
   const renderUnitExerciseList = () => {
     if (loading) {
@@ -28,7 +28,9 @@ export const UnitExerciseList = (): JSX.Element => {
     }
 
     if (data) {
-      return <Exercises list={data.exerciseList} />;
+      return (
+        <Exercises unit={unit.toString()} list={data.exerciseListByUnitSlug} />
+      );
     }
 
     return null;
