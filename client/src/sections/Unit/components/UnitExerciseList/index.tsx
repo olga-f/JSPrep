@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client/react/hooks";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { ParsedUrlQuery } from "node:querystring";
 import { GET_EXERCISE_LIST } from "../../../../lib/graphql/queries";
 import {
@@ -10,14 +10,14 @@ import {
 import { Exercises } from "../Exercises";
 
 export const UnitExerciseList = (): JSX.Element => {
-  const router = useRouter();
- const { unit }: ParsedUrlQuery = router.query;
+  const router: NextRouter = useRouter();
+  const { unit }: ParsedUrlQuery = router.query;
 
-  const { loading, data, error } = useQuery<ExercisesData, Vars>(
+  const { loading, data } = useQuery<ExercisesData, Vars>(
     GET_EXERCISE_LIST,
     {
       variables: {
-        slug: unit.toString(),
+        slug: unit as string,
       },
     }
   );
@@ -29,7 +29,7 @@ export const UnitExerciseList = (): JSX.Element => {
 
     if (data) {
       return (
-        <Exercises unit={unit.toString()} list={data.exerciseListByUnitSlug} />
+        <Exercises unit={unit as string} list={data.exerciseListByUnitSlug} />
       );
     }
 

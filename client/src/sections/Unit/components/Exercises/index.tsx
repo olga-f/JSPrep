@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { ExerciseProps } from "../../../../lib/interfaces";
 
 export const Exercises = ({ unit, list }: ExerciseProps): JSX.Element => {
-  const router = useRouter();
+  const router: NextRouter = useRouter();
   return (
     <ul>
       {list?.map((exercise) => (

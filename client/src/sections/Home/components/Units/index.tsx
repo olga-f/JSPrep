@@ -1,8 +1,8 @@
 import { UnitProps } from "../../../../lib/interfaces";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 
 export const Units = ({ list }: UnitProps): JSX.Element => {
-  const router = useRouter();
+  const router: NextRouter = useRouter();
   return (
     <ul>
       {list?.map((unit) => (

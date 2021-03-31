@@ -23,7 +23,9 @@ function createApolloClient() {
   });
 }
 
-export function initializeApollo(initialState: any = null) {
+export function initializeApollo(
+  initialState: any = null
+): ApolloClient<NormalizedCacheObject> {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   if (initialState) {
@@ -52,15 +54,17 @@ export function initializeApollo(initialState: any = null) {
   return _apolloClient;
 }
 
-export function addApolloState(client: any, pageProps: any) {
+export function addApolloState(
+  client: ApolloClient<NormalizedCacheObject>,
+  pageProps: any
+) {
   if (pageProps?.props) {
     pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
   }
-
   return pageProps;
 }
 
-export function useApollo(pageProps: any) {
+export function useApollo(pageProps: any): ApolloClient<NormalizedCacheObject> {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(() => initializeApollo(state), [state]);
   return store;

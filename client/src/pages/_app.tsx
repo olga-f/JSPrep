@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
 import SEO from "../next-seo.config";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps):JSX.Element {
   const apolloClient = useApollo(pageProps);
 
   return (
