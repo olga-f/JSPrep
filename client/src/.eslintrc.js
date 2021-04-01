@@ -4,11 +4,19 @@ module.exports = {
   plugins: ["@typescript-eslint", "jest"],
   extends: [
     "eslint:recommended",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:jest/recommended",
   ],
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
   rules: {
+    "react/react-in-jsx-scope": 0,
+    "react/display-name": 0,
     "react/prop-types": 0,
     "no-console": 1,
   },
@@ -16,6 +24,6 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
-    "jest/globals": true,
+    jest: true,
   },
 };
