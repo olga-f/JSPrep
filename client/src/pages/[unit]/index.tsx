@@ -1,24 +1,17 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import Link from "next/link";
 import React from "react";
 import {
   addApolloState,
   initializeApollo,
 } from "../../lib/graphql/apolloClient";
-import { GET_EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
+import { EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
 import { unitPaths_unitList as PathProps } from "../../lib/graphql/queries/Unit/__generated__/unitPaths";
 import { UnitExerciseList } from "../../sections/Unit/components";
 
 const UnitPage = (): JSX.Element => (
-  <div title="Users List | Next.js + TypeScript Example">
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
-
-    <UnitExerciseList />
-  </div>
+  <main>
+    <UnitExerciseList  />
+  </main>
 );
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -39,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   // Static generation (SSG)
   await apolloClient.query({
-    query: GET_EXERCISE_LIST,
+    query: EXERCISE_LIST,
     variables: {
       slug: params?.unit,
     },

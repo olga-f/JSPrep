@@ -1,6 +1,5 @@
 import { gql } from "apollo-boost";
 
-
 export const GET_EXERCISE = gql`
   query exerciseBySlug($slug: String!) {
     exerciseBySlug(slug: $slug) {
@@ -23,10 +22,9 @@ export const EXERCISE_PATHS = gql`
   }
 `;
 
-export const GET_EXERCISE_LIST = gql`
+export const EXERCISE_LIST = gql`
   query exerciseListByUnitSlug($slug: String!) {
     exerciseListByUnitSlug(slug: $slug) {
-      id
       name
       position
       category
