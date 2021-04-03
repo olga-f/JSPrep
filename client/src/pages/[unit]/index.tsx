@@ -10,7 +10,7 @@ import { UnitExerciseList } from "../../sections/Unit/components";
 
 const UnitPage = (): JSX.Element => (
   <main>
-    <UnitExerciseList  />
+    <UnitExerciseList />
   </main>
 );
 

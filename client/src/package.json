@@ -6,6 +6,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "jest": "jest",
     "test": "is-ci \"test:coverage\" \"test:watch\"",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",

@@ -4,15 +4,22 @@ import { unitList as UnitsData } from "../../../../lib/graphql/queries/Unit/__ge
 import { Units } from "../Units";
 
 export const HomeUnitList = (): JSX.Element => {
-  const { loading, data } = useQuery<UnitsData>(UNIT_LIST);
+  const { loading, data, error } = useQuery<UnitsData>(UNIT_LIST);
 
   const renderHomeUnitList = () => {
     if (loading) {
+      return "Loading...";
       //  return <HomeUnitListSkeleton />;
     }
 
-    if (data) {
-      return <Units list={data.unitList} />;
+    if (data?.unitList?.length) {
+      return (
+          <Units list={data.unitList} />
+      );
+    }
+
+    if (error) {
+      return "Error!";
     }
 
     return null;
