@@ -11,7 +11,13 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "type-check": "tsc",
-    "validate": "npm-run-all --parallel type-check test:coverage",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "test:e2e": "is-ci \"test:e2e:run\" \"test:e2e:dev\"",
+    "pretest:e2e:run": "npm run build",
+    "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
+    "test:e2e:dev": "start-server-and-test dev http://localhost:3000 cy:open",
+    "validate": "npm-run-all --parallel type-check test:coverage test:e2e:run",
     "codegen:schema": "npx apollo client:download-schema --endpoint=http://127.0.0.1:8000/graphql/",
     "codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=lib/**/*.ts --globalTypesFile=./lib/graphql/globalTypes.ts --target=typescript"
   },
@@ -26,6 +32,7 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^7.0.5",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.1",
@@ -37,8 +44,10 @@
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
     "babel-jest": "^26.6.3",
+    "cypress": "^6.8.0",
     "eslint": "^7.23.0",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-jest": "^24.3.2",
     "eslint-plugin-jest-dom": "^3.7.0",
     "eslint-plugin-react": "^7.23.1",
@@ -52,6 +61,7 @@
     "lint-staged": "^10.5.4",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
+    "start-server-and-test": "^1.12.1",
     "typescript": "4.0"
   },
   "jest-runner-eslint": {

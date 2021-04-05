@@ -1,7 +1,13 @@
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "jest", "testing-library", "jest-dom"],
+  plugins: [
+    "@typescript-eslint",
+    "jest",
+    "testing-library",
+    "jest-dom",
+    "cypress",
+  ],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -10,6 +16,7 @@ module.exports = {
     "plugin:jest/recommended",
     "plugin:testing-library/recommended",
     "plugin:jest-dom/recommended",
+    "plugin:cypress/recommended",
   ],
   settings: {
     react: {
@@ -27,5 +34,6 @@ module.exports = {
     browser: true,
     node: true,
     jest: true,
+    "cypress/globals": true,
   },
 };
