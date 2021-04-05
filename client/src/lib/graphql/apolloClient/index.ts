@@ -24,7 +24,7 @@ function createApolloClient() {
 }
 
 export function initializeApollo(
-  initialState: any = null
+  initialState: NormalizedCacheObject | null = null
 ): ApolloClient<NormalizedCacheObject> {
   const _apolloClient = apolloClient ?? createApolloClient();
 
@@ -56,15 +56,20 @@ export function initializeApollo(
 
 export function addApolloState(
   client: ApolloClient<NormalizedCacheObject>,
-  pageProps: any
-) {
+  pageProps: {
+    props: { [x: string]: NormalizedCacheObject };
+    revalidate?: number;
+  }
+): { props: { [x: string]: NormalizedCacheObject }; revalidate?: number } {
   if (pageProps?.props) {
     pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
   }
   return pageProps;
 }
 
-export function useApollo(pageProps: any): ApolloClient<NormalizedCacheObject> {
+export function useApollo(pageProps: {
+  [x: string]: NormalizedCacheObject;
+}): ApolloClient<NormalizedCacheObject> {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(() => initializeApollo(state), [state]);
   return store;
