@@ -18,22 +18,20 @@ const Layout = ({ children, title = 'This is the default title' }: Props): JSX.E
       <nav>
         <Link href="/">
           <a>Home</a>
-        </Link>{' '}
-        |{' '}
+        </Link>
         <Link href="/about">
           <a>About</a>
-        </Link>{' '}
-        |{' '}
+        </Link>
         <Link href="/users">
           <a>Users List</a>
-        </Link>{' '}
+        </Link>
         | <a href="/api/users">Users API</a>
       </nav>
     </header>
     {children}
     <footer>
       <hr />
-      <span>I'm here to stay (Footer)</span>
+      <span>I am here to stay (Footer)</span>
     </footer>
   </div>
 )

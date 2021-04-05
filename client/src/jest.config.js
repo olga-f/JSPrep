@@ -1,4 +1,13 @@
 module.exports = {
-  ...require("./test_config/jest-common"),
-  projects: ["./test_config/jest.lint.js", "./test_config/jest.client.js"],
+  testPathIgnorePatterns: ["<rootDir>[/\\\\](node_modules|.next)[/\\\\]"],
+  transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$"],
+  transform: {
+    "^.+\\.(ts|tsx)$": "babel-jest",
+  },
+  watchPlugins: [
+    "jest-watch-select-projects",
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
+  ],
+  projects: ["./jest.lint.js", "./jest.client.js"],
 };
