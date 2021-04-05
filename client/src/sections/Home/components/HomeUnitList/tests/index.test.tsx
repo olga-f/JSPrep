@@ -8,10 +8,10 @@ import {
   graphqlErrorMock,
   networkErrorMock,
   unitListMocks,
-} from "./mocks";
+} from "../../../mocks";
 
-describe("<HomeUnitList />", () => {
-  it("shows a loading message in the HomeUnitList component", () => {
+describe("<HomeUnitList /> component", () => {
+  it("shows a loading message", () => {
     render(
       <MockedProvider mocks={unitListMocks} addTypename={false}>
         <HomeUnitList />
@@ -21,7 +21,7 @@ describe("<HomeUnitList />", () => {
     expect(loading).toBeInTheDocument();
   });
 
-  it("shows an error UI in the HomeUnitList component due to a Network error", async () => {
+  it("shows an error UI due to a Network error", async () => {
     render(
       <MockedProvider mocks={[networkErrorMock]} addTypename={false}>
         <HomeUnitList />
@@ -31,7 +31,7 @@ describe("<HomeUnitList />", () => {
     expect(error).toBeInTheDocument();
   });
 
-  it("shows an error UI in the HomeUnitList component due to a GraphQL error", async () => {
+  it("shows an error UI due to a GraphQL error", async () => {
     render(
       <MockedProvider mocks={[graphqlErrorMock]} addTypename={false}>
         <HomeUnitList />

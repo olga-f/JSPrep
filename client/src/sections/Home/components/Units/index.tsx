@@ -1,22 +1,19 @@
 import { UnitProps } from "../../../../lib/interfaces";
-import { NextRouter, useRouter } from "next/router";
+import Link from 'next/link'
 
 export const Units = ({ list }: UnitProps): JSX.Element => {
-  const router: NextRouter = useRouter();
   return (
     <ul>
       {list?.map((unit) => (
         <li key={unit?.position}>
-          <span
-            onClick={() => {
-              router.push({
-                pathname: "/[unit]",
-                query: { unit: unit?.slug },
-              });
+          <Link
+            href={{
+              pathname: "/[unit]",
+              query: { unit: unit?.slug },
             }}
           >
-            {unit?.title}
-          </span>
+            <a>{unit?.title}</a>
+          </Link>
           <div>{unit?.about}</div>
         </li>
       ))}
