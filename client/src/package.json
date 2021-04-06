@@ -24,6 +24,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.13",
+    "@codemirror/basic-setup": "^0.18.0",
+    "@codemirror/lang-javascript": "^0.18.0",
+    "@codemirror/theme-one-dark": "^0.18.0",
+    "@codemirror/view": "^0.18.3",
     "apollo-boost": "^0.4.9",
     "graphql": "^15.5.0",
     "lodash": "^4.17.21",

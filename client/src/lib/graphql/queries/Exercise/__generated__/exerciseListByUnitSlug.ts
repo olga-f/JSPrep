@@ -9,10 +9,6 @@
 
 export interface exerciseListByUnitSlug_exerciseListByUnitSlug {
   __typename: "ExerciseType";
-  /**
-   * _id
-   */
-  id: string | null;
   name: string;
   position: number;
   category: string;

@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import Link from "next/link";
 import React from "react";
 import {
   addApolloState,
@@ -7,16 +6,12 @@ import {
 } from "../../../lib/graphql/apolloClient";
 import { EXERCISE_PATHS, GET_EXERCISE } from "../../../lib/graphql/queries";
 import { exerciseWithUnitPaths_exerciseList as PathProps } from "../../../lib/graphql/queries/Exercise/__generated__/exerciseWithUnitPaths";
+import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
 
 const ExercisePage = (): JSX.Element => (
-  <div title="Users List | Next.js + TypeScript Example">
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
-    {/* <Exercise /> */}
-  </div>
+  <main>
+    <ExerciseMain />
+  </main>
 );
 
 export const getStaticPaths: GetStaticPaths = async () => {

@@ -32,3 +32,16 @@ export const EXERCISE_LIST = gql`
     }
   }
 `;
+
+export const EXERCISE = gql`
+  query exercise($slug: String!) {
+    exerciseBySlug(slug: $slug) {
+      name
+      description
+      content
+      category
+      code
+      test
+    }
+  }
+`;
