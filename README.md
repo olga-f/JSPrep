@@ -67,13 +67,14 @@ This application  use JavaScript Testing Framework - [Jest](https://jestjs.io/) 
 Tools for this include the Jest and React Testing Library. Jest also collect code coverage information.
 Jest integration tests are written in almost the same way as unit tests, but they all live in the `/tests` root folder.
 * **End-to-end**: a helper robot that behaves like a user to click around the app and verify that it functions correctly. Sometimes called "functional testing" or e2e.
-These tests are written with [cypress](https://www.cypress.io/) and [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/). End-to-end tests live in the `cypress/e2e` folder.
+These tests are written with [cypress](https://www.cypress.io/) and [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/). End-to-end tests live in the `cypress/e2e` folder. Use `npm run test:e2e:dev` commands to open and add more tests if you want.
 
 To run all of these tests, please use the following command:
 
 ```
 npm run validate
 ```
+
 
 
 ## Server
