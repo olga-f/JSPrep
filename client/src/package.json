@@ -19,7 +19,8 @@
     "test:e2e:dev": "start-server-and-test dev http://localhost:3000 cy:open",
     "validate": "npm-run-all --parallel type-check test:coverage test:e2e:run",
     "codegen:schema": "npx apollo client:download-schema --endpoint=http://127.0.0.1:8000/graphql/",
-    "codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=lib/**/*.ts --globalTypesFile=./lib/graphql/globalTypes.ts --target=typescript"
+    "codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=lib/**/*.ts --globalTypesFile=./lib/graphql/globalTypes.ts --target=typescript",
+    "setup": "npm install && npm run validate"
   },
   "dependencies": {
     "@apollo/client": "^3.3.13",
