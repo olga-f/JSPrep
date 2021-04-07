@@ -1,3 +1,4 @@
+import { exercise } from "../graphql/queries/Exercise/__generated__/exercise";
 import {
   exerciseListByUnitSlug,
   exerciseListByUnitSlugVariables,
@@ -10,4 +11,18 @@ export interface UnitProps {
 export interface ExerciseProps {
   list: exerciseListByUnitSlug["exerciseListByUnitSlug"];
   unit: exerciseListByUnitSlugVariables["slug"];
+}
+
+export interface ChallengeProps {
+  data: exercise["exerciseBySlug"];
+}
+
+interface Tutorial {
+  __typename: "ExerciseType";
+  name: string;
+  description: string | null;
+  content: string | null;
+}
+export interface TutorialProps {
+  data: Tutorial;
 }

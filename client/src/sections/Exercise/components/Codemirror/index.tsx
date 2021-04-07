@@ -1,12 +1,11 @@
 import CodemirrorWrapper from "./wrapper";
 
-const CodeEditor: React.FC = () => {
-  const initialValue = `const initial = 0 conlose.log("Welcome")`;
+const CodeEditor: React.FC<{ code: string  }> = ({code}) => {
 
   return (
     <div>
       <h1>Codemirror mood</h1>
-      <CodemirrorWrapper initialValue={initialValue.trim()} />
+      <CodemirrorWrapper initialValue={code} />
     </div>
   );
 };

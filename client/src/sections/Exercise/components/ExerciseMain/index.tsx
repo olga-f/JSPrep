@@ -7,28 +7,37 @@ import {
   exercise as Exercise,
   exerciseVariables as Vars,
 } from "../../../../lib/graphql/queries/Exercise/__generated__/exercise";
-import CodeEditor from "../Codemirror";
+import { Challenge } from "../Challenge";
+import { Tutorial } from "../Tutorial";
+//import CodeEditor from "../Codemirror";
 
 export const ExerciseMain = (): JSX.Element => {
-  // const router: NextRouter = useRouter();
-  // const { exercise }: ParsedUrlQuery = router.query;
+  const router: NextRouter = useRouter();
+  const { exercise }: ParsedUrlQuery = router.query;
 
-  // const { loading, data } = useQuery<Exercise, Vars>(EXERCISE, {
-  //   variables: {
-  //     slug: exercise as string,
-  //   },
-  // });
+  const { loading, data } = useQuery<Exercise, Vars>(EXERCISE, {
+    variables: {
+      slug: exercise as string,
+    },
+  });
 
   const renderExerciseMain = () => {
-  //  if (loading) {
+    if (loading) {
       //  return <HomeUnitListSkeleton />;
- //   }
+    }
+    if (data && data.exerciseBySlug) {
+      switch (data.exerciseBySlug.category) {
+        case "C":
+          return <Challenge data={data.exerciseBySlug} />;
+        case "T":
+          return <Tutorial data={data.exerciseBySlug} />;
 
-  //  if (data) {
-   return  <CodeEditor />;
-  //  }
+        default:
+          return <Tutorial data={data.exerciseBySlug} />;
+      }
+    }
 
-   // return null;
+    return null;
   };
 
   return <section>{renderExerciseMain()}</section>;

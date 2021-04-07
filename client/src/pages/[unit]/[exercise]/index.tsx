@@ -52,9 +52,9 @@ export const getStaticProps: GetStaticProps = async ({
 
   return addApolloState(apolloClient, {
     props: {},
-    // Re-generate the exercise at most once per 2 second
+    // Re-generate the exercise at most once per 60 second
     // if a request comes in
-    revalidate: 2,
+    revalidate: 60,
   });
 };
 

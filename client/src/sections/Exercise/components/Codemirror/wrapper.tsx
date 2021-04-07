@@ -6,6 +6,7 @@ import { javascript } from "@codemirror/lang-javascript";
 import { oneDark } from "@codemirror/theme-one-dark";
 
 const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
+  // const formatted = beautify_js(initialValue);
   // Local state
   const [editorValue, setEditorValue] = useState<string>("");
 
@@ -17,7 +18,9 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
     EditorView.updateListener.of((v: ViewUpdate) => {
       const doc = v.state.doc;
       const value = doc.toString();
-      if (value !== editorValue) setEditorValue(value);
+      if (value !== editorValue) {
+        setEditorValue(value);
+      }
     });
 
   // Initilize view
