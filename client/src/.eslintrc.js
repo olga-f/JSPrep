@@ -7,6 +7,7 @@ module.exports = {
     "testing-library",
     "jest-dom",
     "cypress",
+    "baseui"
   ],
   extends: [
     "eslint:recommended",
@@ -28,6 +29,9 @@ module.exports = {
     "react/display-name": 0,
     "react/prop-types": 0,
     "no-console": 1,
+    'baseui/deprecated-theme-api': "warn",
+    'baseui/deprecated-component-api': "warn",
+    'baseui/no-deep-imports': "warn",
   },
   env: {
     es6: true,

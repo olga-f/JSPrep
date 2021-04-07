@@ -19,5 +19,5 @@
     "target": "esnext"
   },
   "exclude": ["node_modules", "lib/graphql/globalTypes.ts"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "pages/_document.js", "util/styletron.js"]
 }
