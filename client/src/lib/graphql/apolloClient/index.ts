@@ -4,9 +4,11 @@ import {
   HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
+  StoreObject,
 } from "@apollo/client";
 import merge from "deepmerge";
 import isEqual from "lodash/isEqual";
+import { GetStaticPropsResult } from "next";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 
@@ -23,9 +25,7 @@ function createApolloClient() {
   });
 }
 
-export function initializeApollo(
-  initialState: NormalizedCacheObject | null = null
-): ApolloClient<NormalizedCacheObject> {
+export function initializeApollo(initialState: StoreObject | null = null) {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   if (initialState) {
@@ -57,19 +57,17 @@ export function initializeApollo(
 export function addApolloState(
   client: ApolloClient<NormalizedCacheObject>,
   pageProps: {
-    props: { [x: string]: NormalizedCacheObject };
+    props: NormalizedCacheObject;
     revalidate?: number;
   }
-): { props: { [x: string]: NormalizedCacheObject }; revalidate?: number } {
+): GetStaticPropsResult<NormalizedCacheObject> {
   if (pageProps?.props) {
     pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
   }
   return pageProps;
 }
 
-export function useApollo(pageProps: {
-  [x: string]: NormalizedCacheObject;
-}): ApolloClient<NormalizedCacheObject> {
+export function useApollo(pageProps: NormalizedCacheObject) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(() => initializeApollo(state), [state]);
   return store;

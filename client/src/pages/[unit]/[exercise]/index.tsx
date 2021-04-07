@@ -1,4 +1,12 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { NormalizedCacheObject } from "@apollo/client/cache/inmemory/types";
+import {
+  GetStaticPaths,
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
+import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import {
   addApolloState,
@@ -8,13 +16,15 @@ import { EXERCISE_PATHS, GET_EXERCISE } from "../../../lib/graphql/queries";
 import { exerciseWithUnitPaths_exerciseList as PathProps } from "../../../lib/graphql/queries/Exercise/__generated__/exerciseWithUnitPaths";
 import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
 
-const ExercisePage = (): JSX.Element => (
+const ExercisePage: NextPage = (): JSX.Element => (
   <main>
     <ExerciseMain />
   </main>
 );
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async (): Promise<
+  GetStaticPathsResult<ParsedUrlQuery>
+> => {
   // get all the paths for exercises from a GraphQL at build time
   const apolloClient = initializeApollo();
   const { data } = await apolloClient.query({
@@ -23,10 +33,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = data.exerciseList.map((item: PathProps) => ({
     params: { unit: item.unit?.slug, exercise: item.slug },
   }));
-  return { paths, fallback: false };
+  // fallback:true enable statically generating additional pages
+  return { paths, fallback: true };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}): Promise<GetStaticPropsResult<NormalizedCacheObject>> => {
   const apolloClient = initializeApollo();
 
   // Static generation (SSG)
@@ -39,7 +52,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return addApolloState(apolloClient, {
     props: {},
-    revalidate: 1,
+    // Re-generate the exercise at most once per 2 second
+    // if a request comes in
+    revalidate: 2,
   });
 };
 

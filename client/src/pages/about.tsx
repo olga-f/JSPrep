@@ -1,7 +1,8 @@
+import { NextPage } from "next";
 import Link from "next/link";
 import Layout from "../lib/components/Layout";
 
-const AboutPage = (): JSX.Element => (
+const AboutPage: NextPage = (): JSX.Element => (
   <Layout title="About | Next.js + TypeScript Example">
     <h1>About</h1>
     <p>This is the about page</p>

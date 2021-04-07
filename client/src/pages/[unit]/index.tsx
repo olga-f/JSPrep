@@ -1,4 +1,12 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { NormalizedCacheObject } from "@apollo/client/cache/inmemory/types";
+import {
+  GetStaticPaths,
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
+import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import {
   addApolloState,
@@ -8,13 +16,15 @@ import { EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
 import { unitPaths_unitList as PathProps } from "../../lib/graphql/queries/Unit/__generated__/unitPaths";
 import { UnitExerciseList } from "../../sections/Unit/components";
 
-const UnitPage = (): JSX.Element => (
+const UnitPage: NextPage = (): JSX.Element => (
   <main>
     <UnitExerciseList />
   </main>
 );
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async (): Promise<
+  GetStaticPathsResult<ParsedUrlQuery>
+> => {
   // get all the paths for units from a GraphQL at build time
   const apolloClient = initializeApollo();
   const { data } = await apolloClient.query({
@@ -24,10 +34,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = data.unitList.map((item: PathProps) => ({
     params: { unit: item.slug },
   }));
-  return { paths, fallback: false };
+  // fallback:true enable statically generating additional pages
+  return { paths, fallback: true };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}): Promise<GetStaticPropsResult<NormalizedCacheObject>> => {
   const apolloClient = initializeApollo();
 
   // Static generation (SSG)
@@ -40,7 +53,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return addApolloState(apolloClient, {
     props: {},
-    revalidate: 1,
+    // Re-generate the unit at most once per 2 second
+    // if a request comes in
+    revalidate: 2,
   });
 };
 
