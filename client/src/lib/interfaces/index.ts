@@ -24,5 +24,5 @@ interface Tutorial {
   content: string | null;
 }
 export interface TutorialProps {
-  data: Tutorial;
+  data: Tutorial | null;
 }

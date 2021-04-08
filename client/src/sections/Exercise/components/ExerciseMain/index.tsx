@@ -14,7 +14,6 @@ import { Tutorial } from "../Tutorial";
 export const ExerciseMain = (): JSX.Element => {
   const router: NextRouter = useRouter();
   const { exercise }: ParsedUrlQuery = router.query;
-
   const { loading, data } = useQuery<Exercise, Vars>(EXERCISE, {
     variables: {
       slug: exercise as string,
@@ -26,19 +25,21 @@ export const ExerciseMain = (): JSX.Element => {
       //  return <HomeUnitListSkeleton />;
     }
     if (data && data.exerciseBySlug) {
-      switch (data.exerciseBySlug.category) {
-        case "C":
-          return <Challenge data={data.exerciseBySlug} />;
-        case "T":
-          return <Tutorial data={data.exerciseBySlug} />;
-
-        default:
-          return <Tutorial data={data.exerciseBySlug} />;
-      }
+      return setCategory(data);
     }
-
     return null;
   };
-
   return <section>{renderExerciseMain()}</section>;
 };
+
+function setCategory(data: Exercise) {
+  switch (data?.exerciseBySlug?.category) {
+    case "C":
+      return <Challenge data={data.exerciseBySlug} />;
+    case "T":
+      return <Tutorial data={data.exerciseBySlug} />;
+
+    default:
+      return <Tutorial data={data.exerciseBySlug} />;
+  }
+}
