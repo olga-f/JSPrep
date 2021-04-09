@@ -59,17 +59,22 @@ npm run setup
 This project includes these forms of Testing:
 
 * **Static Analysis**: catch typos and type errors as you write the code.
+
 [ESLint](https://eslint.org/) statically analyzes your code to quickly find problems. [Prettier](https://prettier.io/) enforces a consistent code style.
 This project use [TypeScript](https://www.typescriptlang.org/). By understanding JavaScript, TypeScript saves you time catching errors and providing fixes before you run code.
-* **Unit**: verify that individual, isolated parts work as expected.
-This application  use JavaScript Testing Framework - [Jest](https://jestjs.io/) with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro). Tests live in the `tests` folder next to the file they are testing.
-* **Integration**: verify that several units work together in harmony. 
-Tools for this include the Jest and React Testing Library. Jest also collect code coverage information.
-Jest integration tests are written in almost the same way as unit tests, but they all live in the `/tests` root folder.
-* **End-to-end**: a helper robot that behaves like a user to click around the app and verify that it functions correctly. Sometimes called "functional testing" or e2e.
-These tests are written with [cypress](https://www.cypress.io/) and [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/). End-to-end tests live in the `cypress/e2e` folder. Use `npm run test:e2e:dev` commands to open and add more tests if you want.
 
-To run all of these tests, please use the following command:
+* **Unit**: verify that individual, isolated parts work as expected. 
+* **Integration**: verify that several units work together in harmony.
+
+This application  use JavaScript Testing Framework - [Jest](https://jestjs.io/) with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro). Tests live in the `tests` folder, when is possible, next to the file they are testing.
+Jest also collect code coverage information.
+
+* **End-to-end**: a helper robot that behaves like a user to click around the app and verify that it functions correctly. Sometimes called "functional testing" or e2e.
+
+These tests are written with [cypress](https://www.cypress.io/) and [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/). End-to-end tests live in the `cypress/e2e` folder. Use `npm run test:e2e:dev` commands to open and add more tests if you want.
+> Note. Change your "baseUrl" in `cypress.json` to `http://localhost:3000` for local testing.
+
+Please, use the following command to run static, unit, and integration tests:
 
 ```
 npm run validate
@@ -98,13 +103,13 @@ cd server
 Then create a virtual environment in which you can install the dependencies:
 
 ```
-python -m venv env
+python -m venv venv
 ```
 
 Activate a virtual environment:
 
 ```
-source env/Scripts/activate
+source venv/Scripts/activate
 ```
 
 #### Dependencies
@@ -244,7 +249,7 @@ cd server
 ```
 
 ```
-source env/Scripts/activate
+source venv/Scripts/activate
 ```
 
 - run **pytest**:
