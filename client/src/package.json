@@ -17,7 +17,7 @@
     "pretest:e2e:run": "npm run build",
     "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
     "test:e2e:dev": "start-server-and-test dev http://localhost:3000 cy:open",
-    "validate": "npm-run-all --parallel type-check test:coverage test:e2e:run",
+    "validate": "npm-run-all --parallel type-check test:coverage",
     "codegen:schema": "npx apollo client:download-schema --endpoint=http://127.0.0.1:8000/graphql/",
     "codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=lib/**/*.ts --globalTypesFile=./lib/graphql/globalTypes.ts --target=typescript",
     "setup": "npm ci && npm run validate"
@@ -57,7 +57,7 @@
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
     "babel-jest": "^26.6.3",
-    "cypress": "^7.0.0",
+    "cypress": "^7.0.1",
     "eslint": "^7.23.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-baseui": "^9.112.0",

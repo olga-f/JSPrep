@@ -1,22 +1,21 @@
-import { NextRouter, useRouter } from "next/router";
 import { ExerciseProps } from "../../../../lib/interfaces";
+import Link from "next/link";
 
 export const Exercises = ({ unit, list }: ExerciseProps): JSX.Element => {
-  const router: NextRouter = useRouter();
   return (
     <ul>
       {list?.map((exercise) => (
         <li key={exercise?.position}>
-          <span
-            onClick={() => {
-              router.push({
-                pathname: "/[unit]/[exercise]",
-                query: { unit: unit, exercise: exercise?.slug },
-              });
+          <Link
+            href={{
+              pathname: "/[unit]/[exercise]",
+              query: { unit: unit, exercise: exercise?.slug },
             }}
           >
-            {exercise?.name} {exercise?.category}
-          </span>
+            <a>
+              {exercise?.name} {exercise?.category}
+            </a>
+          </Link>
         </li>
       ))}
     </ul>

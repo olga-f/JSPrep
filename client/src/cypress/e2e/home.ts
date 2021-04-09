@@ -5,6 +5,7 @@ describe("Home page users", () => {
       .visit("/")
       .get(":nth-child(1) > a")
       .click()
+      .wait(3000)
       .location()
       .should((location) => {
         expect(location.pathname).to.eq("/javascript-basics");
