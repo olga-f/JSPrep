@@ -14,7 +14,7 @@ import {
 } from "../../lib/graphql/apolloClient";
 import { EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
 import { unitPaths_unitList as PathProps } from "../../lib/graphql/queries/Unit/__generated__/unitPaths";
-import { UnitExerciseList } from "../../sections/Unit/components";
+import { UnitExerciseList } from "../../sections/Unit/components/UnitExerciseList";
 
 const UnitPage: NextPage = (): JSX.Element => (
   <main>

@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import React from "react";
-import { HomeUnitList } from "../sections/Home/components";
+import { HomeUnitList } from "../sections/Home/components/HomeUnitList";
 
 const HomePage: NextPage = (): JSX.Element => (
   <main>
