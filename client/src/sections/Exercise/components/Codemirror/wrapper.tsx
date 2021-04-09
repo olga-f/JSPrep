@@ -29,7 +29,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
   // Initilize view
   useEffect(function initEditorView() {
     const el = document.getElementById("codemirror-editor-wrapper");
-    let language = new Compartment();
+    const language = new Compartment();
     editor.current = new EditorView({
       state: EditorState.create({
         doc: beautify_js(initialValue),

@@ -19,5 +19,5 @@
     "target": "esnext"
   },
   "exclude": ["node_modules", "lib/graphql/globalTypes.ts", "cypress"],
-  "include": ["**/*.ts", "**/*.tsx", "pages/_document.js", "util/styletron.js"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

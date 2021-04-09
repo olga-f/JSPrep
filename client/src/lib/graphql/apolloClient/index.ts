@@ -25,7 +25,9 @@ function createApolloClient() {
   });
 }
 
-export function initializeApollo(initialState: StoreObject | null = null) {
+export function initializeApollo(
+  initialState: StoreObject | null = null
+): ApolloClient<NormalizedCacheObject> {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   if (initialState) {
@@ -67,7 +69,7 @@ export function addApolloState(
   return pageProps;
 }
 
-export function useApollo(pageProps: NormalizedCacheObject) {
+export function useApollo(pageProps: NormalizedCacheObject):ApolloClient<NormalizedCacheObject> {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(() => initializeApollo(state), [state]);
   return store;

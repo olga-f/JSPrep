@@ -1,6 +1,5 @@
 import { useStyletron } from "baseui";
-
-export const Outer: React.FunctionComponent<{}> = ({ children }) => {
+export const Outer: React.FunctionComponent = ({ children }) => {
   const [css, theme] = useStyletron();
   return (
     <div
