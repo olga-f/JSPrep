@@ -20,7 +20,7 @@
     "validate": "npm-run-all --parallel type-check test:coverage test:e2e:run",
     "codegen:schema": "npx apollo client:download-schema --endpoint=http://127.0.0.1:8000/graphql/",
     "codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=lib/**/*.ts --globalTypesFile=./lib/graphql/globalTypes.ts --target=typescript",
-    "setup": "npm install && npm run validate"
+    "setup": "npm ci && npm run validate"
   },
   "dependencies": {
     "@apollo/client": "^3.3.13",
@@ -28,7 +28,6 @@
     "@codemirror/lang-javascript": "^0.18.0",
     "@codemirror/theme-one-dark": "^0.18.0",
     "@codemirror/view": "^0.18.3",
-    "@types/js-beautify": "^1.13.1",
     "apollo-boost": "^0.4.9",
     "baseui": "^9.112.0",
     "graphql": "^15.5.0",
@@ -47,6 +46,7 @@
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.1",
     "@types/jest": "^26.0.22",
+    "@types/js-beautify": "^1.13.1",
     "@types/lodash": "^4.14.168",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
