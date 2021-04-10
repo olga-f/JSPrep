@@ -17,7 +17,7 @@ export default function Header() {
         ...theme.typography.ParagraphMedium,
         display: "flex",
         flexWrap: "wrap",
-        paddingTop: theme.sizing.scale400,
+        paddingTop: theme.sizing.scale300,
         paddingBottom: theme.sizing.scale400,
         paddingLeft: theme.sizing.scale1000,
         paddingRight: theme.sizing.scale1000,
@@ -27,26 +27,52 @@ export default function Header() {
     >
       <div
         className={css({
-          marginLeft: "none",
+          //  marginLeft: "none",
           marginRight: "auto",
-          display: "flex",
-          alignItems: "center",
-          order: 1,
+          // display: "flex",
+          // alignItems: "center",
+          // order: 1,
         })}
       >
         <Link href="/">
           <a
             className={css({
-              display: "flex",
-              marginLeft: "none",
-              marginRight: theme.sizing.scale400,
-              ":focus": {
-                outline: `3px solid ${theme.colors.accent}`,
-                outlineOffset: "5px",
-              },
+              textDecoration: "none",
             })}
           >
-            <Image src="/jsprep.svg" alt="JS Prep" width="64" height="40" />
+            <div
+              className={css({
+                //  position: "absolute",
+                //  top: "50%",
+                //  left: "50%",
+                //   transform: "translate(-50%, -50%)",
+                padding:  theme.sizing.scale100,
+                color: theme.colors.contentPrimary,
+                border: "3px solid black",
+                // width: 237,
+                //  height: 217,
+                // padding: 15,
+              })}
+            >
+              <h1
+                className={css({
+                  fontSize: theme.sizing.scale700,
+                  // fontWeight: 100,
+                  margin: "0",
+                  textAlign: "right",
+                  textTransform: "uppercase",
+                  lineHeight: 0.9,
+                  letterSpacing: theme.sizing.scale100,
+
+                  //  transition: "all 250ms linear",
+                  //  fontVariationSettings: "wght 50, wdth 500",
+                })}
+              >
+                JS
+                <br />
+                Prep
+              </h1>
+            </div>
           </a>
         </Link>
       </div>
