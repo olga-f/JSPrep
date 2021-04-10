@@ -25,5 +25,5 @@ export const HomeUnitList = (): JSX.Element => {
     return null;
   };
 
-  return <section>{renderHomeUnitList()}</section>;
+  return <main>{renderHomeUnitList()}</main>;
 };

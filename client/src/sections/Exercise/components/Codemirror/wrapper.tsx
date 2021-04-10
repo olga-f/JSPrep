@@ -5,7 +5,7 @@ import { basicSetup } from "@codemirror/basic-setup";
 import { javascript } from "@codemirror/lang-javascript";
 import { oneDark } from "@codemirror/theme-one-dark";
 import beautify_js from "js-beautify";
-import { Button, KIND } from "baseui/button";
+import { Button} from "baseui/button";
 import { ButtonGroup, SIZE } from "baseui/button-group";
 import { useStyletron } from "baseui";
 import {Paragraph3} from 'baseui/typography';
@@ -68,9 +68,9 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
         })}
       >
         <ButtonGroup size={SIZE.compact}>
-          <Button kind={KIND.secondary}>Reset Code</Button>
+          <Button>Reset Code</Button>
           <span className={css({ marginLeft: theme.sizing.scale300 })} />
-          <Button kind={KIND.primary}>Run Code</Button>
+          <Button>Run Code</Button>
         </ButtonGroup>
       </span>
 </Paragraph3>

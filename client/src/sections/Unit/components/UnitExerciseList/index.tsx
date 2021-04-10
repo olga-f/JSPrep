@@ -33,5 +33,5 @@ export const UnitExerciseList = (): JSX.Element => {
     return null;
   };
 
-  return <section>{renderUnitExerciseList()}</section>;
+  return <main>{renderUnitExerciseList()}</main>;
 };

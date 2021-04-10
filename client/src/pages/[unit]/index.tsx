@@ -35,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<
     params: { unit: item.slug },
   }));
   // fallback:true enable statically generating additional pages
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({
@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async ({
     props: {},
     // Re-generate the unit at most once per 60 second
     // if a request comes in
-    revalidate: 60,
+  //  revalidate: 60,
   });
 };
 
