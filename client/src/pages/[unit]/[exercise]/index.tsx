@@ -8,6 +8,7 @@ import {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
+import Layout from "../../../lib/components/Layout";
 import {
   addApolloState,
   initializeApollo,
@@ -17,9 +18,9 @@ import { exerciseWithUnitPaths_exerciseList as PathProps } from "../../../lib/gr
 import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
 
 const ExercisePage: NextPage = (): JSX.Element => (
-  <main>
+  <Layout title="Exercise">
     <ExerciseMain />
-  </main>
+  </Layout>
 );
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<

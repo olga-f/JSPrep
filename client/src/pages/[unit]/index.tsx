@@ -8,6 +8,7 @@ import {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
+import Layout from "../../lib/components/Layout";
 import {
   addApolloState,
   initializeApollo,
@@ -17,9 +18,9 @@ import { unitPaths_unitList as PathProps } from "../../lib/graphql/queries/Unit/
 import { UnitExerciseList } from "../../sections/Unit/components/UnitExerciseList";
 
 const UnitPage: NextPage = (): JSX.Element => (
-  <main>
+  <Layout title="List of exercises">
     <UnitExerciseList />
-  </main>
+  </Layout>
 );
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<
