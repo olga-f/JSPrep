@@ -14,12 +14,12 @@ export const Header = (): JSX.Element => {
         ...theme.typography.ParagraphMedium,
         display: "flex",
         flexWrap: "wrap",
-        paddingTop: theme.sizing.scale100,
-        paddingBottom: theme.sizing.scale100,
+        paddingTop: theme.sizing.scale200,
+        paddingBottom: theme.sizing.scale300,
         paddingLeft: theme.sizing.scale1000,
         paddingRight: theme.sizing.scale1000,
         boxShadow: theme.lighting.shadow700,
-        marginBottom: theme.sizing.scale1000,
+        marginBottom: theme.sizing.scale900,
       })}
     >
       <div
@@ -41,7 +41,7 @@ export const Header = (): JSX.Element => {
             >
               <h1
                 className={css({
-                  fontSize: theme.sizing.scale750,
+                  fontSize: theme.sizing.scale700,
                   margin: "0",
                   textAlign: "right",
                   textTransform: "uppercase",

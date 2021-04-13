@@ -18,6 +18,10 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["node_modules", "lib/graphql/globalTypes.ts", "cypress"],
+  "exclude": [
+    "node_modules",
+    "lib/graphql/globalTypes.ts",
+    "cypress"
+  ],
   "include": ["**/*.ts", "**/*.tsx"]
 }
