@@ -13,9 +13,7 @@ export const HomeUnitList = (): JSX.Element => {
     }
 
     if (data?.unitList?.length) {
-      return (
-          <Units list={data.unitList} />
-      );
+      return <Units list={data.unitList} />;
     }
 
     if (error) {

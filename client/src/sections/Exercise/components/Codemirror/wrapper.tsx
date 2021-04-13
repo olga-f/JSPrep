@@ -5,10 +5,10 @@ import { basicSetup } from "@codemirror/basic-setup";
 import { javascript } from "@codemirror/lang-javascript";
 import { oneDark } from "@codemirror/theme-one-dark";
 import beautify_js from "js-beautify";
-import { Button} from "baseui/button";
+import { Button } from "baseui/button";
 import { ButtonGroup, SIZE } from "baseui/button-group";
 import { useStyletron } from "baseui";
-import {Paragraph3} from 'baseui/typography';
+import { Paragraph3 } from "baseui/typography";
 
 const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
   // Local state
@@ -64,7 +64,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
         className={css({
           position: "absolute",
           bottom: theme.sizing.scale300,
-          right:theme.sizing.scale100,
+          right: theme.sizing.scale100,
         })}
       >
         <ButtonGroup size={SIZE.compact}>
@@ -73,7 +73,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
           <Button>Run Code</Button>
         </ButtonGroup>
       </span>
-</Paragraph3>
+    </Paragraph3>
   );
 };
 

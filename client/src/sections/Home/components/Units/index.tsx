@@ -1,56 +1,40 @@
 import { UnitProps } from "../../../../lib/interfaces";
 import Link from "next/link";
-import { Card, StyledBody, StyledAction, StyledThumbnail } from "baseui/card";
 import { Button, SIZE } from "baseui/button";
-import { ChevronRight } from "baseui/icon/";
+import { ChevronRight } from "baseui/icon";
 import { Grid, Cell } from "baseui/layout-grid";
-import { useStyletron } from "baseui";
+import { Label4 } from "baseui/typography";
 import {
-  Paragraph4,
-} from "baseui/typography";
+  Card,
+  CardBackground,
+  CardBody,
+  CardTitle,
+  CardFeatures,
+} from "./components/";
+
 export const Units = ({ list }: UnitProps): JSX.Element => {
-  const [css, theme] = useStyletron();
+  const defaultImgUrl = "/default.svg";
   return (
     <Grid>
       {list?.map((unit) => (
         <Cell span={[4, 4, 3]} key={unit?.position}>
-          <Card
-            overrides={{
-              Root: {
-                style: {
-                  marginBottom: "15px",
-                  height: "350px",
-                  position: "relative",
-                  width: "100%",
-                  overflow: "hidden"
-                },
-              },
-            }}
-            title={unit?.title}
-          >
-            <StyledThumbnail src={unit?.imageUrl} />
-     
-              <Paragraph4>
-                <ul
-                  // className={css({
-                  //   height: "100px",
-                  //   textOverflow: "ellipsis",
-                  //   // overflow: "hidden",
-                  // })}
-                >
-                  {unit?.about?.map((feature) => (
-                    <li>{feature}</li>
-                  ))}
-                </ul>
-              </Paragraph4>{" "}
-
-  
-              <Link
-                href={{
-                  pathname: "/[unit]",
-                  query: { unit: unit?.slug },
-                }}
-              >
+          <Card>
+            <CardBackground image={unit?.imageUrl ?? defaultImgUrl} />
+            <CardBody>
+              <CardTitle title={unit?.title ?? ""} />
+              <CardFeatures>
+                {unit?.about?.map((feature, index) => (
+                  <Label4 key={index}>{feature}</Label4>
+                ))}
+              </CardFeatures>
+            </CardBody>
+            <Link
+              href={{
+                pathname: "/[unit]",
+                query: { unit: unit?.slug },
+              }}
+            >
+              <a>
                 <Button
                   size={SIZE.compact}
                   overrides={{
@@ -67,8 +51,8 @@ export const Units = ({ list }: UnitProps): JSX.Element => {
                 >
                   Begin Unit
                 </Button>
-              </Link>
-      
+              </a>
+            </Link>
           </Card>
         </Cell>
       ))}

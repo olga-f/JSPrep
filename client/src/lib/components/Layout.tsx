@@ -1,16 +1,13 @@
 import React, { ReactNode } from "react";
 import Head from "next/head";
-import Header from "./Header";
+import { Header } from "./Header";
 
 type Props = {
   children?: ReactNode;
   title?: string;
 };
 
-const Layout = ({
-  children,
-  title = "JS Prep.org",
-}: Props): JSX.Element => (
+const Layout = ({ children, title = "JS Prep.org" }: Props): JSX.Element => (
   <>
     <Head>
       <title>{title}</title>
@@ -21,7 +18,6 @@ const Layout = ({
     <Header />
 
     {children}
-
   </>
 );
 

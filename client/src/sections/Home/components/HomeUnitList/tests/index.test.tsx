@@ -46,7 +46,9 @@ describe("<HomeUnitList /> component", () => {
         <HomeUnitList />
       </MockedProvider>
     );
-    const data = await screen.findByRole("list");
+    const data = await screen.findByRole("heading", {
+      name: /JavaScript basics/i,
+    });
     expect(data).toBeInTheDocument();
     const error = screen.queryByText("Error!");
     expect(error).not.toBeInTheDocument();

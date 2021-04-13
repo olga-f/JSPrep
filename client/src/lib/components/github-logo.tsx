@@ -3,7 +3,7 @@ type PropT = {
   color: string;
 };
 
-export const GithubLogo = (props: PropT) => (
+export const GithubLogo = (props: PropT): JSX.Element => (
   <svg
     width={props.size}
     height={props.size}

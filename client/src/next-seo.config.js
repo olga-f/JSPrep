@@ -2,7 +2,7 @@ export default {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: 'https://jsprep.org',
+    url: "https://jsprep.org",
     site_name: "JS Prep",
   },
   twitter: {

@@ -6,7 +6,7 @@ import { useStyletron } from "baseui";
 const mq = (breakpoint: number): string =>
   `@media screen and (min-width: ${breakpoint}px)`;
 
-export default function Header() {
+export const Header = (): JSX.Element => {
   const [css, theme] = useStyletron();
   return (
     <header
@@ -37,12 +37,11 @@ export default function Header() {
               className={css({
                 padding: theme.sizing.scale100,
                 color: theme.colors.contentPrimary,
-                border: `${theme.sizing.scale100} solid ${theme.colors.contentPrimary}`,
               })}
             >
               <h1
                 className={css({
-                  fontSize: theme.sizing.scale700,
+                  fontSize: theme.sizing.scale750,
                   margin: "0",
                   textAlign: "right",
                   textTransform: "uppercase",
@@ -77,7 +76,7 @@ export default function Header() {
             BaseButton: {
               style: {
                 display: "none",
-                [mq(400)]: {
+                [mq(320)]: {
                   display: "flex",
                 },
               },
@@ -89,4 +88,4 @@ export default function Header() {
       </div>
     </header>
   );
-}
+};

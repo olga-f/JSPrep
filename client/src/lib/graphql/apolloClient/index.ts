@@ -69,7 +69,9 @@ export function addApolloState(
   return pageProps;
 }
 
-export function useApollo(pageProps: NormalizedCacheObject):ApolloClient<NormalizedCacheObject> {
+export function useApollo(
+  pageProps: NormalizedCacheObject
+): ApolloClient<NormalizedCacheObject> {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(() => initializeApollo(state), [state]);
   return store;

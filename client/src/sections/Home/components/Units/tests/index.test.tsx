@@ -12,9 +12,9 @@ describe("<Units /> component", () => {
         <Units list={resultMock.unitList} />
       </MockedProvider>
     );
-    const link = await screen.findByRole("link", {
-      name: /JavaScript basics/i,
+    const link = await screen.findAllByRole("link", {
+      name: /Begin Unit/i,
     });
-    expect(link).toBeInTheDocument();
+    expect(link[0]).toBeInTheDocument();
   });
 });

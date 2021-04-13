@@ -3,12 +3,11 @@ const {
   PHASE_PRODUCTION_BUILD,
 } = require("next/constants");
 
-
 module.exports = (phase) => {
-  webpack: function styletron_server (config) {
-    config.externals = config.externals || {}
-    config.externals['styletron-server'] = 'styletron-server'
-    return config
+  webpack: function styletron_server(config) {
+    config.externals = config.externals || {};
+    config.externals["styletron-server"] = "styletron-server";
+    return config;
   }
   // when started in development mode `next dev` or `npm run dev`
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
@@ -19,9 +18,9 @@ module.exports = (phase) => {
 
   const env = {
     GRAPHQL_URL: (() => {
-      if (isDev) return "http://127.0.0.1:8000/graphql/"
+      if (isDev) return "http://127.0.0.1:8000/graphql/";
       if (isProd) {
-      // The environment variable GRAPHQL_HOST is stored in .env file
+        // The environment variable GRAPHQL_HOST is stored in .env file
         return process.env.GRAPHQL_HOST;
       }
       // default GRAPHQL_URL

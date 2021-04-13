@@ -9,5 +9,5 @@ module.exports = {
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname",
   ],
-  projects: ["./jest.lint.js", "./jest.client.js"]
+  projects: ["./jest.lint.js", "./jest.client.js"],
 };

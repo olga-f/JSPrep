@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async ({
     props: {},
     // Re-generate the exercise at most once per 60 second
     // if a request comes in
-  //  revalidate: 60,
+    //  revalidate: 60,
   });
 };
 
