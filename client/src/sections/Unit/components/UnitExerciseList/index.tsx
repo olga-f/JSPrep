@@ -6,7 +6,6 @@ import {
   exerciseListByUnitSlug as ExercisesData,
   exerciseListByUnitSlugVariables as Vars,
 } from "../../../../lib/graphql/queries/Exercise/__generated__/exerciseListByUnitSlug";
-
 import { Exercises } from "../Exercises";
 
 export const UnitExerciseList = (): JSX.Element => {
