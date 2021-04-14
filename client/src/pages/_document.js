@@ -23,7 +23,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           {this.props.stylesheets.map((sheet, i) => (
             <style

@@ -12,13 +12,16 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const apolloClient = useApollo(pageProps);
 
   return (
-    <StyletronProvider value={styletron}>
-      <BaseProvider theme={LightTheme}>
-        <ApolloProvider client={apolloClient}>
-          <DefaultSeo {...SEO} />
-          <Component {...pageProps} />
-        </ApolloProvider>
-      </BaseProvider>
-    </StyletronProvider>
+    <>
+      {/* <meta charSet="utf-8" /> */}
+      <StyletronProvider value={styletron}>
+        <BaseProvider theme={LightTheme}>
+          <ApolloProvider client={apolloClient}>
+            <DefaultSeo {...SEO} />
+            <Component {...pageProps} />
+          </ApolloProvider>
+        </BaseProvider>
+      </StyletronProvider>
+    </>
   );
 }
