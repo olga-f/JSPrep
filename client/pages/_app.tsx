@@ -14,13 +14,13 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <DefaultSeo {...SEO} />
-      <StyletronProvider value={styletron}>
-        <BaseProvider theme={LightTheme}>
-          <ApolloProvider client={apolloClient}>
+      <ApolloProvider client={apolloClient}>
+        <StyletronProvider value={styletron}>
+          <BaseProvider theme={LightTheme}>
             <Component {...pageProps} />
-          </ApolloProvider>
-        </BaseProvider>
-      </StyletronProvider>
+          </BaseProvider>
+        </StyletronProvider>
+      </ApolloProvider>
     </>
   );
 }

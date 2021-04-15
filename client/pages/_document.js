@@ -25,6 +25,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+        </Head>
+        <body>
           {this.props.stylesheets.map((sheet, i) => (
             <style
               className="_styletron_hydrate_"
@@ -34,8 +36,6 @@ class MyDocument extends Document {
               key={i}
             />
           ))}
-        </Head>
-        <body>
           <Main />
           <NextScript />
         </body>

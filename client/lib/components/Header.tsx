@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { GithubLogo } from "./github-logo";
-import { Button, KIND, SIZE, SHAPE } from "baseui/button";
+import { Button, KIND, SHAPE } from "baseui/button";
 import { useStyletron } from "baseui";
-import {mq} from "../../util/media"
-
+import { mq } from "../../util/media";
 
 export const Header = (): JSX.Element => {
   const [css, theme] = useStyletron();
@@ -68,7 +67,9 @@ export const Header = (): JSX.Element => {
           $as="a"
           href="https://github.com/olga-f/jsprep.org"
           target="_blank"
-          size={SIZE.compact}
+          // @ts-expect-error: rel="noopener" prevents the new page from being able to access the window
+          rel="noopener"
+          aria-label="JSPrep on GitHub"
           kind={KIND.tertiary}
           shape={SHAPE.square}
           overrides={{
