@@ -43,10 +43,10 @@ git clone git@github.com:olga-f/jsprep.org.git
 
 Before running your front-end application, first, you will need to run a [Server](#server).
 
-After, please go to the front-end source folder: /client/src
+After, please go to the front-end source folder: /client
 
 ```
-cd client/src
+cd client
 ```
 Install and validate your project by running the following command:
 
