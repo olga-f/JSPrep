@@ -18,7 +18,7 @@ import { exerciseWithUnitPaths_exerciseList as PathProps } from "../../../lib/gr
 import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
 
 const ExercisePage: NextPage = (): JSX.Element => (
-  <Layout title="Exercise">
+  <Layout>
     <ExerciseMain />
   </Layout>
 );

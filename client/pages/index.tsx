@@ -4,7 +4,7 @@ import Layout from "../lib/components/Layout";
 import { HomeUnitList } from "../sections/Home/components/HomeUnitList";
 
 const HomePage: NextPage = (): JSX.Element => (
-  <Layout title="List of units">
+  <Layout>
     <HomeUnitList />
   </Layout>
 );

@@ -18,7 +18,7 @@ import { unitPaths_unitList as PathProps } from "../../lib/graphql/queries/Unit/
 import { UnitExerciseList } from "../../sections/Unit/components/UnitExerciseList";
 
 const UnitPage: NextPage = (): JSX.Element => (
-  <Layout title="List of exercises">
+  <Layout>
     <UnitExerciseList />
   </Layout>
 );

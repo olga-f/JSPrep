@@ -13,11 +13,10 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
 
   return (
     <>
-      {/* <meta charSet="utf-8" /> */}
+      <DefaultSeo {...SEO} />
       <StyletronProvider value={styletron}>
         <BaseProvider theme={LightTheme}>
           <ApolloProvider client={apolloClient}>
-            <DefaultSeo {...SEO} />
             <Component {...pageProps} />
           </ApolloProvider>
         </BaseProvider>
