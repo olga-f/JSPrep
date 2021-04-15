@@ -2,9 +2,8 @@ import Link from "next/link";
 import { GithubLogo } from "./github-logo";
 import { Button, KIND, SIZE, SHAPE } from "baseui/button";
 import { useStyletron } from "baseui";
+import {mq} from "../../util/media"
 
-const mq = (breakpoint: number): string =>
-  `@media screen and (min-width: ${breakpoint}px)`;
 
 export const Header = (): JSX.Element => {
   const [css, theme] = useStyletron();

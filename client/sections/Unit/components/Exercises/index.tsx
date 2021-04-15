@@ -8,10 +8,12 @@ import { ListItem, ListItemLabel } from "baseui/list";
 import { Button } from "baseui/button";
 import { CodeIcon } from "../../assets/code-icon";
 import { useStyletron } from "baseui";
-import { Check, Grab } from "baseui/icon";
+import { Check, Grab, CheckIndeterminate } from "baseui/icon";
+import { mq } from "../../../../util/media";
 
 export const Exercises = ({ unit, list }: ExerciseProps): JSX.Element => {
-  const [, theme] = useStyletron();
+  const [css, theme] = useStyletron();
+  const isComplete = false;
   return (
     <Grid>
       <Cell span={[0, 2, 3]}>
@@ -32,11 +34,28 @@ export const Exercises = ({ unit, list }: ExerciseProps): JSX.Element => {
             </Paragraph3>
           </Cell>
         </Grid>
-        <ul>
+        <ul
+          className={css({
+            paddingLeft: 0,
+            paddingRight: 0,
+            [mq(1200)]: {
+              width: "86%",
+              paddingLeft: "7%",
+            },
+          })}
+        >
           {list?.map((exercise) => (
             <ListItem
-              artwork={Check}
+              artwork={isComplete ? Check: CheckIndeterminate}
               key={exercise?.position}
+              overrides={{
+                Root: {
+                  style: {
+                    ...theme.borders.border600,
+                    marginBottom: theme.sizing.scale800,
+                  },
+                },
+              }}
               endEnhancer={() => (
                 <Link
                   href={{
