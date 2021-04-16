@@ -13,7 +13,7 @@ export const Header = (): JSX.Element => {
         display: "flex",
         flexWrap: "wrap",
         paddingTop: theme.sizing.scale200,
-        paddingBottom: theme.sizing.scale300,
+        paddingBottom: theme.sizing.scale200,
         paddingLeft: theme.sizing.scale1000,
         paddingRight: theme.sizing.scale1000,
         boxShadow: theme.lighting.shadow700,
