@@ -9,6 +9,10 @@
 
 export interface exerciseListByUnitSlug_exerciseListByUnitSlug {
   __typename: "ExerciseType";
+  /**
+   * _id
+   */
+  id: string | null;
   name: string;
   position: number;
   category: string;
@@ -16,9 +20,7 @@ export interface exerciseListByUnitSlug_exerciseListByUnitSlug {
 }
 
 export interface exerciseListByUnitSlug {
-  exerciseListByUnitSlug:
-    | (exerciseListByUnitSlug_exerciseListByUnitSlug | null)[]
-    | null;
+  exerciseListByUnitSlug: (exerciseListByUnitSlug_exerciseListByUnitSlug | null)[] | null;
 }
 
 export interface exerciseListByUnitSlugVariables {

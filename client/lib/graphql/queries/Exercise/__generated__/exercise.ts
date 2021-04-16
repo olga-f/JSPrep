@@ -9,6 +9,10 @@
 
 export interface exercise_exerciseBySlug {
   __typename: "ExerciseType";
+  /**
+   * _id
+   */
+  id: string | null;
   name: string;
   description: string | null;
   content: string | null;

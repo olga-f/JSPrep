@@ -14,6 +14,10 @@ export interface exerciseWithUnitPaths_exerciseList_unit {
 
 export interface exerciseWithUnitPaths_exerciseList {
   __typename: "ExerciseType";
+  /**
+   * _id
+   */
+  id: string | null;
   slug: string;
   unit: exerciseWithUnitPaths_exerciseList_unit | null;
 }

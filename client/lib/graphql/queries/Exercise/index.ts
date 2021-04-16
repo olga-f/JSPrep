@@ -14,6 +14,7 @@ export const GET_EXERCISE = gql`
 export const EXERCISE_PATHS = gql`
   query exerciseWithUnitPaths {
     exerciseList {
+      id
       slug
       unit {
         slug
@@ -25,6 +26,7 @@ export const EXERCISE_PATHS = gql`
 export const EXERCISE_LIST = gql`
   query exerciseListByUnitSlug($slug: String!) {
     exerciseListByUnitSlug(slug: $slug) {
+      id
       name
       position
       category
@@ -36,6 +38,7 @@ export const EXERCISE_LIST = gql`
 export const EXERCISE = gql`
   query exercise($slug: String!) {
     exerciseBySlug(slug: $slug) {
+      id
       name
       description
       content

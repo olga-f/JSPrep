@@ -1,4 +1,4 @@
-import { ExerciseProps } from "../../../../lib/interfaces";
+import { ExercisesProps } from "../../../../lib/interfaces";
 import Link from "next/link";
 import { Grid, Cell } from "baseui/layout-grid";
 import React from "react";
@@ -11,7 +11,7 @@ import { useStyletron } from "baseui";
 import { Check, Grab, CheckIndeterminate } from "baseui/icon";
 import { mq } from "../../../../util/media";
 
-export const Exercises = ({ unit, list }: ExerciseProps): JSX.Element => {
+export const Exercises = ({ unit, list }: ExercisesProps): JSX.Element => {
   const [css, theme] = useStyletron();
   const isComplete = false;
   return (

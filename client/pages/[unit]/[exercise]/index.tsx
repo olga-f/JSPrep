@@ -34,7 +34,14 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<
   const paths = data.exerciseList.map((item: PathProps) => ({
     params: { unit: item.unit?.slug, exercise: item.slug },
   }));
-  // fallback:true enable statically generating additional pages
+  // fallback:false  All paths will be known at build time. If not exist, return 404.
+  // Change to `fallback:true` if you need to enable statically generating additional exercises during runtime
+  // And add to ExercisePage
+  //                if (router.isFallback) {
+  //                return <div>Loading...</div>
+  //              }
+  //   If fallback:true and the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
   return { paths, fallback: false };
 };
 
@@ -44,7 +51,7 @@ export const getStaticProps: GetStaticProps = async ({
   const apolloClient = initializeApollo();
 
   // Static generation (SSG)
-  await apolloClient.query({
+  const exercise = await apolloClient.query({
     query: GET_EXERCISE,
     variables: {
       slug: params?.exercise,
@@ -52,9 +59,11 @@ export const getStaticProps: GetStaticProps = async ({
   });
 
   return addApolloState(apolloClient, {
-    props: {},
-    // Re-generate the exercise at most once per 60 second
-    // if a request comes in
+    // Pass exercise data to the page via props
+    props: { exercise },
+    // `revalidate` re-generate the exercise (value in seconds) in the background
+    // if a request comes in (if the page isn’t being visited by users, revalidation will be paused)
+    // and updates the static page for *future* requests.
     //  revalidate: 60,
   });
 };

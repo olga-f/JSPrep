@@ -35,7 +35,16 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<
   const paths = data.unitList.map((item: PathProps) => ({
     params: { unit: item.slug },
   }));
-  // fallback:true enable statically generating additional pages
+  // fallback:false  All paths will be known at build time. If not exist, return 404.
+  // Change to `fallback:true` and uncomment `validate` in getStaticProps if you need
+  // to enable statically generating additional units during runtime.
+  // And add to UnitPage
+  //                if (router.isFallback) {
+  //                return <div>Loading...</div>
+  //              }
+  //   If fallback:true and the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+
   return { paths, fallback: false };
 };
 
@@ -45,7 +54,7 @@ export const getStaticProps: GetStaticProps = async ({
   const apolloClient = initializeApollo();
 
   // Static generation (SSG)
-  await apolloClient.query({
+  const unitExercises = await apolloClient.query({
     query: EXERCISE_LIST,
     variables: {
       slug: params?.unit,
@@ -53,9 +62,11 @@ export const getStaticProps: GetStaticProps = async ({
   });
 
   return addApolloState(apolloClient, {
-    props: {},
-    // Re-generate the unit at most once per 60 second
-    // if a request comes in
+    // Pass unit data to the page via props
+    props: { unitExercises },
+    // `revalidate` re-generate the unit (value in seconds) in the background
+    // if a request comes in (if the page isn’t being visited by users, revalidation will be paused)
+    // and updates the static page for *future* requests.
     //  revalidate: 60,
   });
 };

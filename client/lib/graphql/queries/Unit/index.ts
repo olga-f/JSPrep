@@ -15,7 +15,10 @@ export const UNIT_LIST = gql`
 export const UNIT_PATHS = gql`
   query unitPaths {
     unitList {
+      id
       slug
+      title
+      description
     }
   }
 `;

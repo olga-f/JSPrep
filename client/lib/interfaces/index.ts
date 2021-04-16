@@ -8,7 +8,7 @@ import { unitList } from "../graphql/queries/Unit/__generated__/unitList";
 export interface UnitProps {
   list: unitList["unitList"];
 }
-export interface ExerciseProps {
+export interface ExercisesProps {
   list: exerciseListByUnitSlug["exerciseListByUnitSlug"];
   unit: exerciseListByUnitSlugVariables["slug"];
 }
