@@ -1,4 +1,4 @@
-import { ExercisesProps } from "../../../../lib/interfaces";
+import { ExercisesProps } from "../../../../lib/types";
 import Link from "next/link";
 import { Grid, Cell } from "baseui/layout-grid";
 import React from "react";

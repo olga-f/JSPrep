@@ -14,8 +14,6 @@ export interface unitPaths_unitList {
    */
   id: string | null;
   slug: string;
-  title: string;
-  description: string | null;
 }
 
 export interface unitPaths {

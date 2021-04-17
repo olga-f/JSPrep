@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: exerciseListByUnitSlug
+// GraphQL query operation: exerciseBySlug
 // ====================================================
 
-export interface exerciseListByUnitSlug_exerciseListByUnitSlug {
+export interface exerciseBySlug_exerciseBySlug {
   __typename: "ExerciseType";
   /**
    * _id
@@ -15,14 +15,18 @@ export interface exerciseListByUnitSlug_exerciseListByUnitSlug {
   id: string | null;
   name: string;
   position: number;
-  category: string;
   slug: string;
+  description: string | null;
+  content: string | null;
+  category: string;
+  code: string | null;
+  test: string | null;
 }
 
-export interface exerciseListByUnitSlug {
-  exerciseListByUnitSlug: (exerciseListByUnitSlug_exerciseListByUnitSlug | null)[] | null;
+export interface exerciseBySlug {
+  exerciseBySlug: exerciseBySlug_exerciseBySlug | null;
 }
 
-export interface exerciseListByUnitSlugVariables {
+export interface exerciseBySlugVariables {
   slug: string;
 }

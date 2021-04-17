@@ -14,12 +14,12 @@ import {
   initializeApollo,
 } from "../../lib/graphql/apolloClient";
 import { EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
-import { unitPaths_unitList as PathProps } from "../../lib/graphql/queries/Unit/__generated__/unitPaths";
+import { exerciseListByUnitSlug as Props } from "../../lib/graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug"
 import { UnitExerciseList } from "../../sections/Unit/components/UnitExerciseList";
 
-const UnitPage: NextPage = (): JSX.Element => (
+const UnitPage = (unitExercises: Props): JSX.Element => (
   <Layout>
-    <UnitExerciseList />
+    <UnitExerciseList list={unitExercises} />
   </Layout>
 );
 
@@ -35,8 +35,8 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<
   const paths = data.unitList.map((item: PathProps) => ({
     params: { unit: item.slug },
   }));
-  // fallback:false  All paths will be known at build time. If not exist, return 404.
-  // Change to `fallback:true` and uncomment `validate` in getStaticProps if you need
+  // "fallback:false" - all paths will be known at build time. If not exist, return 404.
+  // "fallback:true" - and uncomment `validate` in getStaticProps if you need
   // to enable statically generating additional units during runtime.
   // And add to UnitPage
   //                if (router.isFallback) {

@@ -1,25 +1,13 @@
-import { useQuery } from "@apollo/client/react/hooks";
-import { UNIT_LIST } from "../../../../lib/graphql/queries";
-import { unitList as UnitsData } from "../../../../lib/graphql/queries/Unit/__generated__/unitList";
 import { Units } from "../Units";
+import { UnitsProps } from "../../../../lib/types";
 
-export const HomeUnitList = (): JSX.Element => {
-  const { loading, data, error } = useQuery<UnitsData>(UNIT_LIST);
+export const HomeUnitList = ({ units }: UnitsProps): JSX.Element => {
+  const { data } = units;
 
   const renderHomeUnitList = () => {
-    if (loading) {
-      return "Loading...";
-      //  return <HomeUnitListSkeleton />;
+    if (data.unitList?.length) {
+      return <Units list={units.data.unitList} />;
     }
-
-    if (data?.unitList?.length) {
-      return <Units list={data.unitList} />;
-    }
-
-    if (error) {
-      return "Error!";
-    }
-
     return null;
   };
 

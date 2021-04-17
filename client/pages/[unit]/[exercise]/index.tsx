@@ -4,7 +4,6 @@ import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
-  NextPage,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
@@ -14,10 +13,12 @@ import {
   initializeApollo,
 } from "../../../lib/graphql/apolloClient";
 import { EXERCISE_PATHS, GET_EXERCISE } from "../../../lib/graphql/queries";
-import { exerciseWithUnitPaths_exerciseList as PathProps } from "../../../lib/graphql/queries/Exercise/__generated__/exerciseWithUnitPaths";
+import { exerciseWithUnitPaths_exerciseList as PathProps } from "../../../lib/graphql/queries/ExercisePage/__generated__/exerciseWithUnitPaths";
+import { exerciseBySlug as Props } from "../../../lib/graphql/queries/ExercisePage/__generated__/exerciseBySlug";
+
 import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
 
-const ExercisePage: NextPage = (): JSX.Element => (
+const ExercisePage = (exercise: Props): JSX.Element => (
   <Layout>
     <ExerciseMain />
   </Layout>
@@ -34,8 +35,8 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<
   const paths = data.exerciseList.map((item: PathProps) => ({
     params: { unit: item.unit?.slug, exercise: item.slug },
   }));
-  // fallback:false  All paths will be known at build time. If not exist, return 404.
-  // Change to `fallback:true` if you need to enable statically generating additional exercises during runtime
+  // "fallback:false" - qll paths will be known at build time. If not exist, return 404.
+  // "fallback:true"  - enable statically generating additional exercises during runtime
   // And add to ExercisePage
   //                if (router.isFallback) {
   //                return <div>Loading...</div>

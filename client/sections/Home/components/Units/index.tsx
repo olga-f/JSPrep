@@ -1,4 +1,3 @@
-import { UnitProps } from "../../../../lib/interfaces";
 import Link from "next/link";
 import { Button, SIZE } from "baseui/button";
 import { ChevronRight } from "baseui/icon";
@@ -11,8 +10,10 @@ import {
   CardTitle,
   CardFeatures,
 } from "./components/";
+import { ListProps } from "../../../../lib/types";
 
-export const Units = ({ list }: UnitProps): JSX.Element => {
+
+export const Units = ({ list }:ListProps): JSX.Element => {
   const defaultImgUrl = "/default.svg";
   return (
     <Grid>

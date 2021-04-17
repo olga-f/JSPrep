@@ -1,20 +1,15 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import { MockedProvider } from "@apollo/client/testing";
 import { Units } from "..";
-import { resultMock, unitListMocks } from "../../../mocks";
+import { unitsMock } from "../../../../../mocks/home";
 
 describe("<Units /> component", () => {
   it("renders units with links", async () => {
-    render(
-      <MockedProvider mocks={unitListMocks} addTypename={false}>
-        <Units list={resultMock.unitList} />
-      </MockedProvider>
-    );
-    const link = await screen.findAllByRole("link", {
-      name: /Begin Unit/i,
+    render(<Units list={unitsMock.data.unitList} />);
+    const links = await screen.findAllByRole("button", {
+      name: /Begin unit/i,
     });
-    expect(link[0]).toBeInTheDocument();
+    expect(links[0]).toBeInTheDocument();
   });
 });

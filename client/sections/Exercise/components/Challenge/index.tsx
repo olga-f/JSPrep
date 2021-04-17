@@ -1,4 +1,4 @@
-import { ChallengeProps } from "../../../../lib/interfaces";
+import { ChallengeProps } from "../../../../lib/types";
 import CodeEditor from "../Codemirror";
 
 import { Grid, Cell } from "baseui/layout-grid";
