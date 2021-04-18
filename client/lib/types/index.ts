@@ -2,6 +2,10 @@ import {
   unitList,
   unitList_unitList,
 } from "../graphql/queries/HomePage/__generated__/unitList";
+import {
+  exerciseListByUnitSlug,
+  exerciseListByUnitSlug_exerciseListByUnitSlug,
+} from "../graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug";
 
 export type UnitsProps = {
   units: {
@@ -9,20 +13,19 @@ export type UnitsProps = {
   };
 };
 
-export type ListProps = {
+export type UnitListProps = {
   list: (unitList_unitList | null)[] | null;
 };
 
-// import { exercise } from "../graphql/queries/Exercise/__generated__/exercise";
-// import {
-//   exerciseListByUnitSlug,
-//   exerciseListByUnitSlugVariables,
-// } from "../graphql/queries/ExercisePage/__generated__/exerciseListByUnitSlug";
+export type ExercisesProps = {
+  exercises: {
+    data: exerciseListByUnitSlug;
+  };
+};
 
-// export interface ExercisesProps {
-//   list: exerciseListByUnitSlug["exerciseListByUnitSlug"];
-//   unit: exerciseListByUnitSlugVariables["slug"];
-// }
+export type ExerciseListProps = {
+  list: (exerciseListByUnitSlug_exerciseListByUnitSlug | null)[] | null;
+};
 
 // export interface ChallengeProps {
 //   data: exercise["exerciseBySlug"];

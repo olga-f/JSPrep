@@ -6,7 +6,7 @@ export const HomeUnitList = ({ units }: UnitsProps): JSX.Element => {
 
   const renderHomeUnitList = () => {
     if (data.unitList?.length) {
-      return <Units list={units.data.unitList} />;
+      return <Units list={data.unitList} />;
     }
     return null;
   };

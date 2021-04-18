@@ -10,8 +10,10 @@ import { CodeIcon } from "../../assets/code-icon";
 import { useStyletron } from "baseui";
 import { Check, Grab, CheckIndeterminate } from "baseui/icon";
 import { mq } from "../../../../util/media";
+import { ExerciseListProps} from "../../../../lib/types";
 
-export const Exercises = ({ unit, list }: ExercisesProps): JSX.Element => {
+
+export const Exercises = ({ list }:ExerciseListProps): JSX.Element => {
   const [css, theme] = useStyletron();
   const isComplete = false;
   return (
@@ -22,15 +24,11 @@ export const Exercises = ({ unit, list }: ExercisesProps): JSX.Element => {
       <Cell span={[4, 6, 9]}>
         <Grid>
           <Cell span={[4, 5, 6]}>
-            <H1>Plain but Tricky JavaScript</H1>
+            <H1>{list?.find(x=>x!==undefined)?.unit?.title}</H1>
           </Cell>
           <Cell span={[4, 3, 6]}>
             <Paragraph3>
-              In this unit we explore higher order functions and callbacks.
-              Functions like map, reduce and filter are powerful tools and keep
-              our code DRY but can be complex to navigate. We will learn how to
-              build these functions from scratch so you can easily implement and
-              debug them in your code.
+             {list?.find(x=>x!==undefined)?.unit?.description}
             </Paragraph3>
           </Cell>
         </Grid>
@@ -60,7 +58,7 @@ export const Exercises = ({ unit, list }: ExercisesProps): JSX.Element => {
                 <Link
                   href={{
                     pathname: "/[unit]/[exercise]",
-                    query: { unit: unit, exercise: exercise?.slug },
+                    query: { unit: list?.find(x=>x!==undefined)?.unit?.slug, exercise: exercise?.slug },
                   }}
                 >
                   <a>

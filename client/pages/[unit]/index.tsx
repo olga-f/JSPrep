@@ -4,7 +4,6 @@ import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
-  NextPage,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
@@ -14,12 +13,14 @@ import {
   initializeApollo,
 } from "../../lib/graphql/apolloClient";
 import { EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
-import { exerciseListByUnitSlug as Props } from "../../lib/graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug"
+import { unitPaths_unitList } from "../../lib/graphql/queries/UnitPage/__generated__/unitPaths";
+import { ExercisesProps } from "../../lib/types";
+
 import { UnitExerciseList } from "../../sections/Unit/components/UnitExerciseList";
 
-const UnitPage = (unitExercises: Props): JSX.Element => (
+const UnitPage = ({ exercises }: ExercisesProps): JSX.Element => (
   <Layout>
-    <UnitExerciseList list={unitExercises} />
+    <UnitExerciseList exercises={exercises} />
   </Layout>
 );
 
@@ -32,7 +33,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<
     query: UNIT_PATHS,
   });
 
-  const paths = data.unitList.map((item: PathProps) => ({
+  const paths = data.unitList.map((item: unitPaths_unitList) => ({
     params: { unit: item.slug },
   }));
   // "fallback:false" - all paths will be known at build time. If not exist, return 404.
@@ -54,7 +55,7 @@ export const getStaticProps: GetStaticProps = async ({
   const apolloClient = initializeApollo();
 
   // Static generation (SSG)
-  const unitExercises = await apolloClient.query({
+  const exercises = await apolloClient.query({
     query: EXERCISE_LIST,
     variables: {
       slug: params?.unit,
@@ -63,7 +64,7 @@ export const getStaticProps: GetStaticProps = async ({
 
   return addApolloState(apolloClient, {
     // Pass unit data to the page via props
-    props: { unitExercises },
+    props: { exercises },
     // `revalidate` re-generate the unit (value in seconds) in the background
     // if a request comes in (if the page isn’t being visited by users, revalidation will be paused)
     // and updates the static page for *future* requests.

@@ -11,5 +11,7 @@ describe("<Units /> component", () => {
       name: /Begin unit/i,
     });
     expect(links[0]).toBeInTheDocument();
+    expect(links[1]).toBeVisible();
+    expect(links.length).toBe(2);
   });
 });

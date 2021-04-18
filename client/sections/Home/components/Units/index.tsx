@@ -10,10 +10,10 @@ import {
   CardTitle,
   CardFeatures,
 } from "./components/";
-import { ListProps } from "../../../../lib/types";
+import { UnitListProps } from "../../../../lib/types";
 
 
-export const Units = ({ list }:ListProps): JSX.Element => {
+export const Units = ({ list }:UnitListProps): JSX.Element => {
   const defaultImgUrl = "/default.svg";
   return (
     <Grid>

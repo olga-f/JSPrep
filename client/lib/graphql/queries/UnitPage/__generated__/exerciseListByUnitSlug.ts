@@ -11,6 +11,7 @@ export interface exerciseListByUnitSlug_exerciseListByUnitSlug_unit {
   __typename: "UnitType";
   title: string;
   description: string | null;
+  slug: string;
 }
 
 export interface exerciseListByUnitSlug_exerciseListByUnitSlug {

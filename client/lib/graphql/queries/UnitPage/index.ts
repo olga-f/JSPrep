@@ -11,6 +11,7 @@ export const EXERCISE_LIST = gql`
       unit {
         title
         description
+        slug
       }
     }
   }
@@ -24,6 +25,3 @@ export const UNIT_PATHS = gql`
     }
   }
 `;
-
-
-

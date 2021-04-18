@@ -1,7 +1,6 @@
 import { unitList } from "../lib/graphql/queries/HomePage/__generated__/unitList";
-import { unitList as Props } from "../lib/graphql/queries/HomePage/__generated__/unitList";
 
-export const units: unitList = {
+const units: unitList = {
   unitList: [
     {
       __typename: "UnitType",

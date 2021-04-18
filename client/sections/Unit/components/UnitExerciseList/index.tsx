@@ -1,34 +1,14 @@
-import { useQuery } from "@apollo/client/react/hooks";
-import { NextRouter, useRouter } from "next/router";
-import { ParsedUrlQuery } from "node:querystring";
-import { EXERCISE_LIST } from "../../../../lib/graphql/queries";
-import {
-  exerciseListByUnitSlug as ExercisesData,
-  exerciseListByUnitSlugVariables as Vars,
-} from "../../../../lib/graphql/queries/Exercise/__generated__/exerciseListByUnitSlug";
 import { Exercises } from "../Exercises";
+import { ExercisesProps } from "../../../../lib/types";
 
-export const UnitExerciseList = (): JSX.Element => {
-  const router: NextRouter = useRouter();
-  const { unit }: ParsedUrlQuery = router.query;
 
-  const { loading, data } = useQuery<ExercisesData, Vars>(EXERCISE_LIST, {
-    variables: {
-      slug: unit as string,
-    },
-  });
+export const UnitExerciseList = ({ exercises }:ExercisesProps): JSX.Element => {
+  const { data } = exercises;
 
   const renderUnitExerciseList = () => {
-    if (loading) {
-      //  return <HomeUnitListSkeleton />;
+    if (data.exerciseListByUnitSlug?.length) {
+      return <Exercises list={data.exerciseListByUnitSlug} />;
     }
-
-    if (data) {
-      return (
-        <Exercises unit={unit as string} list={data.exerciseListByUnitSlug} />
-      );
-    }
-
     return null;
   };
 
