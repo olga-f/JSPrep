@@ -3,13 +3,6 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { exerciseMock } from "../../mocks/exercise";
 
-jest.mock("next/router", () => ({
-  useRouter() {
-    return {
-      asPath: "/javascript-basics/functions",
-    };
-  },
-}));
 describe("Exercise page", () => {
   it("renders an exercise", () => {
     render(<ExercisePage exercise={exerciseMock} />);

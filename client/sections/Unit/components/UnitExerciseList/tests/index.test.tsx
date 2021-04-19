@@ -3,16 +3,33 @@ import { UnitExerciseList } from "../../UnitExerciseList";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { emptyExercisesMock, exercisesMock } from "../../../../../mocks/unit";
-describe("<HomeUnitList/> component", () => {
-  it("renders <Units> if data provided", () => {
-    render(<UnitExerciseList exercises={exercisesMock} />);
+import { MockedProvider } from "@apollo/client/testing";
+
+jest.mock("next/router", () => ({
+  useRouter() {
+    return {
+      query: { unit: "javascript-basics" },
+    };
+  },
+}));
+describe("<UnitExerciseList/> component", () => {
+  it("renders <Exercises> if data provided", () => {
+    render(
+      <MockedProvider>
+        <UnitExerciseList exercises={exercisesMock} />
+      </MockedProvider>
+    );
     const main = screen.getByRole("main");
     expect(main).toBeInTheDocument();
     expect(main).not.toBeEmptyDOMElement();
   });
 
   it("returns an empty <main> tag if data is an empty array", async () => {
-    render(<UnitExerciseList exercises={emptyExercisesMock} />);
+    render(
+      <MockedProvider>
+        <UnitExerciseList exercises={emptyExercisesMock} />
+      </MockedProvider>
+    );
     const main = screen.getByRole("main");
     expect(main).toBeInTheDocument();
     expect(main).toBeEmptyDOMElement();

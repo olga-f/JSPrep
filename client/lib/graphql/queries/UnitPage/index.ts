@@ -25,3 +25,12 @@ export const UNIT_PATHS = gql`
     }
   }
 `;
+
+export const UNIT_NAV = gql`
+  query unitNav {
+    unitList {
+      title
+      itemId: slug
+    }
+  }
+`;

@@ -7,6 +7,7 @@ import {
   exerciseListByUnitSlug,
   exerciseListByUnitSlug_exerciseListByUnitSlug,
 } from "../graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug";
+import { unitNav_unitList } from "../graphql/queries/UnitPage/__generated__/unitNav";
 
 export type UnitsProps = {
   units: {
@@ -36,6 +37,9 @@ export type ExerciseData = {
   exercise: { data: Exercise };
 };
 
-export interface Exercise {
+export type Exercise = {
   exerciseBySlug: exerciseBySlug_exerciseBySlug;
-}
+};
+export type UnitNav = {
+  unitList: unitNav_unitList[] | undefined;
+};

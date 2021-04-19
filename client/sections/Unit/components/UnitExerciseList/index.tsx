@@ -1,8 +1,12 @@
 import { Exercises } from "../Exercises";
 import { ExercisesProps } from "../../../../lib/types";
+import React from "react";
+import { Grid, Cell } from "baseui/layout-grid";
+import { SideNav } from "../SideNav";
 
-
-export const UnitExerciseList = ({ exercises }:ExercisesProps): JSX.Element => {
+export const UnitExerciseList = ({
+  exercises,
+}: ExercisesProps): JSX.Element => {
   const { data } = exercises;
 
   const renderUnitExerciseList = () => {
@@ -12,5 +16,14 @@ export const UnitExerciseList = ({ exercises }:ExercisesProps): JSX.Element => {
     return null;
   };
 
-  return <main>{renderUnitExerciseList()}</main>;
+  return (
+    <Grid>
+      <Cell span={[0, 2, 3]}>
+        <SideNav />
+      </Cell>
+      <Cell span={[4, 6, 9]}>
+        <main>{renderUnitExerciseList()}</main>
+      </Cell>
+    </Grid>
+  );
 };

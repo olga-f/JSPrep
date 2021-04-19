@@ -4,14 +4,6 @@ import { render, screen } from "@testing-library/react";
 import { Exercises } from "..";
 import { exercisesMock } from "../../../../../mocks/unit";
 
-jest.mock("next/router", () => ({
-  useRouter() {
-    return {
-      asPath: "/javascript-basics",
-    };
-  },
-}));
-
 describe("<Exercises /> component", () => {
   it("renders exercises with challenge link", async () => {
     render(<Exercises list={exercisesMock.data.exerciseListByUnitSlug} />);
