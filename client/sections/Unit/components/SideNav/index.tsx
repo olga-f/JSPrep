@@ -12,6 +12,7 @@ export const SideNav = (): JSX.Element => {
 
   const renderSideNav = () => {
     if (loading) {
+      return "Loading...";
       //    return <SideNavSkeleton />;
     }
 

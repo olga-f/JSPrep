@@ -1,7 +1,6 @@
+import { GraphQLError } from "graphql/error";
 import { UNIT_NAV } from "../lib/graphql/queries";
 import { exerciseListByUnitSlug } from "../lib/graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug";
-
-import { UnitNav } from "../lib/types";
 
 const exercises: exerciseListByUnitSlug = {
   exerciseListByUnitSlug: [
@@ -81,3 +80,17 @@ export const unitNavMock = [
     },
   },
 ];
+
+export const networkErrorMock = {
+  request: {
+    query: UNIT_NAV,
+  },
+  error: new Error("An error occurred"),
+};
+
+export const graphqlErrorMock = {
+  request: {
+    query: UNIT_NAV,
+  },
+  errors: [new GraphQLError("Oops, Error!")],
+};

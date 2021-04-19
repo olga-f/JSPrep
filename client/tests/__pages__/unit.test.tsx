@@ -38,22 +38,23 @@ describe("Unit page", () => {
     });
 
     expect(activeLink).toBeInTheDocument();
-    expect(activeLink.firstChild).toHaveClass("ek");
-    expect(activeLink.firstChild).not.toHaveClass("ev");
+    expect(activeLink.firstChild).toHaveStyle(
+      "background-color: rgb(0, 0, 0);"
+    );
 
-    const inActiveLink1 = await screen.findByRole("link", {
+    const inactiveLink1 = await screen.findByRole("link", {
       name: /Precourse/i,
     });
-    expect(inActiveLink1.firstChild).not.toHaveClass("ek");
-    expect(inActiveLink1.firstChild).toHaveClass("ev");
+    expect(inactiveLink1.firstChild).toHaveStyle(
+      "background-color: transparent;"
+    );
 
-    const inActiveLink2 = await screen.findByRole("link", {
+    const inactiveLink2 = await screen.findByRole("link", {
       name: /Asynchronous JavaScript/i,
     });
-    expect(inActiveLink2.firstChild).not.toHaveClass("ek");
-    expect(inActiveLink2.firstChild).toHaveClass("ev");
-    const loading = screen.queryByText("Loading...");
-    expect(loading).toBeNull();
+    expect(inactiveLink2.firstChild).toHaveStyle(
+      "background-color: transparent;"
+    );
   });
 
   it("renders list of exercises", async () => {

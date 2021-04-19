@@ -6,7 +6,6 @@ import { javascript } from "@codemirror/lang-javascript";
 import { oneDark } from "@codemirror/theme-one-dark";
 import beautify_js from "js-beautify";
 import { Button } from "baseui/button";
-import { ButtonGroup, SIZE } from "baseui/button-group";
 import { useStyletron } from "baseui";
 import { Paragraph3 } from "baseui/typography";
 
@@ -67,11 +66,9 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
           right: theme.sizing.scale100,
         })}
       >
-        <ButtonGroup size={SIZE.compact}>
-          <Button>Reset Code</Button>
-          <span className={css({ marginLeft: theme.sizing.scale300 })} />
-          <Button>Run Code</Button>
-        </ButtonGroup>
+        <Button>Reset Code</Button>
+        <span className={css({ marginLeft: theme.sizing.scale300 })} />
+        <Button>Run Code</Button>
       </span>
     </Paragraph3>
   );
