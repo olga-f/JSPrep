@@ -7,8 +7,8 @@ import { UnitNav } from "../../../../lib/types";
 export const SideNav = (): JSX.Element => {
   const { loading, data, error } = useQuery<UnitNav>(UNIT_NAV);
   const router = useRouter();
-  const getInitialActiveItemId = () => router.query.unit?.toString() ?? "";
-  const [location, setLocation] = useState(getInitialActiveItemId);
+  const InitialActiveItemId = router.query.unit?.toString() ?? "";
+  const [location, setLocation] = useState(InitialActiveItemId);
 
   const renderSideNav = () => {
     if (loading) {
