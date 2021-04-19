@@ -1,10 +1,9 @@
 import { ExerciseProps } from "../../../../lib/types";
-import CodeEditor from "../Codemirror";
 import { Grid, Cell } from "baseui/layout-grid";
+import {CodeEditor} from "./components/CodeEditor";
 
 export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {
-
-  const code = exercise.code ?? "";
+  const code = exercise.code?.toString() ?? "";
   return (
     <Grid>
       <Cell span={[4, 8, 5]}>
@@ -12,7 +11,7 @@ export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {
         <p>{exercise.description}</p>
       </Cell>
       <Cell span={[4, 8, 7]}>
-        <CodeEditor code={code} />
+        <CodeEditor challenge={code} />
       </Cell>
     </Grid>
   );
