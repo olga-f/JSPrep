@@ -1,45 +1,26 @@
-import { useQuery } from "@apollo/client/react/hooks";
-import { NextRouter, useRouter } from "next/router";
-import { ParsedUrlQuery } from "node:querystring";
 import React from "react";
-import { EXERCISE } from "../../../../lib/graphql/queries";
-import {
-  exercise as Exercise,
-  exerciseVariables as Vars,
-} from "../../../../lib/graphql/queries/Exercise/__generated__/exercise";
+import { Exercise, ExerciseData } from "../../../../lib/types";
 import { Challenge } from "../Challenge";
 import { Tutorial } from "../Tutorial";
 //import CodeEditor from "../Codemirror";
 
-export const ExerciseMain = (): JSX.Element => {
-  const router: NextRouter = useRouter();
-  const { exercise }: ParsedUrlQuery = router.query;
-  const { loading, data } = useQuery<Exercise, Vars>(EXERCISE, {
-    variables: {
-      slug: exercise as string,
-    },
-  });
+export const ExerciseMain = ({ exercise }: ExerciseData): JSX.Element => {
+  const { data } = exercise;
 
   const renderExerciseMain = () => {
-    if (loading) {
-      //  return <HomeUnitListSkeleton />;
-    }
-    if (data && data.exerciseBySlug) {
-      return setCategory(data);
-    }
-    return null;
+    return setCategory(data);
   };
-  return <section>{renderExerciseMain()}</section>;
+  return <main>{renderExerciseMain()}</main>;
 };
 
 function setCategory(data: Exercise) {
-  switch (data?.exerciseBySlug?.category) {
+  switch (data.exerciseBySlug.category) {
     case "C":
-      return <Challenge data={data.exerciseBySlug} />;
+      return <Challenge exercise={data.exerciseBySlug} />;
     case "T":
-      return <Tutorial data={data.exerciseBySlug} />;
+      return <Tutorial exercise={data.exerciseBySlug} />;
 
     default:
-      return <Tutorial data={data.exerciseBySlug} />;
+      return <Tutorial exercise={data.exerciseBySlug} />;
   }
 }

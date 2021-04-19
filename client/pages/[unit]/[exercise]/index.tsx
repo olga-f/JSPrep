@@ -14,13 +14,12 @@ import {
 } from "../../../lib/graphql/apolloClient";
 import { EXERCISE_PATHS, GET_EXERCISE } from "../../../lib/graphql/queries";
 import { exerciseWithUnitPaths_exerciseList as PathProps } from "../../../lib/graphql/queries/ExercisePage/__generated__/exerciseWithUnitPaths";
-import { exerciseBySlug as Props } from "../../../lib/graphql/queries/ExercisePage/__generated__/exerciseBySlug";
-
 import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
+import { ExerciseData } from "../../../lib/types";
 
-const ExercisePage = (exercise: Props): JSX.Element => (
+const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => (
   <Layout>
-    <ExerciseMain />
+    <ExerciseMain exercise={exercise} />
   </Layout>
 );
 

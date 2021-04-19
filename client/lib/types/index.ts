@@ -1,3 +1,4 @@
+import { exerciseBySlug_exerciseBySlug } from "../graphql/queries/ExercisePage/__generated__/exerciseBySlug";
 import {
   unitList,
   unitList_unitList,
@@ -27,16 +28,14 @@ export type ExerciseListProps = {
   list: (exerciseListByUnitSlug_exerciseListByUnitSlug | null)[] | null;
 };
 
-// export interface ChallengeProps {
-//   data: exercise["exerciseBySlug"];
-// }
+export type ExerciseProps = {
+  exercise: exerciseBySlug_exerciseBySlug;
+};
 
-// interface Tutorial {
-//   __typename: "ExerciseType";
-//   name: string;
-//   description: string | null;
-//   content: string | null;
-// }
-// export interface TutorialProps {
-//   data: Tutorial | null;
-// }
+export type ExerciseData = {
+  exercise: { data: Exercise };
+};
+
+export interface Exercise {
+  exerciseBySlug: exerciseBySlug_exerciseBySlug;
+}

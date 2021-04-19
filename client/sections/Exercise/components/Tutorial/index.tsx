@@ -1,5 +1,18 @@
-import { TutorialProps } from "../../../../lib/types";
+import { ExerciseProps } from "../../../../lib/types";
 
-export const Tutorial = ({ data }: TutorialProps): JSX.Element => {
-  return <div>{data?.name}</div>;
+import { H1 } from "baseui/typography";
+import { Paragraph1 } from "baseui/typography";
+import { Grid, Cell } from "baseui/layout-grid";
+
+export const Tutorial = ({ exercise }: ExerciseProps): JSX.Element => {
+  return (
+    <Grid>
+      <Cell span={[0, 1, 2]}></Cell>
+      <Cell span={[4, 6, 8]}>
+        <H1>{exercise.name}</H1>
+        <Paragraph1>{exercise.description}</Paragraph1>
+      </Cell>
+      <Cell span={[0, 1, 2]}></Cell>
+    </Grid>
+  );
 };

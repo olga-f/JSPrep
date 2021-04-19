@@ -8,13 +8,13 @@ describe("<HomeUnitList/> component", () => {
     render(<UnitExerciseList exercises={exercisesMock} />);
     const main = screen.getByRole("main");
     expect(main).toBeInTheDocument();
-    expect(main).not.toBeEmptyDOMElement;
+    expect(main).not.toBeEmptyDOMElement();
   });
 
   it("returns an empty <main> tag if data is an empty array", async () => {
     render(<UnitExerciseList exercises={emptyExercisesMock} />);
     const main = screen.getByRole("main");
     expect(main).toBeInTheDocument();
-    expect(main).toBeEmptyDOMElement;
+    expect(main).toBeEmptyDOMElement();
   });
 });

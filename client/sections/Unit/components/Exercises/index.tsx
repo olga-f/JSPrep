@@ -1,4 +1,3 @@
-import { ExercisesProps } from "../../../../lib/types";
 import Link from "next/link";
 import { Grid, Cell } from "baseui/layout-grid";
 import React from "react";
@@ -10,10 +9,9 @@ import { CodeIcon } from "../../assets/code-icon";
 import { useStyletron } from "baseui";
 import { Check, Grab, CheckIndeterminate } from "baseui/icon";
 import { mq } from "../../../../util/media";
-import { ExerciseListProps} from "../../../../lib/types";
+import { ExerciseListProps } from "../../../../lib/types";
 
-
-export const Exercises = ({ list }:ExerciseListProps): JSX.Element => {
+export const Exercises = ({ list }: ExerciseListProps): JSX.Element => {
   const [css, theme] = useStyletron();
   const isComplete = false;
   return (
@@ -24,11 +22,11 @@ export const Exercises = ({ list }:ExerciseListProps): JSX.Element => {
       <Cell span={[4, 6, 9]}>
         <Grid>
           <Cell span={[4, 5, 6]}>
-            <H1>{list?.find(x=>x!==undefined)?.unit?.title}</H1>
+            <H1>{list?.find((x) => x !== undefined)?.unit?.title}</H1>
           </Cell>
           <Cell span={[4, 3, 6]}>
             <Paragraph3>
-             {list?.find(x=>x!==undefined)?.unit?.description}
+              {list?.find((x) => x !== undefined)?.unit?.description}
             </Paragraph3>
           </Cell>
         </Grid>
@@ -44,7 +42,7 @@ export const Exercises = ({ list }:ExerciseListProps): JSX.Element => {
         >
           {list?.map((exercise) => (
             <ListItem
-              artwork={isComplete ? Check: CheckIndeterminate}
+              artwork={isComplete ? Check : CheckIndeterminate}
               key={exercise?.position}
               overrides={{
                 Root: {
@@ -58,7 +56,10 @@ export const Exercises = ({ list }:ExerciseListProps): JSX.Element => {
                 <Link
                   href={{
                     pathname: "/[unit]/[exercise]",
-                    query: { unit: list?.find(x=>x!==undefined)?.unit?.slug, exercise: exercise?.slug },
+                    query: {
+                      unit: list?.find((x) => x !== undefined)?.unit?.slug,
+                      exercise: exercise?.slug,
+                    },
                   }}
                 >
                   <a>
