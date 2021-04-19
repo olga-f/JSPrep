@@ -1,4 +1,7 @@
+import { UNIT_NAV } from "../lib/graphql/queries";
 import { exerciseListByUnitSlug } from "../lib/graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug";
+
+import { UnitNav } from "../lib/types";
 
 const exercises: exerciseListByUnitSlug = {
   exerciseListByUnitSlug: [
@@ -58,3 +61,23 @@ const emptyList = {
 export const emptyExercisesMock = {
   data: emptyList,
 };
+
+export const unitNavMock = [
+  {
+    request: {
+      query: UNIT_NAV,
+    },
+    result: {
+      data: {
+        unitList: [
+          { title: "Precourse", itemId: "precourse" },
+          { title: "JavaScript basics", itemId: "javascript-basics" },
+          {
+            title: "Asynchronous JavaScript",
+            itemId: "asynchronous-javaScript",
+          },
+        ],
+      },
+    },
+  },
+];
