@@ -1,6 +1,6 @@
 import { ExerciseProps } from "../../../../lib/types";
 import { Grid, Cell } from "baseui/layout-grid";
-import {CodeEditor} from "./components/CodeEditor";
+import CodeEditor from "./components/CodeEditor";
 
 export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {
   const code = exercise.code?.toString() ?? "";
@@ -11,7 +11,7 @@ export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {
         <p>{exercise.description}</p>
       </Cell>
       <Cell span={[4, 8, 7]}>
-        <CodeEditor challenge={code} />
+        <CodeEditor code={code} />
       </Cell>
     </Grid>
   );

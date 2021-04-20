@@ -4,34 +4,33 @@ import { EditorState, Compartment } from "@codemirror/state";
 import { basicSetup } from "@codemirror/basic-setup";
 import { javascript } from "@codemirror/lang-javascript";
 import { oneDark } from "@codemirror/theme-one-dark";
-import beautify_js from "js-beautify";
+//import beautify_js from "js-beautify";
 import { Button } from "baseui/button";
 import { useStyletron } from "baseui";
 import { Paragraph3 } from "baseui/typography";
 
-const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
-  // Local state
+export const Codemirror: React.FC<{ initialValue: string }> = ({
+  initialValue,
+}) => {
   const [editorValue, setEditorValue] = useState<string>("");
-  // Ref of the editor
   const editor = useRef<EditorView>();
 
   // Event listener on editor updates
   const onUpdate = () =>
     EditorView.updateListener.of((v: ViewUpdate) => {
       const doc = v.state.doc;
-      const value = beautify_js(doc.toString());
+      const value = doc.toString();
       if (value !== editorValue) {
         setEditorValue(value);
       }
     });
 
-  // Initilize view
-  useEffect(function initEditorView() {
-    const el = document.getElementById("codemirror-editor-wrapper");
+  const initEditorView = () => {
+    const el = document.getElementById("editor");
     const language = new Compartment();
     editor.current = new EditorView({
       state: EditorState.create({
-        doc: beautify_js(initialValue),
+        doc: initialValue,
         extensions: [
           basicSetup,
           language.of(javascript()),
@@ -42,7 +41,10 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
 
       parent: el as Element,
     });
-  }, []);
+  };
+
+  // Initilize view
+  useEffect(initEditorView, []);
 
   // Component for output code from editor
   // const OutputText = () => (
@@ -58,7 +60,8 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
         position: "relative",
       })}
     >
-      <div id="codemirror-editor-wrapper"></div>
+      <div id="editor"></div>
+
       <span
         className={css({
           position: "absolute",
@@ -73,5 +76,3 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
     </Paragraph3>
   );
 };
-
-export default Codemirror;
