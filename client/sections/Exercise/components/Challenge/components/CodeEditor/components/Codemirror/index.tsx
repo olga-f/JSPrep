@@ -54,16 +54,20 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
   useEffect(initEditorView, []);
 
   const runCode = () => {
-    const tcode = Babel.transform(state.editorValue, { presets: ["es2015"] })
-      .code;
+    try {
+      const tcode = Babel.transform(state.editorValue, { presets: ["env"] })
+        .code;
 
-    const jsInterpreter = new Interpreter(tcode);
-    if (jsInterpreter.run()) {
-      // Ran until an async call.  Give this call a chance to run.
-      // Then start running again later.
-      setTimeout(runCode, 10);
+      const jsInterpreter = new Interpreter(tcode);
+      if (jsInterpreter.run()) {
+        // Ran until an async call.  Give this call a chance to run.
+        // Then start running again later.
+        setTimeout(runCode, 10);
+      }
+      setState({ ...state, outputValue: jsInterpreter.value });
+    } catch (err) {
+      setState({ ...state, outputValue: err.toString() });
     }
-    setState({ ...state, outputValue: jsInterpreter.value });
   };
 
   // Component for output code from editor
