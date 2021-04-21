@@ -3,7 +3,7 @@ body {
 }
 .cm-content,
 .cm-gutter {
-  min-height: 550px !important;
+  min-height: 350px !important;
   max-width: 100% !important;
 }
 .cm-scroller {

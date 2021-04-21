@@ -8,11 +8,18 @@ import { oneDark } from "@codemirror/theme-one-dark";
 import { Button } from "baseui/button";
 import { useStyletron } from "baseui";
 import { Paragraph3 } from "baseui/typography";
+import Interpreter from "js-interpreter";
+import * as Babel from "@babel/standalone";
 
 export const Codemirror: React.FC<{ initialValue: string }> = ({
   initialValue,
 }) => {
-  const [editorValue, setEditorValue] = useState<string>("");
+  const [state, setState] = useState({
+    editorValue: "",
+    outputValue: "",
+    errorValue: "",
+  });
+
   const editor = useRef<EditorView>();
 
   // Event listener on editor updates
@@ -20,8 +27,8 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
     EditorView.updateListener.of((v: ViewUpdate) => {
       const doc = v.state.doc;
       const value = doc.toString();
-      if (value !== editorValue) {
-        setEditorValue(value);
+      if (value !== state.editorValue) {
+        setState({ ...state, editorValue: value });
       }
     });
 
@@ -46,12 +53,26 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
   // Initilize view
   useEffect(initEditorView, []);
 
+  const runCode = () => {
+    const tcode = Babel.transform(state.editorValue, { presets: ["es2015"] })
+      .code;
+
+    const jsInterpreter = new Interpreter(tcode);
+    if (jsInterpreter.run()) {
+      // Ran until an async call.  Give this call a chance to run.
+      // Then start running again later.
+      setTimeout(runCode, 10);
+    }
+    setState({ ...state, outputValue: jsInterpreter.value });
+  };
+
   // Component for output code from editor
-  // const OutputText = () => (
-  //   <pre>
-  //     <code>{editorValue}</code>
-  //   </pre>
-  // );
+  const OutputText = () => (
+    <pre>
+      <code>{state.outputValue}</code>
+    </pre>
+  );
+
   const [css, theme] = useStyletron();
 
   return (
@@ -61,7 +82,7 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
       })}
     >
       <div id="editor"></div>
-
+      <OutputText />
       <span
         className={css({
           position: "absolute",
@@ -71,7 +92,7 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
       >
         <Button>Reset Code</Button>
         <span className={css({ marginLeft: theme.sizing.scale300 })} />
-        <Button>Run Code</Button>
+        <Button onClick={runCode}>Run Code</Button>
       </span>
     </Paragraph3>
   );
