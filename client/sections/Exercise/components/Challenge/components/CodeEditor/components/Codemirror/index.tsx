@@ -49,20 +49,17 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
     initEditorView();
   }, []);
 
-  const runCode = () => {
-    try {
-      const tcode = Babel.transform(state.editorValue, { presets: ["env"] })
-        .code;
-
-      const jsInterpreter = new Interpreter(tcode);
-      if (jsInterpreter.run()) {
-        // Ran until an async call.  Give this call a chance to run.
-        // Then start running again later.
-        setTimeout(runCode, 10);
-      }
-      setState({ ...state, outputValue: jsInterpreter.value });
-    } catch (err) {
-      setState({ ...state, outputValue: err.toString() });
+  const runCode = (code: string) => {
+    const output = JSrunner(code);
+    if (output) {
+      output.value === undefined
+        ? setState({ ...state, outputValue: output.toString() })
+        : setState({ ...state, outputValue: output.value });
+    } else {
+      setState({
+        ...state,
+        outputValue: "Your code could not run on this browser.",
+      });
     }
   };
 
@@ -92,8 +89,18 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
       >
         <Button>Reset Code</Button>
         <span className={css({ marginLeft: theme.sizing.scale300 })} />
-        <Button onClick={runCode}>Run Code</Button>
+        <Button onClick={() => runCode(state.editorValue)}>Run Code</Button>
       </span>
     </Paragraph3>
   );
 };
+function JSrunner(code: string) {
+  try {
+    const tcode = Babel.transform(code, { presets: ["env"] }).code;
+    const jsInterpreter = new Interpreter(tcode);
+    jsInterpreter.run();
+    return jsInterpreter;
+  } catch (error) {
+    return error;
+  }
+}
