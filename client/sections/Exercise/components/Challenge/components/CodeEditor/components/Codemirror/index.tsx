@@ -1,9 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { EditorView, ViewUpdate } from "@codemirror/view";
 import { EditorState, Compartment } from "@codemirror/state";
-import { basicSetup } from "@codemirror/basic-setup";
-import { javascript } from "@codemirror/lang-javascript";
-import { oneDark } from "@codemirror/theme-one-dark";
 //import beautify_js from "js-beautify";
 import { Button } from "baseui/button";
 import { useStyletron } from "baseui";
@@ -32,18 +29,15 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
       }
     });
 
-  const initEditorView = () => {
+  const initEditorView = async () => {
+    const js = (await import("@codemirror/lang-javascript")).javascript;
+    const setup = (await import("@codemirror/basic-setup")).basicSetup;
     const el = document.getElementById("editor");
     const language = new Compartment();
     editor.current = new EditorView({
       state: EditorState.create({
         doc: initialValue,
-        extensions: [
-          basicSetup,
-          language.of(javascript()),
-          oneDark,
-          onUpdate(),
-        ],
+        extensions: [setup, language.of(js()), onUpdate()],
       }),
 
       parent: el as Element,
@@ -51,7 +45,9 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
   };
 
   // Initilize view
-  useEffect(initEditorView, []);
+  useEffect(() => {
+    initEditorView();
+  }, []);
 
   const runCode = () => {
     try {

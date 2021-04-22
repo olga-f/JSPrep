@@ -1,9 +1,14 @@
 import { ExerciseProps } from "../../../../lib/types";
 import { Grid, Cell } from "baseui/layout-grid";
-import CodeEditor from "./components/CodeEditor";
+import Loadable from "react-loadable";
+import Loading from "./components/EditorSkeleton";
 
 export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {
   const code = exercise.code?.toString() ?? "";
+  const LoadableCodeEditor = Loadable({
+    loader: () => import("./components/CodeEditor"),
+    loading: Loading,
+  });
   return (
     <Grid>
       <Cell span={[4, 8, 5]}>
@@ -11,7 +16,7 @@ export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {
         <p>{exercise.description}</p>
       </Cell>
       <Cell span={[4, 8, 7]}>
-        <CodeEditor code={code} />
+        <LoadableCodeEditor code={code} />
       </Cell>
     </Grid>
   );
