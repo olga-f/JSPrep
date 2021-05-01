@@ -9,10 +9,12 @@ import { useStyletron } from "baseui";
 import { Check, Grab, CheckIndeterminate } from "baseui/icon";
 import { mq } from "../../../../util/media";
 import { ExerciseListProps } from "../../../../lib/types";
+import { useRouter } from "next/router";
 
 export const Exercises = ({ list }: ExerciseListProps): JSX.Element => {
   const [css, theme] = useStyletron();
   const isComplete = false;
+  const router = useRouter();
   return (
     <>
       <Grid>
@@ -48,38 +50,35 @@ export const Exercises = ({ list }: ExerciseListProps): JSX.Element => {
               },
             }}
             endEnhancer={() => (
-              <Link
-                href={{
-                  pathname: "/[unit]/[exercise]",
-                  query: {
-                    unit: list?.find((x) => x !== undefined)?.unit?.slug,
-                    exercise: exercise?.slug,
-                  },
+              <Button
+                onClick={() =>
+                  router.push({
+                    pathname: "/[unit]/[exercise]",
+                    query: {
+                      unit: list?.find((x) => x !== undefined)?.unit?.slug,
+                      exercise: exercise?.slug,
+                    },
+                  })
+                }
+                size="compact"
+                endEnhancer={() => {
+                  const icon =
+                    exercise?.category === "C" ? (
+                      <CodeIcon
+                        size={20}
+                        color={theme.colors.contentInversePrimary}
+                      />
+                    ) : (
+                      <Grab
+                        size={20}
+                        color={theme.colors.contentInversePrimary}
+                      />
+                    );
+                  return icon;
                 }}
               >
-                <a>
-                  <Button
-                    size="compact"
-                    endEnhancer={() => {
-                      const icon =
-                        exercise?.category === "C" ? (
-                          <CodeIcon
-                            size={20}
-                            color={theme.colors.contentInversePrimary}
-                          />
-                        ) : (
-                          <Grab
-                            size={20}
-                            color={theme.colors.contentInversePrimary}
-                          />
-                        );
-                      return icon;
-                    }}
-                  >
-                    {exercise?.category === "C" ? "Solve" : "Read"}
-                  </Button>
-                </a>
-              </Link>
+                {exercise?.category === "C" ? "Solve" : "Read"}
+              </Button>
             )}
           >
             <ListItemLabel>{exercise?.name}</ListItemLabel>

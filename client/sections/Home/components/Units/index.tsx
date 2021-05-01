@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button, SIZE } from "baseui/button";
 import { ChevronRight } from "baseui/icon";
 import { Grid, Cell } from "baseui/layout-grid";
@@ -11,10 +10,11 @@ import {
   CardFeatures,
 } from "./components/";
 import { UnitListProps } from "../../../../lib/types";
+import { useRouter } from "next/router";
 
-
-export const Units = ({ list }:UnitListProps): JSX.Element => {
+export const Units = ({ list }: UnitListProps): JSX.Element => {
   const defaultImgUrl = "/default.svg";
+  const router = useRouter();
   return (
     <Grid>
       {list?.map((unit) => (
@@ -29,31 +29,29 @@ export const Units = ({ list }:UnitListProps): JSX.Element => {
                 ))}
               </CardFeatures>
             </CardBody>
-            <Link
-              href={{
-                pathname: "/[unit]",
-                query: { unit: unit?.slug },
+
+            <Button
+              onClick={() =>
+                router.push({
+                  pathname: "/[unit]",
+                  query: { unit: unit?.slug },
+                })
+              }
+              size={SIZE.compact}
+              overrides={{
+                BaseButton: {
+                  style: {
+                    width: "80%",
+                    position: "absolute",
+                    bottom: "15px",
+                    left: "10%",
+                  },
+                },
               }}
+              endEnhancer={() => <ChevronRight size={24} />}
             >
-              <a>
-                <Button
-                  size={SIZE.compact}
-                  overrides={{
-                    BaseButton: {
-                      style: {
-                        width: "80%",
-                        position: "absolute",
-                        bottom: "15px",
-                        left: "10%",
-                      },
-                    },
-                  }}
-                  endEnhancer={() => <ChevronRight size={24} />}
-                >
-                  Begin Unit
-                </Button>
-              </a>
-            </Link>
+              Begin Unit
+            </Button>
           </Card>
         </Cell>
       ))}
