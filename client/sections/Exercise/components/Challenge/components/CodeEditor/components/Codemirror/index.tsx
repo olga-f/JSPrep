@@ -1,12 +1,10 @@
 import { useRef, useEffect, useState } from "react";
 import { EditorView, ViewUpdate } from "@codemirror/view";
 import { EditorState, Compartment } from "@codemirror/state";
-//import beautify_js from "js-beautify";
 import { Button } from "baseui/button";
 import { useStyletron } from "baseui";
 import { Paragraph3 } from "baseui/typography";
-import Interpreter from "js-interpreter";
-import * as Babel from "@babel/standalone";
+import JSrunner from "javascript-code-runner";
 
 export const Codemirror: React.FC<{ initialValue: string }> = ({
   initialValue,
@@ -32,11 +30,12 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
   const initEditorView = async () => {
     const js = (await import("@codemirror/lang-javascript")).javascript;
     const setup = (await import("@codemirror/basic-setup")).basicSetup;
+    const beautify = (await import("js-beautify")).default;
     const el = document.getElementById("editor");
     const language = new Compartment();
     editor.current = new EditorView({
       state: EditorState.create({
-        doc: initialValue,
+        doc: beautify(initialValue),
         extensions: [setup, language.of(js()), onUpdate()],
       }),
 
@@ -44,22 +43,17 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
     });
   };
 
-  // Initilize view
   useEffect(() => {
     initEditorView();
   }, []);
 
   const runCode = (code: string) => {
-    const output = JSrunner(code);
-    if (output) {
-      output.value === undefined
-        ? setState({ ...state, outputValue: output.toString() })
-        : setState({ ...state, outputValue: output.value });
-    } else {
-      setState({
-        ...state,
-        outputValue: "Your code could not run on this browser.",
-      });
+    const { result, message } = JSrunner(code);
+    if (result) {
+      setState({ ...state, outputValue: result });
+    }
+    if (message) {
+      setState({ ...state, outputValue: message });
     }
   };
 
@@ -94,13 +88,3 @@ export const Codemirror: React.FC<{ initialValue: string }> = ({
     </Paragraph3>
   );
 };
-function JSrunner(code: string) {
-  try {
-    const tcode = Babel.transform(code, { presets: ["env"] }).code;
-    const jsInterpreter = new Interpreter(tcode);
-    jsInterpreter.run();
-    return jsInterpreter;
-  } catch (error) {
-    return error;
-  }
-}
