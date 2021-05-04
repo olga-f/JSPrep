@@ -2,7 +2,6 @@ import React from "react";
 import { Exercise, ExerciseData } from "../../../../lib/types";
 import { Challenge } from "../Challenge";
 import { Tutorial } from "../Tutorial";
-//import CodeEditor from "../Codemirror";
 
 export const ExerciseMain = ({ exercise }: ExerciseData): JSX.Element => {
   const { data } = exercise;

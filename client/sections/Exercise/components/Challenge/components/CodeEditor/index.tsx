@@ -1,7 +1,13 @@
-import { Codemirror } from "./components/Codemirror";
+import dynamic from "next/dynamic";
+import { Skeleton } from "baseui/skeleton";
 
 const CodeEditor: React.FC<{ code: string }> = ({ code }) => {
-  return <Codemirror initialValue={code} />;
+  const Editor = dynamic(() => import("./components/Codemirror"), {
+    loading: () => <Skeleton height="350px" width="100%" animation />,
+    ssr: false,
+  });
+
+  return <Editor initialValue={code} />;
 };
 
 export default CodeEditor;

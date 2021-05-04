@@ -10,6 +10,7 @@ module.exports = {
     "plugin:jest/recommended",
     "plugin:jest-dom/recommended",
     "plugin:cypress/recommended",
+    "plugin:react-hooks/recommended",
   ],
   settings: {
     react: {

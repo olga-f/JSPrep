@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Grid, Cell } from "baseui/layout-grid";
 import React from "react";
 import { H1, Paragraph3 } from "baseui/typography";

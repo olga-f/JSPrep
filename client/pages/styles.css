@@ -1,6 +1,7 @@
 body {
   margin: 0;
 }
+
 .cm-content,
 .cm-gutter {
   min-height: 350px !important;

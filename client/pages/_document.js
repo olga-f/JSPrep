@@ -24,8 +24,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
-        </Head>
+        <Head></Head>
         <body>
           {this.props.stylesheets.map((sheet, i) => (
             <style
