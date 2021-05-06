@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import {render, screen } from "@testing-library/react";
 import {
   graphqlErrorMock,
   networkErrorMock,
@@ -18,6 +18,7 @@ jest.mock("next/router", () => ({
     };
   },
 }));
+
 describe("<SideNav/> component", () => {
   it("renders side navigation", async () => {
     render(
@@ -28,8 +29,8 @@ describe("<SideNav/> component", () => {
 
     const nav = await screen.findByRole("navigation");
     expect(nav).toBeInTheDocument();
-    const loading = screen.queryByText("Loading...");
-    expect(loading).not.toBeInTheDocument();
+    const loader = document.querySelector("[testid='loader']");
+    expect(loader).not.toBeInTheDocument();
   });
   it("renders an active link on the current path and inactive links on other paths", async () => {
     render(
@@ -63,8 +64,8 @@ describe("<SideNav/> component", () => {
       "background-color: transparent;"
     );
 
-    const loading = screen.queryByText("Loading...");
-    expect(loading).not.toBeInTheDocument();
+    const loader = document.querySelector("[testid='loader']");
+    expect(loader).not.toBeInTheDocument();
   });
 
   it("returns empty side navigation if navigation data is an empty array", () => {
@@ -84,8 +85,8 @@ describe("<SideNav/> component", () => {
         <SideNav />
       </MockedProvider>
     );
-    const loading = screen.getByText("Loading...");
-    expect(loading).toBeInTheDocument();
+    const loader = document.querySelector("[testid='loader']");
+    expect(loader).toBeInTheDocument();
   });
   it("returns empty side navigation due to a GraphQL error", () => {
     render(

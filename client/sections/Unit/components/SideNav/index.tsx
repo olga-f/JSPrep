@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { UNIT_NAV } from "../../../../lib/graphql/queries";
 import { UnitNav } from "../../../../lib/types";
+import { SideNavSkeleton } from "../SideNavSkeleton";
 export const SideNav = (): JSX.Element => {
   const { loading, data, error } = useQuery<UnitNav>(UNIT_NAV);
   const router = useRouter();
@@ -12,8 +13,7 @@ export const SideNav = (): JSX.Element => {
 
   const renderSideNav = () => {
     if (loading) {
-      return "Loading...";
-      //    return <SideNavSkeleton />;
+      return <SideNavSkeleton />;
     }
 
     if (data) {

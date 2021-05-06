@@ -13,6 +13,12 @@ export const exerciseMock: ExerciseData["exercise"] = {
       test: "",
       code: "",
       content: "",
+      unit: {
+        id: "4079915fa227fd98210a2a22",
+        __typename: "UnitType",
+        title: "JavaScript basics",
+        slug: "javascript-basics",
+      },
     },
   },
 };
