@@ -81,7 +81,6 @@ export const unitNavMock = [
   },
 ];
 
-
 export const networkErrorMock = {
   request: {
     query: UNIT_NAV,
