@@ -16,12 +16,33 @@ import { EXERCISE_PATHS, GET_EXERCISE } from "../../../lib/graphql/queries";
 import { exerciseWithUnitPaths_exerciseList as PathProps } from "../../../lib/graphql/queries/ExercisePage/__generated__/exerciseWithUnitPaths";
 import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
 import { ExerciseData } from "../../../lib/types";
+import { Breadcrumbs } from "baseui/breadcrumbs";
+import { StyledLink } from "baseui/link";
+import { useStyletron } from "baseui";
 
-const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => (
-  <Layout>
-    <ExerciseMain exercise={exercise} />
-  </Layout>
-);
+const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => {
+  const [css, theme] = useStyletron();
+  return (
+    <Layout>
+      <div
+        className={css({
+          marginLeft: theme.sizing.scale550,
+          marginRight: theme.sizing.scale550,
+        })}
+      >
+        <Breadcrumbs>
+          <StyledLink href="/">Home</StyledLink>
+          <StyledLink href={exercise.data.exerciseBySlug.unit?.slug}>
+            {exercise.data.exerciseBySlug.unit?.title}
+          </StyledLink>
+          <span>{exercise.data.exerciseBySlug.name}</span>
+        </Breadcrumbs>
+      </div>
+
+      <ExerciseMain exercise={exercise} />
+    </Layout>
+  );
+};
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<
   GetStaticPathsResult<ParsedUrlQuery>

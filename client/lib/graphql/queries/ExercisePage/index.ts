@@ -24,6 +24,11 @@ export const GET_EXERCISE = gql`
       category
       code
       test
+    unit {
+      id
+      slug
+      title
+    }
     }
   }
 `;

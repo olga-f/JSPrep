@@ -7,6 +7,16 @@
 // GraphQL query operation: exerciseBySlug
 // ====================================================
 
+export interface exerciseBySlug_exerciseBySlug_unit {
+  __typename: "UnitType";
+  /**
+   * _id
+   */
+  id: string | null;
+  slug: string;
+  title: string;
+}
+
 export interface exerciseBySlug_exerciseBySlug {
   __typename: "ExerciseType";
   /**
@@ -21,6 +31,7 @@ export interface exerciseBySlug_exerciseBySlug {
   category: string;
   code: string | null;
   test: string | null;
+  unit: exerciseBySlug_exerciseBySlug_unit | null;
 }
 
 export interface exerciseBySlug {

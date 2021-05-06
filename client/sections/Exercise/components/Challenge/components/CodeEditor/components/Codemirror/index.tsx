@@ -117,8 +117,14 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
         <Button kind={KIND.secondary} onClick={() => resetCode()}>
           Reset
         </Button>
-        <span className={css({ marginLeft: theme.sizing.scale400 })} />
-        <Button onClick={() => runCode(state.editorValue)}>Run Code</Button>
+        <span
+          className={css({
+            marginLeft: theme.sizing.scale550,
+            marginRight: "-2px",
+          })}
+        >
+          <Button onClick={() => runCode(state.editorValue)}>Run Code</Button>
+        </span>
       </Cell>
     </Grid>
   );
