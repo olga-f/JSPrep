@@ -30,5 +30,8 @@ module.exports = (phase) => {
   // next.config.js object
   return {
     env,
+    future: {
+      webpack5: true,
+    },
   };
 };

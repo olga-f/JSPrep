@@ -1,9 +1,8 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState} from "react";
 import { EditorView, ViewUpdate } from "@codemirror/view";
 import { EditorState, Compartment } from "@codemirror/state";
 import { Button, KIND } from "baseui/button";
 import { useStyletron } from "baseui";
-import JSrunner from "javascript-code-runner";
 import { Notification, KIND as TYPE } from "baseui/notification";
 import { Grid, Cell } from "baseui/layout-grid";
 
@@ -12,8 +11,9 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
     editorValue: "",
     outputValue: "",
     errorValue: "",
+    loading: false,
   });
-
+  const workerRef = useRef<Worker>();
   const editor = useRef<EditorView>();
 
   // Event listener on editor updates
@@ -37,7 +37,6 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
         doc: beautify(initialValue),
         extensions: [setup, language.of(js()), onUpdate()],
       }),
-
       parent: el as Element,
     });
   };
@@ -47,13 +46,26 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
   }, []);
 
   const runCode = (code: string) => {
-    const { result, message } = JSrunner(code);
-    if (result) {
-      setState({ ...state, outputValue: result });
-    }
-    if (message) {
-      setState({ ...state, errorValue: message });
-    }
+    // stop running any current worker, if any
+    workerRef.current?.terminate();
+    // then create a new one
+    workerRef.current = new Worker(
+      new URL("../../../../../../../../worker.js", import.meta.url)
+    );
+    workerRef.current?.postMessage(code);
+    workerRef.current.onmessage = (evt) => {
+      const { result, message } = evt.data;
+
+      if (result) {
+        setState({ ...state, outputValue: result });
+      }
+      if (message) {
+        setState({ ...state, errorValue: message });
+      }
+    };
+    workerRef.current.onerror = () => {
+      setState({ ...state, errorValue: "An Error occurred while running." });
+    };
   };
 
   // Component for output code from editor
