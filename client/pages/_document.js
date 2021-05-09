@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { Provider as StyletronProvider } from "styletron-react";
 import { styletron } from "../util/styletron";
 
 class MyDocument extends Document {
-  static async getInitialProps(context) {
+ 
+  static async getInitialProps(context){
     const renderPage = () =>
       context.renderPage({
         enhanceApp: (App) => (props) => (

@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { Header } from "./Header";
+import { Footer } from "./Footer";
 import Head from "next/head";
 
 type Props = {
@@ -15,6 +16,7 @@ const Layout = ({ children, title = "JS Prep.org" }: Props): JSX.Element => (
     </Head>
     <Header />
     {children}
+    <Footer/>
   </>
 );
 
