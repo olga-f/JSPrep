@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState} from "react";
+import { useRef, useEffect, useState } from "react";
 import { EditorView, ViewUpdate } from "@codemirror/view";
 import { EditorState, Compartment } from "@codemirror/state";
 import { Button, KIND } from "baseui/button";
@@ -6,49 +6,65 @@ import { useStyletron } from "baseui";
 import { Notification, KIND as TYPE } from "baseui/notification";
 import { Grid, Cell } from "baseui/layout-grid";
 
+const ERROR_RUNNING = "An Error occurred while running.";
+const sleep = (time: number) =>
+  new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });
+
 const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
-  const [state, setState] = useState({
+  const initialState = {
     editorValue: "",
     outputValue: "",
     errorValue: "",
-    loading: false,
-  });
+  };
+
   const workerRef = useRef<Worker>();
   const editor = useRef<EditorView>();
 
-  // Event listener on editor updates
-  const onUpdate = () =>
-    EditorView.updateListener.of((v: ViewUpdate) => {
-      const doc = v.state.doc;
-      const value = doc.toString();
-      if (value !== state.editorValue) {
-        setState({ ...state, editorValue: value });
-      }
-    });
+  const [state, setState] = useState(initialState);
+  const [loading, setLoading] = useState(false);
 
   const initEditorView = async () => {
+    const element = document.getElementById("editor");
+    const onUpdate = () =>
+      EditorView.updateListener.of((v: ViewUpdate) => {
+        const doc = v.state.doc;
+        const value = doc.toString();
+        if (value !== state.editorValue) {
+          setState({ ...state, editorValue: value });
+        }
+      });
     const js = (await import("@codemirror/lang-javascript")).javascript;
     const setup = (await import("@codemirror/basic-setup")).basicSetup;
     const beautify = (await import("js-beautify")).default;
-    const el = document.getElementById("editor");
+
     const language = new Compartment();
     editor.current = new EditorView({
       state: EditorState.create({
         doc: beautify(initialValue),
         extensions: [setup, language.of(js()), onUpdate()],
       }),
-      parent: el as Element,
+      parent: element as Element,
     });
   };
 
   useEffect(() => {
     initEditorView();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const runCode = (code: string) => {
-    // stop running any current worker, if any
-    workerRef.current?.terminate();
-    // then create a new one
+    setLoading(true);
+
+    sleep(5000).then(() => {
+      // stop running the worker after 5 seconds, if any
+      workerRef.current?.terminate();
+      setLoading(false);
+    });
+
     workerRef.current = new Worker(
       new URL("../../../../../../../../worker.js", import.meta.url)
     );
@@ -58,17 +74,32 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
 
       if (result) {
         setState({ ...state, outputValue: result });
+        workerRef.current?.terminate();
+        setLoading(false);
       }
       if (message) {
         setState({ ...state, errorValue: message });
+        workerRef.current?.terminate();
+        setLoading(false);
       }
     };
     workerRef.current.onerror = () => {
-      setState({ ...state, errorValue: "An Error occurred while running." });
+      setState({
+        ...state,
+        errorValue: ERROR_RUNNING,
+      });
+      workerRef.current?.terminate();
+      setLoading(false);
     };
   };
+  const resetCode = () => {
+    workerRef.current?.terminate();
+    setState(initialState);
+    setLoading(false);
+    editor.current?.destroy();
+    initEditorView();
+  };
 
-  // Component for output code from editor
   const OutputResult = () => (
     <Notification
       overrides={{
@@ -76,7 +107,13 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
       }}
     >
       <pre>
-        <code>{state.outputValue}</code>
+        <code
+          className={css({
+            whiteSpace: "break-spaces",
+          })}
+        >
+          {state.outputValue}
+        </code>
       </pre>
     </Notification>
   );
@@ -88,14 +125,16 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
       }}
     >
       <pre>
-        <code>{state.errorValue}</code>
+        <code
+          className={css({
+            whiteSpace: "break-spaces",
+          })}
+        >
+          {state.errorValue}
+        </code>
       </pre>
     </Notification>
   );
-  const resetCode = () => {
-    editor.current?.destroy();
-    initEditorView();
-  };
 
   const [css, theme] = useStyletron();
 
@@ -135,7 +174,12 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             marginRight: "-2px",
           })}
         >
-          <Button onClick={() => runCode(state.editorValue)}>Run Code</Button>
+          <Button
+            onClick={() => runCode(state.editorValue)}
+            isLoading={loading}
+          >
+            Run Code
+          </Button>
         </span>
       </Cell>
     </Grid>
