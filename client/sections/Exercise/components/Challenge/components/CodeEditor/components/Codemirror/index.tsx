@@ -53,7 +53,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
 
   useEffect(() => {
     initEditorView();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const runCode = (code: string) => {
@@ -161,6 +161,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
           Cell: {
             style: () => ({
               textAlign: "right",
+              paddingBottom: theme.sizing.scale1600,
             }),
           },
         }}
