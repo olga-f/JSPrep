@@ -19,14 +19,41 @@ import { ExerciseData } from "../../../lib/types";
 import { Breadcrumbs } from "baseui/breadcrumbs";
 import { StyledLink } from "baseui/link";
 import { useStyletron } from "baseui";
+import { CourseJsonLd, NextSeo } from "next-seo";
 
 const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => {
-  const [css, theme] = useStyletron();
+  const URL = process.env.SITE_URL;
   const unitPath = `/${exercise.data.exerciseBySlug.unit?.slug}`;
-  const unitTitle = `${exercise.data.exerciseBySlug.unit?.title}`;
-  const current = `${exercise.data.exerciseBySlug.name}`;
+  const unitTitle = exercise.data.exerciseBySlug.unit?.title;
+  const current = exercise.data.exerciseBySlug.name;
+  const description = exercise.data.exerciseBySlug.description ?? "";
+  const [css, theme] = useStyletron();
   return (
     <Layout>
+      <CourseJsonLd
+        courseName={current}
+        providerName="JSPrep.org"
+        providerUrl="https://jsprep.org"
+        description={description}
+      />
+      <NextSeo
+        title={current}
+        description={description}
+        canonical={URL}
+        openGraph={{
+          url: URL,
+          title: current,
+          description: description,
+          images: [
+            {
+              url: `${URL}default.svg`,
+              width: 1200,
+              height: 630,
+              alt: "JavaScript Prep",
+            },
+          ],
+        }}
+      />
       <div
         className={css({
           marginLeft: theme.sizing.scale550,

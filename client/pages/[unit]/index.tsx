@@ -5,6 +5,7 @@ import {
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
+import { CourseJsonLd, NextSeo } from "next-seo";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import Layout from "../../lib/components/Layout";
@@ -16,13 +17,45 @@ import { EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
 import { unitPaths_unitList } from "../../lib/graphql/queries/UnitPage/__generated__/unitPaths";
 import { ExercisesProps } from "../../lib/types";
 
-import { UnitExerciseList } from "../../sections/Unit/components/UnitExerciseList";
+import { UnitExerciseList } from "../../sections/Unit/components/UnitMain";
 
-const UnitPage = ({ exercises }: ExercisesProps): JSX.Element => (
-  <Layout>
-    <UnitExerciseList exercises={exercises} />
-  </Layout>
-);
+const UnitPage = ({ exercises }: ExercisesProps): JSX.Element => {
+  const unit = exercises.data.exerciseListByUnitSlug?.find(
+    (x) => x !== undefined
+  )?.unit;
+  const title = unit?.title ?? "";
+  const description = unit?.description ?? "";
+  const URL = process.env.SITE_URL;
+  return (
+    <Layout>
+      <CourseJsonLd
+        courseName={title}
+        providerName="JSPrep.org"
+        providerUrl={URL}
+        description={description}
+      />
+      <NextSeo
+        title={title}
+        description={description}
+        canonical={URL}
+        openGraph={{
+          url: URL,
+          title: title,
+          description: description,
+          images: [
+            {
+              url: `${URL}default.svg`,
+              width: 1200,
+              height: 630,
+              alt: "JavaScript Prep",
+            },
+          ],
+        }}
+      />
+      <UnitExerciseList exercises={exercises} />
+    </Layout>
+  );
+};
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<
   GetStaticPathsResult<ParsedUrlQuery>

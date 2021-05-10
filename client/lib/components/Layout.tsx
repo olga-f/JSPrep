@@ -16,7 +16,7 @@ const Layout = ({ children, title = "JS Prep.org" }: Props): JSX.Element => (
     </Head>
     <Header />
     {children}
-    <Footer/>
+    <Footer />
   </>
 );
 

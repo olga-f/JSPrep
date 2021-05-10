@@ -1,5 +1,5 @@
 import React from "react";
-import { HomeUnitList } from "../../HomeUnitList";
+import { HomeUnitList } from "..";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { emptyUnitsMock, unitsMock } from "../../../../../mocks/home";

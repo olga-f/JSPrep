@@ -10,7 +10,7 @@ export const Tutorial = ({ exercise }: ExerciseProps): JSX.Element => {
       <Cell span={[0, 1, 2]}></Cell>
       <Cell span={[4, 6, 8]}>
         <H1>{exercise.name}</H1>
-        <Paragraph1>{exercise.description}</Paragraph1>
+        <Paragraph1>{exercise.content}</Paragraph1>
       </Cell>
       <Cell span={[0, 1, 2]}></Cell>
     </Grid>

@@ -4,8 +4,7 @@ import { Provider as StyletronProvider } from "styletron-react";
 import { styletron } from "../util/styletron";
 
 class MyDocument extends Document {
- 
-  static async getInitialProps(context){
+  static async getInitialProps(context) {
     const renderPage = () =>
       context.renderPage({
         enhanceApp: (App) => (props) => (

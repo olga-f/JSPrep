@@ -2,13 +2,39 @@ import { GetStaticProps } from "next";
 import React from "react";
 import Layout from "../lib/components/Layout";
 import { addApolloState, initializeApollo } from "../lib/graphql/apolloClient";
-import { HomeUnitList } from "../sections/Home/components/HomeUnitList";
+import { HomeUnitList } from "../sections/Home/components/HomeMain";
 import { UNIT_LIST } from "../lib/graphql/queries";
 import { UnitsProps } from "../lib/types";
+import { CourseJsonLd, NextSeo } from "next-seo";
 
 const HomePage = ({ units }: UnitsProps): JSX.Element => {
+  const URL = process.env.SITE_URL;
   return (
     <Layout>
+      <CourseJsonLd
+        courseName="JavaScript Preparation | Run JavaScript, Practice Problems"
+        providerName="JSPrep.org"
+        providerUrl="https://jsprep.org"
+        description="Prepare your algorithms in JavaScript"
+      />
+      <NextSeo
+        title="JavaScript | JS Prep"
+        description="JavaScript Preparation: Practice Problems on JSPrep.org"
+        canonical={URL}
+        openGraph={{
+          url: URL,
+          title: "JavaScript Preparation | JSPrep.org",
+          description: "Run JavaScript, Practice Problems on JSPrep.org",
+          images: [
+            {
+              url: `${URL}default.svg`,
+              width: 1200,
+              height: 630,
+              alt: "JavaScript Prep",
+            },
+          ],
+        }}
+      />
       <HomeUnitList units={units} />
     </Layout>
   );
