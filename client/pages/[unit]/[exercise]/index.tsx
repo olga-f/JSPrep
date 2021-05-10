@@ -22,6 +22,9 @@ import { useStyletron } from "baseui";
 
 const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => {
   const [css, theme] = useStyletron();
+  const unitPath = `/${exercise.data.exerciseBySlug.unit?.slug}`;
+  const unitTitle = `${exercise.data.exerciseBySlug.unit?.title}`;
+  const current = `${exercise.data.exerciseBySlug.name}`;
   return (
     <Layout>
       <div
@@ -32,10 +35,8 @@ const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => {
       >
         <Breadcrumbs>
           <StyledLink href="/">Home</StyledLink>
-          <StyledLink href={exercise.data.exerciseBySlug.unit?.slug}>
-            {exercise.data.exerciseBySlug.unit?.title}
-          </StyledLink>
-          <span>{exercise.data.exerciseBySlug.name}</span>
+          <StyledLink href={unitPath}>{unitTitle}</StyledLink>
+          <span>{current}</span>
         </Breadcrumbs>
       </div>
 
