@@ -1,12 +1,21 @@
-# JSPrep.org website
+<h3 align="center">💻 Practice JavaScript coding  </h3>
+<p align="center">
+  <strong><a href="https://jsprep.org">jsprep.org</a></strong>
+</p>
 
-JS Prep
+---
+
+
+
+
 
 ##### Table of Contents
 
 - [Description](#description)
 - [Client](#client)
   - [Getting started](#getting-started)
+  - [What is inside](#what-is-inside)
+  - [Design System](#design-system)
   - [Front-end Testing](#front-end-testing)
 - [Server](#server)
   - [Setup](#setup)
@@ -21,9 +30,9 @@ JS Prep
 
 This repository holds the source code for the [https://jsprep.org site](https://jsprep.org).
 
-This site is a progressive web application built with [React](https://reactjs.org/), [GraphQL](https://graphql.org/), backed by [Django](https://www.djangoproject.com/).
+The web application uses [React](https://reactjs.org/), [GraphQL](https://graphql.org/), backed by [Django](https://www.djangoproject.com/).
 
-On the front-end, this project uses [Apollo Client](https://www.apollographql.com/docs/react/) - JavaScript GraphQL client. Apollo Client takes care of the request cycle from start to finish, including tracking loading and error states. 
+On the front-end, this project utilizes [Apollo Client](https://www.apollographql.com/docs/react/) - JavaScript GraphQL client. Apollo Client takes care of the request cycle from start to finish, including tracking loading and error states. 
 
 On the back-end, this project uses [Graphene](https://graphene-python.org/) - a Python library for building GraphQL APIs.
 
@@ -53,23 +62,55 @@ Install and validate your project by running the following command:
 ```
 npm run setup
 ```
+### What is inside
+This project uses the Next.js framework that helps you build web applications using React.js. 
+> Check out [why Next.js](https://olga-f.gitbook.io/react/next-js/why-next.js)
+
+This application use mostly static site generation with some client-side rendering using in both cases [Apollo Client](https://www.apollographql.com/docs/react/).
+> You can read more about [data fetching in Next.js](https://olga-f.gitbook.io/react/next-js/how-to-fetch-data-in-next.js)
+
+The app includes:
+* home page with a list of Units
+* unit page with a list of Exercises
+* exercise page
+
+Depending on the category, the exercise page will include a javascript code editor.
+
+
+[JavaScript code runner](https://www.npmjs.com/package/javascript-code-runner) is isolated from the global JavaScript environment. None of the DOM APIs are exposed.
+
+The code editor uses a [dedicated web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#dedicated_workers). That allows us to stop running some poorly written algorithms, for example, infinite loops. 
+Another reason for using a web worker is performance. A web worker performs tasks in the background, preventing the UI from freezing up. Web worker [browser support](https://caniuse.com/webworkers) is good, starting from IE10. 
+
+
+### Design System
+
+This application use [Base Web](https://app.gitbook.com/@olga-f/s/react/design-systems/base-web). 
+Base Web is a design system for building websites in React. It is [open-source](https://github.com/uber/baseweb).
+ 
+The main benefits of the Base Web design system are:
+* built-in accessibility
+* performance
+
+Styletron is the CSS-in-JS engine powering Base Web. That is one of the [fastest solutions](https://ryantsao.com/blog/virtual-css-with-styletron).
+
 
 ### Front-end Testing
 
-This project includes these forms of Testing:
+This project includes these forms of testing:
 
 * **Static Analysis**: catch typos and type errors as you write the code.
 
-[ESLint](https://eslint.org/) statically analyzes your code to quickly find problems. [Prettier](https://prettier.io/) enforces a consistent code style.
-This project use [TypeScript](https://www.typescriptlang.org/). By understanding JavaScript, TypeScript saves you time catching errors and providing fixes before you run code.
+[ESLint](https://eslint.org/) statically analyzes your code to find problems. [Prettier](https://prettier.io/) enforces a consistent code style.
+This project use [TypeScript](https://www.typescriptlang.org/). By understanding JavaScript, TypeScript saves you time catching errors and providing fixes before run code.
 
 * **Unit**: verify that individual, isolated parts work as expected. 
-* **Integration**: verify that several units work together in harmony.
+* **Integration**: verify that several entities work together in harmony.
 
-This application  use JavaScript Testing Framework - [Jest](https://jestjs.io/) with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro). Tests live in the `tests` folder, when is possible, next to the file they are testing.
-Jest also collect code coverage information.
+This application uses JavaScript Testing Framework - [Jest](https://jestjs.io/) with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro). Tests live in the `tests` folder, when is possible, next to the file they are testing.
+Jest also collects code coverage information.
 
-* **End-to-end**: a helper robot that behaves like a user to click around the app and verify that it functions correctly. Sometimes called "functional testing" or e2e.
+* **End-to-end**: a helper robot behaves like a user to click around the app and verify that it functions correctly, sometimes called "functional testing" or e2e.
 
 These tests are written with [cypress](https://www.cypress.io/) and [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/). End-to-end tests live in the `cypress/e2e` folder. Use `npm run test:e2e:dev` commands to open and add more tests if you want.
 > Note. Change your "baseUrl" in `cypress.json` to `http://localhost:3000` for local testing.
@@ -126,7 +167,7 @@ Set up a MongoDB connection and create a database
 
 > 🔹 [MongoDB Atlas](https://www.mongodb.com/) offers Free Shared Clusters.
 
-1. Add `.env` file with your mongodb credentials to the `server` folder.
+1. Add `.env` file with your MongoDB credentials to the `server` folder.
 
 ```
 SECRET_KEY=gozaXXXXXXXXXXXXXXXXXXXXXXXX
@@ -148,7 +189,7 @@ python manage.py runserver
 
 Now head on over to http://127.0.0.1:8000/graphql and run some queries!
 
-> If you want, you can create units and exercises without using the React front-end app.
+
 
 ### GraphQL Query and Mutation Examples
 
@@ -215,28 +256,13 @@ _with variables:_
 ```
 {
   "data": {
-    "unit": "60570791cd82a786dc25de50",
+    "unit": "6075689b18ef82cb8162f733", # <== write your unit id here
     "name": "Test Exercise"
   },
   "enum": "CHALLENGE"
 }
 ```
 
-_Query all unit exercises from the database:_
-
-```
-query ($id: ID!) {
-  exerciseList (unitId: $id) {
-    name
-    slug
-    unit {
-      id
-    }
-    description
-    position
-  }
-}
-```
 
 ### Testing
 
