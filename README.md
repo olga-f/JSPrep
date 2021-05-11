@@ -63,7 +63,7 @@ Install and validate your project by running the following command:
 npm run setup
 ```
 ### What is inside
-This project uses the Next.js framework that helps you build web applications using React.js. 
+This project uses the Next.js framework that helps build web applications using React.js. 
 > Check out [why Next.js](https://olga-f.gitbook.io/react/next-js/why-next.js)
 
 This application use mostly static site generation with some client-side rendering using in both cases [Apollo Client](https://www.apollographql.com/docs/react/).
@@ -74,10 +74,10 @@ The app includes:
 * unit page with a list of Exercises
 * exercise page
 
-Depending on the category, the exercise page will include a javascript code editor.
+Depending on the category, the exercise page may include a javascript code editor.
 
 
-[JavaScript code runner](https://www.npmjs.com/package/javascript-code-runner) is isolated from the global JavaScript environment. None of the DOM APIs are exposed.
+[JavaScript code runner](https://www.npmjs.com/package/javascript-code-runner) used in code editor is isolated from the global JavaScript environment. None of the DOM APIs are exposed.
 
 The code editor uses a [dedicated web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#dedicated_workers). That allows us to stop running some poorly written algorithms, for example, infinite loops. 
 Another reason for using a web worker is performance. A web worker performs tasks in the background, preventing the UI from freezing up. Web worker [browser support](https://caniuse.com/webworkers) is good, starting from IE10. 
