@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import Layout from "../../../lib/components/Layout";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
@@ -12,10 +12,12 @@ import {
   createUnitVariables,
 } from "../../../lib/graphql/mutations/Unit/__generated__/createUnit";
 
+
 const CreateUnitPage = (): JSX.Element => {
-  const [title, setTitle] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [img, setImg] = React.useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [img, setImg] = useState("");
+
 
   const [addUnit] = useMutation<createUnit, createUnitVariables>(CREATE_UNIT, {
     variables: {
@@ -39,7 +41,6 @@ const CreateUnitPage = (): JSX.Element => {
           >
             <FormControl label="Title" caption="Input caption">
               <Input
-                id="input-id"
                 value={title}
                 onChange={(event) => setTitle(event.currentTarget.value)}
               />
@@ -47,14 +48,12 @@ const CreateUnitPage = (): JSX.Element => {
 
             <FormControl label="Description" caption="Textarea caption">
               <Textarea
-                id="textarea-id"
                 value={description}
                 onChange={(event) => setDescription(event.currentTarget.value)}
               />
             </FormControl>
             <FormControl label="Image URL" caption="Input caption">
               <Input
-                id="input-id"
                 value={img}
                 onChange={(event) => setImg(event.currentTarget.value)}
               />
