@@ -1,8 +1,7 @@
-import { ExerciseProps } from "../../../../lib/types";
+import { Cell, Grid } from 'baseui/layout-grid';
+import { H1, Paragraph1 } from 'baseui/typography';
 
-import { H1 } from "baseui/typography";
-import { Paragraph1 } from "baseui/typography";
-import { Grid, Cell } from "baseui/layout-grid";
+import { ExerciseProps } from '../../../../lib/types';
 
 export const Tutorial = ({ exercise }: ExerciseProps): JSX.Element => {
   return (

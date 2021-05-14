@@ -1,10 +1,13 @@
-import UnitPage from "../../pages/[unit]";
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import { exercisesMock, unitNavMock } from "../../mocks/unit";
-import { MockedProvider } from "@apollo/client/testing";
-import { styletron } from "../../util/styletron";
-import { Provider } from "styletron-react";
+import '@testing-library/jest-dom';
+
+import { Provider } from 'styletron-react';
+
+import { MockedProvider } from '@apollo/client/testing';
+import { render, screen } from '@testing-library/react';
+
+import { exercisesMock, unitNavMock } from '../../mocks/unit';
+import UnitPage from '../../pages/[unit]';
+import { styletron } from '../../util/styletron';
 
 jest.mock("next/router", () => ({
   useRouter() {

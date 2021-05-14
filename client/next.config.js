@@ -5,12 +5,6 @@ const {
 } = require("next/constants");
 
 module.exports = (phase) => {
-  // eslint-disable-next-line no-inner-declarations
-  webpack: function styletron_server(config) {
-    config.externals = config.externals || {};
-    config.externals["styletron-server"] = "styletron-server";
-    return config;
-  }
   // when started in development mode `next dev` or `npm run dev`
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
   // when `next build` or `npm run build` is used
@@ -19,6 +13,13 @@ module.exports = (phase) => {
   // eslint-disable-next-line no-console
   console.log(`isDev:${isDev}  isProd:${isProd}`);
 
+  const styletron_config = {
+    webpack: function (config) {
+      config.externals = config.externals || {};
+      config.externals["styletron-server"] = "styletron-server";
+      return config;
+    },
+  };
   const env = {
     GRAPHQL_URL: (() => {
       if (isDev) return "http://127.0.0.1:8000/graphql/";
@@ -42,6 +43,7 @@ module.exports = (phase) => {
   };
   // next.config.js object
   return {
+    styletron_config,
     env,
     future: {
       webpack5: true,

@@ -1,8 +1,10 @@
-import React from "react";
-import { HomeUnitList } from "..";
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import { emptyUnitsMock, unitsMock } from "../../../../../mocks/home";
+import '@testing-library/jest-dom';
+
+import { render, screen } from '@testing-library/react';
+
+import { HomeUnitList } from '../';
+import { emptyUnitsMock, unitsMock } from '../../../../../mocks/home';
+
 describe("<HomeUnitList/> component", () => {
   it("renders <Units> if data provided", () => {
     render(<HomeUnitList units={unitsMock} />);

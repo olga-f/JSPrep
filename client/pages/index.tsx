@@ -1,11 +1,12 @@
-import { GetStaticProps } from "next";
-import React from "react";
-import Layout from "../lib/components/Layout";
-import { addApolloState, initializeApollo } from "../lib/graphql/apolloClient";
-import { HomeUnitList } from "../sections/Home/components/HomeMain";
-import { UNIT_LIST } from "../lib/graphql/queries";
-import { UnitsProps } from "../lib/types";
-import { CourseJsonLd, NextSeo } from "next-seo";
+import { GetStaticProps } from 'next';
+import { CourseJsonLd, NextSeo } from 'next-seo';
+import React from 'react';
+
+import Layout from '../lib/components/Layout';
+import { addApolloState, initializeApollo } from '../lib/graphql/apolloClient';
+import { UNIT_LIST } from '../lib/graphql/queries';
+import { UnitsProps } from '../lib/types';
+import { HomeUnitList } from '../sections/Home/components/HomeMain';
 
 const HomePage = ({ units }: UnitsProps): JSX.Element => {
   const URL = process.env.SITE_URL;

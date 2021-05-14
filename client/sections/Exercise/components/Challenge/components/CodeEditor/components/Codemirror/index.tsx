@@ -1,10 +1,11 @@
-import { useRef, useEffect, useState } from "react";
-import { EditorView, ViewUpdate } from "@codemirror/view";
-import { EditorState, Compartment } from "@codemirror/state";
-import { Button, KIND } from "baseui/button";
-import { useStyletron } from "baseui";
-import { Notification, KIND as TYPE } from "baseui/notification";
-import { Grid, Cell } from "baseui/layout-grid";
+import { useStyletron } from 'baseui';
+import { Button, KIND } from 'baseui/button';
+import { Cell, Grid } from 'baseui/layout-grid';
+import { KIND as TYPE, Notification } from 'baseui/notification';
+import { useEffect, useRef, useState } from 'react';
+
+import { Compartment, EditorState } from '@codemirror/state';
+import { EditorView, ViewUpdate } from '@codemirror/view';
 
 const ERROR_RUNNING = "An Error occurred while running.";
 const sleep = (time: number) =>

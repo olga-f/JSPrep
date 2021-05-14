@@ -1,20 +1,10 @@
-import JSrunner from "javascript-code-runner";
+import JSrunner from 'javascript-code-runner';
+
 import {
-  fibonacciCode,
-  fibonacciResult,
-  syntaxErrorCode,
-  syntaxErrorResult,
-  typeErrorCode,
-  typeErrorResult,
-  codeWithComment,
-  codeWithCommentResult,
-  codeWithUndefined,
-  resultWithUndefined,
-  emptyCode,
-  resultEmptyCode,
-  codeNoRun,
-  resultCodeNoRun,
-} from "../mocks";
+    codeNoRun, codeWithComment, codeWithCommentResult, codeWithUndefined, emptyCode, fibonacciCode,
+    fibonacciResult, resultCodeNoRun, resultEmptyCode, resultWithUndefined, syntaxErrorCode,
+    syntaxErrorResult, typeErrorCode, typeErrorResult
+} from '../mocks';
 
 test("fibonacci code to equal result", () => {
   const { result, message } = JSrunner(fibonacciCode);

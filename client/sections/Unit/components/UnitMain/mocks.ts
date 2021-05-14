@@ -1,4 +1,4 @@
-import { EXERCISE_LIST } from "../../../../lib/graphql/queries";
+import { EXERCISE_LIST } from '../../../../lib/graphql/queries';
 
 export const exerciseListMocks = [
   {
