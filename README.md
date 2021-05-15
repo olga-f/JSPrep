@@ -173,6 +173,8 @@ Set up a MongoDB connection and create a database
 SECRET_KEY=gozaXXXXXXXXXXXXXXXXXXXXXXXX
 DEBUG=True
 _MONGODB_URI=mongodb+srv://XXXXXXX:XXXXXXXXXXX@clusterX.XXXXXX.mongodb.net/test?retryWrites=true&w=majority
+CLIENT_APP_URL=http://localhost:3000
+URL_SERVER=https://XXXXXXXXXXXXXXX.XXXXXXX.XXX
 ```
 
 2. Run the following command:
