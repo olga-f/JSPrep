@@ -85,3 +85,5 @@ stages:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+              
+startUpCommand:  python3.8 manage.py migrate
