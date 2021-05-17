@@ -13,6 +13,11 @@ module.exports = (phase) => {
   // eslint-disable-next-line no-console
   console.log(`isDev:${isDev}  isProd:${isProd}`);
 
+  const webpack_config = {
+    future: {
+      webpack5: true,
+    },
+  };
   const styletron_config = {
     webpack: function (config) {
       config.externals = config.externals || {};
@@ -20,6 +25,7 @@ module.exports = (phase) => {
       return config;
     },
   };
+
   const env = {
     GRAPHQL_URL: (() => {
       if (isDev) return "http://127.0.0.1:8000/graphql/";
@@ -43,10 +49,8 @@ module.exports = (phase) => {
   };
   // next.config.js object
   return {
+    webpack_config,
     styletron_config,
     env,
-    future: {
-      webpack5: true,
-    },
   };
 };
