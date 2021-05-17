@@ -174,6 +174,7 @@ SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 DEBUG=True
 _MONGODB_URI=mongodb+srv://XXXXXXXX:XXXXXXXXXXXXXXXXX@clusterXX.XXXXXX.mongodb.net/XXXXXX?retryWrites=true&w=majority
 CLIENT_APP_URL=http://localhost:3000
+ALLOWED_HOSTS=[]
 ```
 
 2. Run the following command:
