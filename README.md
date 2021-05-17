@@ -6,13 +6,9 @@
 </div>
 <div align="center">
 <img alt="JS Prep logo" height="250" src="https://raw.github.com/olga-f/olga-f/master/img/jsprep.jpg"/>
-</div>
-
 <h4 align="center"> <i>Practice JavaScript coding</i> </h4>
-
-<p align="center">
-  <strong><a href="https://jsprep.org"><b>jsprep.org</b></a></strong>
-</p>
+<strong><a href="https://jsprep.org"><b>jsprep.org</b></a></strong>
+</div>
 
 ---
 <div align="center">
