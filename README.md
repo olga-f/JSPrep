@@ -5,10 +5,10 @@
 
 </div>
 <div align="center">
-<img alt="JS Prep logo" src="https://raw.github.com/olga-f/olga-f/master/img/jsprep.jpg"/>
+<img alt="JS Prep logo" height="250" src="https://raw.github.com/olga-f/olga-f/master/img/jsprep.jpg"/>
 </div>
 
-<h3 align="center"> <i>Practice JavaScript coding</i> </h3>
+<h4 align="center"> <i>Practice JavaScript coding</i> </h4>
 
 <p align="center">
   <strong><a href="https://jsprep.org"><b>jsprep.org</b></a></strong>
