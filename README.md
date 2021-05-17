@@ -4,7 +4,7 @@
 </p>
 
 ---
-
+[![Build Status](https://dev.azure.com/olga-f/JSPrep.org/_apis/build/status/olga-f.jsprep-server?branchName=main)](https://dev.azure.com/olga-f/JSPrep.org/_build/latest?definitionId=36&branchName=main)
 
 
 
@@ -170,11 +170,10 @@ Set up a MongoDB connection and create a database
 1. Add `.env` file with your MongoDB credentials to the `server` folder.
 
 ```
-SECRET_KEY=gozaXXXXXXXXXXXXXXXXXXXXXXXX
+SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 DEBUG=True
-_MONGODB_URI=mongodb+srv://XXXXXXX:XXXXXXXXXXX@clusterX.XXXXXX.mongodb.net/test?retryWrites=true&w=majority
+_MONGODB_URI=mongodb+srv://XXXXXXXX:XXXXXXXXXXXXXXXXX@clusterXX.XXXXXX.mongodb.net/XXXXXX?retryWrites=true&w=majority
 CLIENT_APP_URL=http://localhost:3000
-URL_SERVER=https://XXXXXXXXXXXXXXX.XXXXXXX.XXX
 ```
 
 2. Run the following command:
