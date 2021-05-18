@@ -1,11 +1,11 @@
-import { useStyletron } from 'baseui';
-import { Button, KIND } from 'baseui/button';
-import { Cell, Grid } from 'baseui/layout-grid';
-import { KIND as TYPE, Notification } from 'baseui/notification';
-import { useEffect, useRef, useState } from 'react';
+import { useStyletron } from "baseui";
+import { Button, KIND } from "baseui/button";
+import { Cell, Grid } from "baseui/layout-grid";
+import { KIND as TYPE, Notification } from "baseui/notification";
+import { useEffect, useRef, useState } from "react";
 
-import { Compartment, EditorState } from '@codemirror/state';
-import { EditorView, ViewUpdate } from '@codemirror/view';
+import { Compartment, EditorState } from "@codemirror/state";
+import { EditorView, ViewUpdate } from "@codemirror/view";
 
 const ERROR_RUNNING = "An Error occurred while running.";
 const sleep = (time: number) =>
@@ -67,7 +67,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
     });
 
     workerRef.current = new Worker(
-      new URL("../../../../../../../../worker.js", import.meta.url)
+      new URL("../../../../../../../../public/worker.js", import.meta.url)
     );
     workerRef.current?.postMessage(code);
     workerRef.current.onmessage = (evt) => {
