@@ -66,9 +66,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
       setLoading(false);
     });
 
-    workerRef.current = new Worker(
-      new URL("../../../../../../../../public/worker.js", import.meta.url)
-    );
+    workerRef.current = new Worker(new URL("./worker.js", import.meta.url));
     workerRef.current?.postMessage(code);
     workerRef.current.onmessage = (evt) => {
       const { result, message } = evt.data;

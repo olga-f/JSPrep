@@ -13,11 +13,8 @@ module.exports = (phase) => {
   // eslint-disable-next-line no-console
   console.log(`isDev:${isDev}  isProd:${isProd}`);
 
-  const webpack_config = {
-    webpack: (config, { isServer, dev }) => {
-      config.output.chunkFilename = isServer
-        ? `${dev ? "[name]" : "[name].[fullhash]"}.js`
-        : `static/chunks/${dev ? "[name]" : "[name].[fullhash]"}.js`;
+  const styletron_config = {
+    webpack: function (config) {
       config.externals = config.externals || {};
       config.externals["styletron-server"] = "styletron-server";
       return config;
@@ -50,7 +47,14 @@ module.exports = (phase) => {
     future: {
       webpack5: true,
     },
-    webpack_config,
+    webpack: (config, { isServer, dev }) => {
+      config.output.chunkFilename = isServer
+        ? `${dev ? "[name]" : "[name].[fullhash]"}.js`
+        : `static/chunks/${dev ? "[name]" : "[name].[fullhash]"}.js`;
+
+      return config;
+    },
+    styletron_config,
     env,
   };
 };
