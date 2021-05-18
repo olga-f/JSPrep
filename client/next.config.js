@@ -14,12 +14,10 @@ module.exports = (phase) => {
   console.log(`isDev:${isDev}  isProd:${isProd}`);
 
   const webpack_config = {
-    future: {
-      webpack5: true,
-    },
-  };
-  const styletron_config = {
-    webpack: function (config) {
+    webpack: (config, { isServer, dev }) => {
+      config.output.chunkFilename = isServer
+        ? `${dev ? "[name]" : "[name].[fullhash]"}.js`
+        : `static/chunks/${dev ? "[name]" : "[name].[fullhash]"}.js`;
       config.externals = config.externals || {};
       config.externals["styletron-server"] = "styletron-server";
       return config;
@@ -49,8 +47,10 @@ module.exports = (phase) => {
   };
   // next.config.js object
   return {
+    future: {
+      webpack5: true,
+    },
     webpack_config,
-    styletron_config,
     env,
   };
 };
