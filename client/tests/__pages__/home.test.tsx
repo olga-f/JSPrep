@@ -1,7 +1,9 @@
-import HomePage from "../../pages";
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import { unitsMock } from "../../mocks/home";
+import '@testing-library/jest-dom';
+
+import { render, screen } from '@testing-library/react';
+
+import { unitsMock } from '../../mocks/home';
+import HomePage from '../../pages';
 
 describe("Home page", () => {
   it("renders a home page", () => {

@@ -1,7 +1,8 @@
-import { ExerciseProps } from "../../../../lib/types";
-import { Grid, Cell } from "baseui/layout-grid";
-import CodeEditor from "./components/CodeEditor";
-import { H1, Paragraph2 } from "baseui/typography";
+import { Cell, Grid } from 'baseui/layout-grid';
+import { H1, Paragraph2 } from 'baseui/typography';
+
+import { ExerciseProps } from '../../../../lib/types';
+import CodeEditor from './components/CodeEditor';
 
 export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {
   const code = exercise.code?.toString() ?? "";

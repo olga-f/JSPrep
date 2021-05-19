@@ -1,6 +1,9 @@
-import { GraphQLError } from "graphql/error";
-import { UNIT_NAV } from "../lib/graphql/queries";
-import { exerciseListByUnitSlug } from "../lib/graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug";
+import { GraphQLError } from 'graphql/error';
+
+import { UNIT_NAV } from '../lib/graphql/queries';
+import {
+    exerciseListByUnitSlug
+} from '../lib/graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug';
 
 const exercises: exerciseListByUnitSlug = {
   exerciseListByUnitSlug: [

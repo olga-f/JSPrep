@@ -1,14 +1,15 @@
-import { Grid, Cell } from "baseui/layout-grid";
-import React from "react";
-import { H1, Paragraph3 } from "baseui/typography";
-import { ListItem, ListItemLabel } from "baseui/list";
-import { Button } from "baseui/button";
-import { CodeIcon } from "../../assets/code-icon";
-import { useStyletron } from "baseui";
-import { Check, Grab, CheckIndeterminate } from "baseui/icon";
-import { mq } from "../../../../util/media";
-import { ExerciseListProps } from "../../../../lib/types";
-import { useRouter } from "next/router";
+import { useStyletron } from 'baseui';
+import { Button } from 'baseui/button';
+import { Check, CheckIndeterminate, Grab } from 'baseui/icon';
+import { Cell, Grid } from 'baseui/layout-grid';
+import { ListItem, ListItemLabel } from 'baseui/list';
+import { H1, Paragraph3 } from 'baseui/typography';
+import { useRouter } from 'next/router';
+import React from 'react';
+
+import { ExerciseListProps } from '../../../../lib/types';
+import { mq } from '../../../../util/media';
+import { CodeIcon } from '../../assets/code-icon';
 
 export const Exercises = ({ list }: ExerciseListProps): JSX.Element => {
   const [css, theme] = useStyletron();

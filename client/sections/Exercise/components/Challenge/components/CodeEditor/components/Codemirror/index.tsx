@@ -1,10 +1,11 @@
-import { useRef, useEffect, useState } from "react";
-import { EditorView, ViewUpdate } from "@codemirror/view";
-import { EditorState, Compartment } from "@codemirror/state";
-import { Button, KIND } from "baseui/button";
 import { useStyletron } from "baseui";
-import { Notification, KIND as TYPE } from "baseui/notification";
-import { Grid, Cell } from "baseui/layout-grid";
+import { Button, KIND } from "baseui/button";
+import { Cell, Grid } from "baseui/layout-grid";
+import { KIND as TYPE, Notification } from "baseui/notification";
+import { useEffect, useRef, useState } from "react";
+
+import { Compartment, EditorState } from "@codemirror/state";
+import { EditorView, ViewUpdate } from "@codemirror/view";
 
 const ERROR_RUNNING = "An Error occurred while running.";
 const sleep = (time: number) =>
@@ -15,26 +16,28 @@ const sleep = (time: number) =>
   });
 
 const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
-  const initialState = {
-    editorValue: "",
-    outputValue: "",
-    errorValue: "",
+  const initialOutput = {
+    value: "",
+    error: "",
   };
 
   const workerRef = useRef<Worker>();
   const editor = useRef<EditorView>();
 
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState(initialValue);
   const [loading, setLoading] = useState(false);
+  const [output, setOutput] = useState(initialOutput);
 
   const initEditorView = async () => {
     const element = document.getElementById("editor");
+    if (editor.current) element?.children[0].remove();
     const onUpdate = () =>
       EditorView.updateListener.of((v: ViewUpdate) => {
         const doc = v.state.doc;
         const value = doc.toString();
-        if (value !== state.editorValue) {
-          setState({ ...state, editorValue: value });
+        if (value !== state) {
+          setState(value);
+          setOutput(initialOutput);
         }
       });
     const js = (await import("@codemirror/lang-javascript")).javascript;
@@ -63,30 +66,29 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
       // stop running the worker after 5 seconds, if any
       workerRef.current?.terminate();
       setLoading(false);
+     
     });
 
-    workerRef.current = new Worker(
-      new URL("../../../../../../../../worker.js", import.meta.url)
-    );
+    workerRef.current = new Worker(new URL("./worker.js", import.meta.url));
     workerRef.current?.postMessage(code);
     workerRef.current.onmessage = (evt) => {
       const { result, message } = evt.data;
 
       if (result) {
-        setState({ ...state, outputValue: result });
+        setOutput({ ...output, value: result });
         workerRef.current?.terminate();
         setLoading(false);
       }
       if (message) {
-        setState({ ...state, errorValue: message });
+        setOutput({ ...output, error: message });
         workerRef.current?.terminate();
         setLoading(false);
       }
     };
     workerRef.current.onerror = () => {
-      setState({
-        ...state,
-        errorValue: ERROR_RUNNING,
+      setOutput({
+        ...output,
+        error: ERROR_RUNNING,
       });
       workerRef.current?.terminate();
       setLoading(false);
@@ -94,9 +96,10 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
   };
   const resetCode = () => {
     workerRef.current?.terminate();
-    setState(initialState);
+    setState(initialValue);
+
     setLoading(false);
-    editor.current?.destroy();
+    //  editor.current?.destroy();
     initEditorView();
   };
 
@@ -112,7 +115,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             whiteSpace: "break-spaces",
           })}
         >
-          {state.outputValue}
+          {output.value}
         </code>
       </pre>
     </Notification>
@@ -130,7 +133,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             whiteSpace: "break-spaces",
           })}
         >
-          {state.errorValue}
+          {output.error}
         </code>
       </pre>
     </Notification>
@@ -152,8 +155,8 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
         ></div>
       </Cell>
       <Cell span={[4, 8, 7]}>
-        {state.errorValue ? <OutputError /> : null}
-        {state.outputValue ? <OutputResult /> : null}
+        {output.error ? <OutputError /> : null}
+        {output.value ? <OutputResult /> : null}
       </Cell>
       <Cell
         span={[4, 8, 5]}
@@ -175,10 +178,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             marginRight: "-2px",
           })}
         >
-          <Button
-            onClick={() => runCode(state.editorValue)}
-            isLoading={loading}
-          >
+          <Button onClick={() => runCode(state)} isLoading={loading}>
             Run Code
           </Button>
         </span>

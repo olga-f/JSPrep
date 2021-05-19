@@ -1,10 +1,21 @@
-<h3 align="center">💻 Practice JavaScript coding  </h3>
-<p align="center">
-  <strong><a href="https://jsprep.org">jsprep.org</a></strong>
-</p>
+<div align="right">
+
+[![Build Status](https://dev.azure.com/olga-f/JSPrep.org/_apis/build/status/olga-f.jsprep-server?branchName=main)](https://dev.azure.com/olga-f/JSPrep.org/_build/latest?definitionId=36&branchName=main)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=jsprep-org)
+
+</div>
+<div align="center">
+<img alt="JS Prep logo" height="250" src="https://raw.github.com/olga-f/olga-f/master/img/jsprep.jpg"/>
+<h4 align="center"> <i>Practice JavaScript coding</i> </h4>
+<strong><a href="https://jsprep.org"><b>jsprep.org</b></a></strong>
+</div>
 
 ---
-
+<div align="center">
+<img alt="Next JS" src="https://img.shields.io/badge/nextjs-%23000000.svg?&style=for-the-badge&logo=next.js&logoColor=white"/>
+<img alt="GraphQL" src="https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql"/>
+<img alt="Django" src="https://img.shields.io/badge/django-%23092E20.svg?&style=for-the-badge&logo=django&logoColor=white"/>
+<img alt="MongoDB" src ="https://img.shields.io/badge/MongoDB-%234ea94b.svg?&style=for-the-badge&logo=mongodb&logoColor=white"/></div>
 
 
 
@@ -24,7 +35,6 @@
     - [MongoDB database](#mongodb-database)
   - [GraphQL Query and Mutation Examples](#graphql-query-and-mutation-examples)
   - [Testing](#testing)
-- [YouTube presentation](#youtube)
 
 ## Description
 
@@ -40,7 +50,8 @@ On the back-end, this project uses [Graphene](https://graphene-python.org/) - a 
 The `client` folder contains all necessary code for running React front-end application.
 The `server` folder contains the back-end Django application.
 
-## Client
+## Client 
+
 
 ### Getting started
 
@@ -170,9 +181,11 @@ Set up a MongoDB connection and create a database
 1. Add `.env` file with your MongoDB credentials to the `server` folder.
 
 ```
-SECRET_KEY=gozaXXXXXXXXXXXXXXXXXXXXXXXX
+SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 DEBUG=True
-_MONGODB_URI=mongodb+srv://XXXXXXX:XXXXXXXXXXX@clusterX.XXXXXX.mongodb.net/test?retryWrites=true&w=majority
+_MONGODB_URI=mongodb+srv://XXXXXXXX:XXXXXXXXXXXXXXXXX@clusterXX.XXXXXX.mongodb.net/XXXXXX?retryWrites=true&w=majority
+CLIENT_APP_URL=http://localhost:3000
+ALLOWED_HOSTS=['*']
 ```
 
 2. Run the following command:
@@ -284,4 +297,3 @@ source venv/Scripts/activate
 pytest -v
 ```
 
-## YouTube

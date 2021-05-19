@@ -1,13 +1,11 @@
-import { exerciseBySlug_exerciseBySlug } from "../graphql/queries/ExercisePage/__generated__/exerciseBySlug";
 import {
-  unitList,
-  unitList_unitList,
-} from "../graphql/queries/HomePage/__generated__/unitList";
+    exerciseBySlug_exerciseBySlug
+} from '../graphql/queries/ExercisePage/__generated__/exerciseBySlug';
+import { unitList, unitList_unitList } from '../graphql/queries/HomePage/__generated__/unitList';
 import {
-  exerciseListByUnitSlug,
-  exerciseListByUnitSlug_exerciseListByUnitSlug,
-} from "../graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug";
-import { unitNav_unitList } from "../graphql/queries/UnitPage/__generated__/unitNav";
+    exerciseListByUnitSlug, exerciseListByUnitSlug_exerciseListByUnitSlug
+} from '../graphql/queries/UnitPage/__generated__/exerciseListByUnitSlug';
+import { unitNav_unitList } from '../graphql/queries/UnitPage/__generated__/unitNav';
 
 export type UnitsProps = {
   units: {
