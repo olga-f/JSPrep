@@ -10,3 +10,8 @@ body {
 .cm-scroller {
   overflow: auto;
 }
+.markdown pre {
+  background-color: #f6f6f6;
+  overflow: auto;
+  padding: 20px;
+}
