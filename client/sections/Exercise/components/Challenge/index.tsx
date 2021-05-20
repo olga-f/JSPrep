@@ -1,12 +1,14 @@
+import { useStyletron } from 'baseui';
 import { Cell, Grid } from 'baseui/layout-grid';
 import { H1, Paragraph2 } from 'baseui/typography';
+import Markdown from 'react-markdown';
 
 import { ExerciseProps } from '../../../../lib/types';
 import CodeEditor from './components/CodeEditor';
 
 export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {
   const code = exercise.code?.toString() ?? "";
-
+  const [css, theme] = useStyletron();
   return (
     <Grid>
       <Cell span={[4, 8, 5]}>
@@ -15,7 +17,16 @@ export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {
         </Cell>
 
         <Cell span={[4, 8, 12]}>
-          <Paragraph2>{exercise.content}</Paragraph2>
+          <span className="markdown">
+            <Markdown
+              className={css({
+                ...theme.typography.ParagraphMedium,
+                marginBottom: theme.sizing.scale900,
+              })}
+            >
+              {exercise.content ?? ""}
+            </Markdown>
+          </span>
         </Cell>
       </Cell>
       <Cell span={[4, 8, 7]}>
