@@ -1,22 +1,20 @@
-import { useState } from "react";
-import Layout from "../../../lib/components/Layout";
-import { FormControl } from "baseui/form-control";
-import { Input } from "baseui/input";
-import { Textarea } from "baseui/textarea";
-import { Cell, Grid } from "baseui/layout-grid";
-import { Button } from "baseui/button";
+import { Button } from 'baseui/button';
+import { FormControl } from 'baseui/form-control';
+import { Input } from 'baseui/input';
+import { Cell, Grid } from 'baseui/layout-grid';
+import { OptionsT, Select } from 'baseui/select';
+import { Textarea } from 'baseui/textarea';
+import { useState } from 'react';
+
+import { useMutation, useQuery } from '@apollo/client/react/hooks';
+
+import Layout from '../../../lib/components/Layout';
+import { ExerciseCategory } from '../../../lib/graphql/globalTypes';
+import { CREATE_EXERCISE } from '../../../lib/graphql/mutations/Exercise';
 import {
-  useMutation,
-  useQuery,
-} from "@apollo/client/react/hooks";
-import { CREATE_EXERCISE } from "../../../lib/graphql/mutations/Exercise";
-import { OptionsT, Select } from "baseui/select";
-import {
-  createExercise,
-  createExerciseVariables,
-} from "../../../lib/graphql/mutations/Exercise/__generated__/createExercise";
-import { ExerciseCategory } from "../../../lib/graphql/globalTypes";
-import { UNIT_LIST } from "../../../lib/graphql/queries";
+    createExercise, createExerciseVariables
+} from '../../../lib/graphql/mutations/Exercise/__generated__/createExercise';
+import { UNIT_LIST } from '../../../lib/graphql/queries';
 
 const CreateExercisePage = (): JSX.Element => {
   const { data } = useQuery(UNIT_LIST);
@@ -77,8 +75,14 @@ const CreateExercisePage = (): JSX.Element => {
                 value={category}
                 onChange={({ value }: any) => setCategory(value)}
                 options={[
-                  { name: ExerciseCategory.CHALLENGE, id: ExerciseCategory.CHALLENGE },
-                  { name: ExerciseCategory.TUTORIAL, id: ExerciseCategory.CHALLENGE},
+                  {
+                    name: ExerciseCategory.CHALLENGE,
+                    id: ExerciseCategory.CHALLENGE,
+                  },
+                  {
+                    name: ExerciseCategory.TUTORIAL,
+                    id: ExerciseCategory.CHALLENGE,
+                  },
                 ]}
                 labelKey="name"
                 valueKey="id"
@@ -93,12 +97,14 @@ const CreateExercisePage = (): JSX.Element => {
 
             <FormControl label="Description" caption="Textarea caption">
               <Textarea
+               
                 value={description}
                 onChange={(event) => setDescription(event.currentTarget.value)}
               />
             </FormControl>
             <FormControl label="Content" caption="Textarea caption">
               <Textarea
+               rows="40"
                 value={content}
                 onChange={(event) => setContent(event.currentTarget.value)}
               />
