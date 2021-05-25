@@ -1,5 +1,5 @@
 import { useStyletron } from "baseui";
-import { Button, KIND } from "baseui/button";
+import { Button, KIND, SIZE } from "baseui/button";
 import { Cell, Grid } from "baseui/layout-grid";
 import { KIND as TYPE, Notification } from "baseui/notification";
 import { useEffect, useRef, useState } from "react";
@@ -149,17 +149,16 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             ...theme.borders.border600,
             fontSize: theme.sizing.scale550,
             width: "100%",
-            height: "350px",
+            minHeight: "350px",
           })}
           id="editor"
         ></div>
       </Cell>
-      <Cell span={[4, 8, 7]}>
+      <Cell span={[4, 8, 8]}>
         {output.error ? <OutputError /> : null}
         {output.value ? <OutputResult /> : null}
       </Cell>
-      <Cell
-        span={[4, 8, 5]}
+      <Cell span={[4, 8, 4]}
         overrides={{
           Cell: {
             style: () => ({
@@ -169,7 +168,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
           },
         }}
       >
-        <Button kind={KIND.secondary} onClick={() => resetCode()}>
+        <Button kind={KIND.secondary} size={SIZE.compact} onClick={() => resetCode()}>
           Reset
         </Button>
         <span
@@ -178,7 +177,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             marginRight: "-2px",
           })}
         >
-          <Button onClick={() => runCode(state)} isLoading={loading}>
+          <Button size={SIZE.compact} onClick={() => runCode(state)} isLoading={loading}>
             Run Code
           </Button>
         </span>
