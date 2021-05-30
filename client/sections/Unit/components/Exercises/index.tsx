@@ -19,7 +19,9 @@ export const Exercises = ({ list }: ExerciseListProps): JSX.Element => {
     <>
       <Grid>
         <Cell span={[4, 5, 6]}>
-          <H1>{list?.find((x) => x !== undefined)?.unit?.title}</H1>
+          <H1 marginTop={0}>
+            {list?.find((x) => x !== undefined)?.unit?.title}
+          </H1>
         </Cell>
         <Cell span={[4, 3, 6]}>
           <Paragraph3>
