@@ -1,15 +1,15 @@
 describe("Unit page users", () => {
-  it("can click and go to the first exercise", () => {
+  it("can click and go to the second exercise", () => {
     const user = cy;
     user
-      .visit("/javascript-basics")
-      .get(":nth-child(1) > a")
+      .visit("/basics")
+      .get(":nth-child(2) > a")
       .click()
       .wait(6000)
       .location()
       .should((location) => {
         expect(location.pathname).to.eq(
-          "/javascript-basics/challenge-objects-evaluating-keys"
+          "/basics/what-will-be-the-output-of-the-code"
         );
       });
   });

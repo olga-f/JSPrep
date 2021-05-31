@@ -5,9 +5,7 @@ const {
 } = require("next/constants");
 
 module.exports = (phase) => {
-  // when started in development mode `next dev` or `npm run dev`
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
-  // when `next build` or `npm run build` is used
   const isProd = phase === PHASE_PRODUCTION_BUILD;
 
   // eslint-disable-next-line no-console
@@ -42,7 +40,6 @@ module.exports = (phase) => {
       return "http://localhost:3000/";
     })(),
   };
-  // next.config.js object
   return {
     future: {
       webpack5: true,
