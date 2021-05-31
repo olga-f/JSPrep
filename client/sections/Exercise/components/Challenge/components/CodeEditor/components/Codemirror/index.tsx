@@ -61,25 +61,23 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
 
   const runCode = (code: string) => {
     setLoading(true);
-
+    workerRef.current = new Worker(new URL("./worker.js", import.meta.url));
+    workerRef.current?.postMessage(code);
     sleep(5000).then(() => {
       // stop running the worker after 5 seconds, if any
       workerRef.current?.terminate();
       setLoading(false);
     });
-
-    workerRef.current = new Worker(new URL("./worker.js", import.meta.url));
-    workerRef.current?.postMessage(code);
     workerRef.current.onmessage = (evt) => {
       const { result, message } = evt.data;
 
       if (result) {
-        setOutput({ ...output, value: result });
+        setOutput({ ...output, value: result, error:"" });
         workerRef.current?.terminate();
         setLoading(false);
       }
       if (message) {
-        setOutput({ ...output, error: message });
+        setOutput({ ...output, value: "", error: message });
         workerRef.current?.terminate();
         setLoading(false);
       }
@@ -87,6 +85,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
     workerRef.current.onerror = () => {
       setOutput({
         ...output,
+        value: "",
         error: ERROR_RUNNING,
       });
       workerRef.current?.terminate();
