@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Compartment, EditorState } from "@codemirror/state";
 import { EditorView, ViewUpdate } from "@codemirror/view";
+import beautify from "js-beautify";
 
 const ERROR_RUNNING = "An Error occurred while running.";
 const sleep = (time: number) =>
@@ -42,8 +43,6 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
       });
     const js = (await import("@codemirror/lang-javascript")).javascript;
     const setup = (await import("@codemirror/basic-setup")).basicSetup;
-    const beautify = (await import("js-beautify")).default;
-
     const language = new Compartment();
     editor.current = new EditorView({
       state: EditorState.create({
@@ -72,7 +71,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
       const { result, message } = evt.data;
 
       if (result) {
-        setOutput({ ...output, value: result, error:"" });
+        setOutput({ ...output, value: beautify(result), error: "" });
         workerRef.current?.terminate();
         setLoading(false);
       }
@@ -97,7 +96,6 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
     setState(initialValue);
 
     setLoading(false);
-    //  editor.current?.destroy();
     initEditorView();
   };
 
@@ -141,7 +139,16 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
 
   return (
     <Grid gridMargins={0}>
-      <Cell span={[4, 8, 12]}>
+      <Cell
+        span={[4, 8, 12]}
+        overrides={{
+          Cell: {
+            style: () => ({
+              paddingRight: "0px !important",
+            }),
+          },
+        }}
+      >
         <div
           className={css({
             ...theme.borders.border600,
@@ -163,6 +170,8 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             style: () => ({
               textAlign: "right",
               paddingBottom: theme.sizing.scale1600,
+              paddingLeft: "0px !important",
+              paddingRight: "0px !important",
             }),
           },
         }}
