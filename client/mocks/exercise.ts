@@ -1,4 +1,4 @@
-import { ExerciseData } from '../lib/types';
+import { ExerciseData } from "../lib/types";
 
 export const exerciseMock: ExerciseData["exercise"] = {
   data: {

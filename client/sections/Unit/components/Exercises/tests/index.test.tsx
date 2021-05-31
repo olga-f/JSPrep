@@ -1,11 +1,11 @@
-import '@testing-library/jest-dom/extend-expect';
+import "@testing-library/jest-dom/extend-expect";
 
-import React from 'react';
+import React from "react";
 
-import { render, screen } from '@testing-library/react';
+import { render, screen } from "@testing-library/react";
 
-import { Exercises } from '../';
-import { exercisesMock } from '../../../../../mocks/unit';
+import { Exercises } from "../";
+import { exercisesMock } from "../../../../../mocks/unit";
 
 describe("<Exercises /> component", () => {
   it("renders exercises with challenge link", async () => {

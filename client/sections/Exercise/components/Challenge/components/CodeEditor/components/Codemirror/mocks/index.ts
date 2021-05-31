@@ -69,3 +69,11 @@ function fibonacci(num) {
   }
 `;
 export const resultCodeNoRun = `The code does not execute.`;
+
+export const codeObjectAssign = `
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+const output = Object.assign(target, source);
+JSON.stringify(output);
+`;
+export const assignResult = '{"a":1,"b":4,"c":5}';

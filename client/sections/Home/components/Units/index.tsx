@@ -1,11 +1,17 @@
-import { Button, SIZE } from 'baseui/button';
-import { ChevronRight } from 'baseui/icon';
-import { Cell, Grid } from 'baseui/layout-grid';
-import { Label4 } from 'baseui/typography';
-import { useRouter } from 'next/router';
+import { Button, SIZE } from "baseui/button";
+import { ChevronRight } from "baseui/icon";
+import { Cell, Grid } from "baseui/layout-grid";
+import { Label4 } from "baseui/typography";
+import { useRouter } from "next/router";
 
-import { UnitListProps } from '../../../../lib/types';
-import { Card, CardBackground, CardBody, CardFeatures, CardTitle } from './components/';
+import { UnitListProps } from "../../../../lib/types";
+import {
+  Card,
+  CardBackground,
+  CardBody,
+  CardFeatures,
+  CardTitle,
+} from "./components/";
 
 export const Units = ({ list }: UnitListProps): JSX.Element => {
   const defaultImgUrl = "/default.svg";

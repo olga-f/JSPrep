@@ -1,6 +1,6 @@
-import { useStyletron } from 'baseui';
+import { useStyletron } from "baseui";
 
-import { TitleProps } from '../types';
+import { TitleProps } from "../types";
 
 export const CardTitle = ({ title }: TitleProps): JSX.Element => {
   const width = "65%";

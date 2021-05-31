@@ -1,6 +1,6 @@
-import { useStyletron } from 'baseui';
+import { useStyletron } from "baseui";
 
-import { ImgBackground } from '../types';
+import { ImgBackground } from "../types";
 
 export const CardBackground = ({ image }: ImgBackground): JSX.Element => {
   const width = "65%";

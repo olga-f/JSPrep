@@ -1,11 +1,15 @@
-import merge from 'deepmerge';
-import isEqual from 'lodash/isEqual';
-import { GetStaticPropsResult } from 'next';
-import { useMemo } from 'react';
+import merge from "deepmerge";
+import isEqual from "lodash/isEqual";
+import { GetStaticPropsResult } from "next";
+import { useMemo } from "react";
 
 import {
-    ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject, StoreObject
-} from '@apollo/client';
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  NormalizedCacheObject,
+  StoreObject,
+} from "@apollo/client";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 

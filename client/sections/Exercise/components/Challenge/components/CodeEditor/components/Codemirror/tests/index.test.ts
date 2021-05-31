@@ -1,10 +1,23 @@
-import JSrunner from 'javascript-code-runner';
+import JSrunner from "javascript-code-runner";
 
 import {
-    codeNoRun, codeWithComment, codeWithCommentResult, codeWithUndefined, emptyCode, fibonacciCode,
-    fibonacciResult, resultCodeNoRun, resultEmptyCode, resultWithUndefined, syntaxErrorCode,
-    syntaxErrorResult, typeErrorCode, typeErrorResult
-} from '../mocks';
+  assignResult,
+  codeNoRun,
+  codeObjectAssign,
+  codeWithComment,
+  codeWithCommentResult,
+  codeWithUndefined,
+  emptyCode,
+  fibonacciCode,
+  fibonacciResult,
+  resultCodeNoRun,
+  resultEmptyCode,
+  resultWithUndefined,
+  syntaxErrorCode,
+  syntaxErrorResult,
+  typeErrorCode,
+  typeErrorResult,
+} from "../mocks";
 
 test("fibonacci code to equal result", () => {
   const { result, message } = JSrunner(fibonacciCode);
@@ -46,4 +59,9 @@ test("code not called", () => {
   const { result, message } = JSrunner(codeNoRun);
   expect(result).toBe(null);
   expect(message).toBe(resultCodeNoRun);
+});
+test("code with Object.assign() to equal assignResult", () => {
+  const { result, message } = JSrunner(codeObjectAssign);
+  expect(result).toBe(assignResult);
+  expect(message).toBe(null);
 });

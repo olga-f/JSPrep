@@ -1,4 +1,4 @@
-import { unitList } from '../lib/graphql/queries/HomePage/__generated__/unitList';
+import { unitList } from "../lib/graphql/queries/HomePage/__generated__/unitList";
 
 const units: unitList = {
   unitList: [

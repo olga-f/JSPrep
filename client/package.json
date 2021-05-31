@@ -84,11 +84,19 @@
     }
   },
   "keywords": [
+    "javascript",
     "react",
     "react.js",
     "next.js",
     "graphql",
-    "apollo"
+    "apollo",
+    "typescript",
+    "cypress",
+    "jest",
+    "styletron",
+    "eslint",
+    "baseui",
+    "codemirror"
   ],
   "author": "Olga F. Andreiko",
   "license": "MIT"

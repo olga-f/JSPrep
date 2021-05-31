@@ -1,12 +1,12 @@
-import { Navigation } from 'baseui/side-navigation';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { Navigation } from "baseui/side-navigation";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-import { useQuery } from '@apollo/client/react/hooks';
+import { useQuery } from "@apollo/client/react/hooks";
 
-import { UNIT_NAV } from '../../../../lib/graphql/queries';
-import { UnitNav } from '../../../../lib/types';
-import { SideNavSkeleton } from '../SideNavSkeleton';
+import { UNIT_NAV } from "../../../../lib/graphql/queries";
+import { UnitNav } from "../../../../lib/types";
+import { SideNavSkeleton } from "../SideNavSkeleton";
 
 export const SideNav = (): JSX.Element => {
   const { loading, data, error } = useQuery<UnitNav>(UNIT_NAV);

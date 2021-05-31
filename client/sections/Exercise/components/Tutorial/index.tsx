@@ -1,9 +1,9 @@
-import { useStyletron } from 'baseui';
-import { Cell, Grid } from 'baseui/layout-grid';
-import { H1 } from 'baseui/typography';
-import Markdown from 'react-markdown';
+import { useStyletron } from "baseui";
+import { Cell, Grid } from "baseui/layout-grid";
+import { H1 } from "baseui/typography";
+import Markdown from "react-markdown";
 
-import { ExerciseProps } from '../../../../lib/types';
+import { ExerciseProps } from "../../../../lib/types";
 
 export const Tutorial = ({ exercise }: ExerciseProps): JSX.Element => {
   const [css, theme] = useStyletron();

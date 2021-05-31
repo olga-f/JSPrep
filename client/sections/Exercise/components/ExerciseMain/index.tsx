@@ -1,6 +1,6 @@
-import { Exercise, ExerciseData } from '../../../../lib/types';
-import { Challenge } from '../Challenge';
-import { Tutorial } from '../Tutorial';
+import { Exercise, ExerciseData } from "../../../../lib/types";
+import { Challenge } from "../Challenge";
+import { Tutorial } from "../Tutorial";
 
 export const ExerciseMain = ({ exercise }: ExerciseData): JSX.Element => {
   const { data } = exercise;
