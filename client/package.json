@@ -32,7 +32,7 @@
     "apollo-boost": "^0.4.9",
     "baseui": "^9.115.1",
     "graphql": "^15.5.0",
-    "javascript-code-runner": "^1.0.5",
+    "javascript-code-runner": "^1.0.8",
     "js-beautify": "^1.13.13",
     "lodash": "^4.17.21",
     "next": "^10.2.3",
