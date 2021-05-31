@@ -1,8 +1,6 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-import {
-    unitList_unitList as Unit
-} from '../../../../../../lib/graphql/queries/HomePage/__generated__/unitList';
+import { unitList_unitList as Unit } from "../../../../../../lib/graphql/queries/HomePage/__generated__/unitList";
 
 export type CardProps = {
   children?: ReactNode;

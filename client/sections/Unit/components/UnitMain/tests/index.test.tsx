@@ -1,12 +1,12 @@
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
-import React from 'react';
+import React from "react";
 
-import { MockedProvider } from '@apollo/client/testing';
-import { render, screen } from '@testing-library/react';
+import { MockedProvider } from "@apollo/client/testing";
+import { render, screen } from "@testing-library/react";
 
-import { UnitExerciseList } from '../';
-import { emptyExercisesMock, exercisesMock } from '../../../../../mocks/unit';
+import { UnitExerciseList } from "../";
+import { emptyExercisesMock, exercisesMock } from "../../../../../mocks/unit";
 
 jest.mock("next/router", () => ({
   useRouter() {

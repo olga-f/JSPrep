@@ -66,7 +66,6 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
       // stop running the worker after 5 seconds, if any
       workerRef.current?.terminate();
       setLoading(false);
-     
     });
 
     workerRef.current = new Worker(new URL("./worker.js", import.meta.url));
@@ -158,7 +157,8 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
         {output.error ? <OutputError /> : null}
         {output.value ? <OutputResult /> : null}
       </Cell>
-      <Cell span={[4, 8, 4]}
+      <Cell
+        span={[4, 8, 4]}
         overrides={{
           Cell: {
             style: () => ({
@@ -168,7 +168,11 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
           },
         }}
       >
-        <Button kind={KIND.secondary} size={SIZE.compact} onClick={() => resetCode()}>
+        <Button
+          kind={KIND.secondary}
+          size={SIZE.compact}
+          onClick={() => resetCode()}
+        >
           Reset
         </Button>
         <span
@@ -177,7 +181,11 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             marginRight: "-2px",
           })}
         >
-          <Button size={SIZE.compact} onClick={() => runCode(state)} isLoading={loading}>
+          <Button
+            size={SIZE.compact}
+            onClick={() => runCode(state)}
+            isLoading={loading}
+          >
             Run Code
           </Button>
         </span>

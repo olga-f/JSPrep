@@ -1,21 +1,27 @@
-import { useStyletron } from 'baseui';
-import { Breadcrumbs } from 'baseui/breadcrumbs';
-import { StyledLink } from 'baseui/link';
-import { GetStaticPaths, GetStaticPathsResult, GetStaticProps, GetStaticPropsResult } from 'next';
-import { CourseJsonLd, NextSeo } from 'next-seo';
-import { ParsedUrlQuery } from 'querystring';
-import React from 'react';
-
-import { NormalizedCacheObject } from '@apollo/client/cache/inmemory/types';
-
-import Layout from '../../../lib/components/Layout';
-import { addApolloState, initializeApollo } from '../../../lib/graphql/apolloClient';
-import { EXERCISE_PATHS, GET_EXERCISE } from '../../../lib/graphql/queries';
+import { useStyletron } from "baseui";
+import { Breadcrumbs } from "baseui/breadcrumbs";
+import { StyledLink } from "baseui/link";
 import {
-    exerciseWithUnitPaths_exerciseList as PathProps
-} from '../../../lib/graphql/queries/ExercisePage/__generated__/exerciseWithUnitPaths';
-import { ExerciseData } from '../../../lib/types';
-import { ExerciseMain } from '../../../sections/Exercise/components/ExerciseMain';
+  GetStaticPaths,
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+} from "next";
+import { CourseJsonLd, NextSeo } from "next-seo";
+import { ParsedUrlQuery } from "querystring";
+import React from "react";
+
+import { NormalizedCacheObject } from "@apollo/client/cache/inmemory/types";
+
+import Layout from "../../../lib/components/Layout";
+import {
+  addApolloState,
+  initializeApollo,
+} from "../../../lib/graphql/apolloClient";
+import { EXERCISE_PATHS, GET_EXERCISE } from "../../../lib/graphql/queries";
+import { exerciseWithUnitPaths_exerciseList as PathProps } from "../../../lib/graphql/queries/ExercisePage/__generated__/exerciseWithUnitPaths";
+import { ExerciseData } from "../../../lib/types";
+import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
 
 const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => {
   const URL = process.env.SITE_URL;

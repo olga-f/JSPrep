@@ -28,7 +28,9 @@ export interface exerciseListByUnitSlug_exerciseListByUnitSlug {
 }
 
 export interface exerciseListByUnitSlug {
-  exerciseListByUnitSlug: (exerciseListByUnitSlug_exerciseListByUnitSlug | null)[] | null;
+  exerciseListByUnitSlug:
+    | (exerciseListByUnitSlug_exerciseListByUnitSlug | null)[]
+    | null;
 }
 
 export interface exerciseListByUnitSlugVariables {

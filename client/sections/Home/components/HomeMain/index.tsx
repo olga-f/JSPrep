@@ -1,5 +1,5 @@
-import { UnitsProps } from '../../../../lib/types';
-import { Units } from '../Units';
+import { UnitsProps } from "../../../../lib/types";
+import { Units } from "../Units";
 
 export const HomeUnitList = ({ units }: UnitsProps): JSX.Element => {
   const { data } = units;

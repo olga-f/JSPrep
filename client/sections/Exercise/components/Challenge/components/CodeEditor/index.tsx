@@ -1,5 +1,5 @@
-import { Skeleton } from 'baseui/skeleton';
-import dynamic from 'next/dynamic';
+import { Skeleton } from "baseui/skeleton";
+import dynamic from "next/dynamic";
 
 const CodeEditor: React.FC<{ code: string }> = ({ code }) => {
   const Editor = dynamic(() => import("./components/Codemirror"), {
