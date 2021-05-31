@@ -56,7 +56,7 @@ export const Exercises = ({ list }: ExerciseListProps): JSX.Element => {
                 overrides={{
                   BaseButton: {
                     style: {
-                      margin: "5px",
+                      marginLeft: theme.sizing.scale100,
                     },
                   },
                 }}
