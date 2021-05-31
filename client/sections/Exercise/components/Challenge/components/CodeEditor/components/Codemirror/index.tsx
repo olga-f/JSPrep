@@ -63,8 +63,8 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
     setLoading(true);
     workerRef.current = new Worker(new URL("./worker.js", import.meta.url));
     workerRef.current?.postMessage(code);
-    sleep(5000).then(() => {
-      // stop running the worker after 5 seconds, if any
+    sleep(3000).then(() => {
+      // stop running the worker after 3 seconds, if any
       workerRef.current?.terminate();
       setLoading(false);
     });
