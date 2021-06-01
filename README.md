@@ -20,6 +20,7 @@
 
 
 
+
 ##### Table of Contents
 
 - [Description](#description)
@@ -40,11 +41,25 @@
 
 This repository holds the source code for the [https://jsprep.org site](https://jsprep.org).
 
+### Distinctiveness and Complexity
+
+You can use this project with your JavaScript code tutorials and challenges. 
+The repository includes sandboxed code editor for running your JavaScript code directly in the web application.
+
+This project is optimized for the best performance and successfully passes Google's [Rich Results Test](https://search.google.com/test/rich-results) and [Lighthouse](https://developers.google.com/web/tools/lighthouse).
+
 The web application uses [React](https://reactjs.org/), [GraphQL](https://graphql.org/), backed by [Django](https://www.djangoproject.com/).
 
+
+<br/>
+<br/>
 <img alt="JS Prep Lighthouse Test" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/performance.gif"/>
 
 <br/>
+<br/>
+<div align="center">
+<img alt="JS Prep.org" height="450" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/movil.png"/>
+</div>
 <br/>
 <br/>
 
@@ -52,6 +67,9 @@ The web application uses [React](https://reactjs.org/), [GraphQL](https://graphq
 
 
 On the front-end, this project utilizes [Apollo Client](https://www.apollographql.com/docs/react/) - JavaScript GraphQL client. Apollo Client takes care of the request cycle from start to finish, including tracking loading and error states. 
+
+
+
 
 On the back-end, this project uses [Graphene](https://graphene-python.org/) - a Python library for building GraphQL APIs.
 
@@ -148,7 +166,7 @@ These tests are written with [cypress](https://www.cypress.io/) and [Cypress Tes
 > Note. Change your "baseUrl" in `cypress.json` to `http://localhost:3000` for local testing.
  
  <div align="center">
-<img alt="Lighthouse 100 Test Exercise Page" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/cypress.jpg"/>
+<img alt="cypress jsprep.org" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/cypress.jpg"/>
 </div>
 <br/>
 <br/>
