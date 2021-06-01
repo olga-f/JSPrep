@@ -24,24 +24,25 @@ import { ExerciseData } from "../../../lib/types";
 import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
 
 const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => {
-  const URL = process.env.SITE_URL;
-  const unitPath = `/${exercise.data.exerciseBySlug.unit?.slug}`;
+  const URL = process.env.SITE_URL ?? "";
+  const unitPath = exercise.data.exerciseBySlug.unit?.slug ?? "";
+  const exercisePath = `/${exercise.data.exerciseBySlug.slug}`;
   const unitTitle = exercise.data.exerciseBySlug.unit?.title;
   const current = exercise.data.exerciseBySlug.name;
-  const description = exercise.data.exerciseBySlug.description ?? "";
+  const description = exercise.data.exerciseBySlug.description ?? exercise.data.exerciseBySlug.name ?? "";
   const [css, theme] = useStyletron();
   return (
     <Layout>
       <CourseJsonLd
         courseName={current}
         providerName="JSPrep.org"
-        providerUrl="https://jsprep.org"
+        providerUrl={URL}
         description={description}
       />
       <NextSeo
         title={current}
         description={description}
-        canonical={URL}
+        canonical={URL + unitPath + exercisePath}
         openGraph={{
           url: URL,
           title: current,
@@ -64,7 +65,7 @@ const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => {
       >
         <Breadcrumbs>
           <StyledLink href="/">Home</StyledLink>
-          <StyledLink href={unitPath}>{unitTitle}</StyledLink>
+          <StyledLink href={`/${unitPath}`}>{unitTitle}</StyledLink>
           <span>{current}</span>
         </Breadcrumbs>
       </div>

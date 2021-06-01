@@ -157,6 +157,7 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             minHeight: "350px",
           })}
           id="editor"
+          aria-label="javascript code editor"
         ></div>
       </Cell>
       <Cell span={[4, 8, 8]}
