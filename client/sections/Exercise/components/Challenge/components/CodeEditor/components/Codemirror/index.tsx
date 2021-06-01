@@ -51,6 +51,9 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
       }),
       parent: element as Element,
     });
+    // ARIA accessible name for code editor
+    const codeEditor = document.querySelector(".cm-content");
+    codeEditor?.setAttribute("aria-label", "javascript code editor");
   };
 
   useEffect(() => {
@@ -157,17 +160,18 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
             minHeight: "350px",
           })}
           id="editor"
-          aria-label="javascript code editor"
         ></div>
       </Cell>
-      <Cell span={[4, 8, 8]}
-       overrides={{
-        Cell: {
-          style: () => ({
-            paddingRight: "0px !important",
-          }),
-        },
-      }}>
+      <Cell
+        span={[4, 8, 8]}
+        overrides={{
+          Cell: {
+            style: () => ({
+              paddingRight: "0px !important",
+            }),
+          },
+        }}
+      >
         {output.error ? <OutputError /> : null}
         {output.value ? <OutputResult /> : null}
       </Cell>

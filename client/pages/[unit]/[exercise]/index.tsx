@@ -29,7 +29,7 @@ const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => {
   const exercisePath = `/${exercise.data.exerciseBySlug.slug}`;
   const unitTitle = exercise.data.exerciseBySlug.unit?.title;
   const current = exercise.data.exerciseBySlug.name;
-  const description = exercise.data.exerciseBySlug.description ?? exercise.data.exerciseBySlug.name ?? "";
+  const description = exercise.data.exerciseBySlug.name ?? "";
   const [css, theme] = useStyletron();
   return (
     <Layout>
