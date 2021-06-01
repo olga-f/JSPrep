@@ -15,8 +15,8 @@ const HomePage = ({ units }: UnitsProps): JSX.Element => {
       <CourseJsonLd
         courseName="JavaScript Preparation | Run JavaScript, Practice Problems"
         providerName="JSPrep.org"
-        providerUrl="https://jsprep.org"
-        description="Prepare your algorithms in JavaScript"
+        providerUrl={URL}
+        description="Improve your JavaScript coding skills"
       />
       <NextSeo
         title="JavaScript | JS Prep"

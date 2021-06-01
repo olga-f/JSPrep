@@ -25,7 +25,8 @@ const UnitPage = ({ exercises }: ExercisesProps): JSX.Element => {
     (x) => x !== undefined
   )?.unit;
   const title = unit?.title ?? "";
-  const description = unit?.description ?? "";
+  const path = unit?.slug ?? "";
+  const description = unit?.description ?? title;
   const URL = process.env.SITE_URL;
   return (
     <Layout>
@@ -38,7 +39,7 @@ const UnitPage = ({ exercises }: ExercisesProps): JSX.Element => {
       <NextSeo
         title={title}
         description={description}
-        canonical={URL}
+        canonical={URL + path}
         openGraph={{
           url: URL,
           title: title,
