@@ -159,7 +159,14 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
           id="editor"
         ></div>
       </Cell>
-      <Cell span={[4, 8, 8]}>
+      <Cell span={[4, 8, 8]}
+       overrides={{
+        Cell: {
+          style: () => ({
+            paddingRight: "0px !important",
+          }),
+        },
+      }}>
         {output.error ? <OutputError /> : null}
         {output.value ? <OutputResult /> : null}
       </Cell>
