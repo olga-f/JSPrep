@@ -18,7 +18,7 @@ describe("Unit page users", () => {
     const user = cy;
     user
       .visit("/functional-programming")
-      .wait(1000)
+      .wait(6000)
       .get("ul")
       .findByText("Speaking JavaScript")
       .click()

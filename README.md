@@ -5,7 +5,7 @@
 
 </div>
 <div align="center">
-<img alt="JS Prep logo" height="250" src="https://raw.github.com/olga-f/olga-f/master/img/jsprep.jpg"/>
+<img alt="JS Prep logo" height="250" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/jsprep.jpg"/>
 <h4 align="center"> <i>Practice JavaScript coding</i> </h4>
 <strong><a href="https://jsprep.org"><b>jsprep.org</b></a></strong>
 </div>
@@ -41,6 +41,15 @@
 This repository holds the source code for the [https://jsprep.org site](https://jsprep.org).
 
 The web application uses [React](https://reactjs.org/), [GraphQL](https://graphql.org/), backed by [Django](https://www.djangoproject.com/).
+
+<img alt="JS Prep Lighthouse Test" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/performance.gif"/>
+
+<br/>
+<br/>
+<br/>
+
+
+
 
 On the front-end, this project utilizes [Apollo Client](https://www.apollographql.com/docs/react/) - JavaScript GraphQL client. Apollo Client takes care of the request cycle from start to finish, including tracking loading and error states. 
 
@@ -83,12 +92,24 @@ This application use mostly static site generation with some client-side renderi
 The app includes:
 * home page with a list of Units
 * unit page with a list of Exercises
+
+<img alt="Lighthouse 100 Test Unit Page" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/unit.gif"/>
+
 * exercise page
+
+<img alt="Lighthouse 100 Test Exercise Page" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/exercise.gif"/>
+<br/>
+<br/>
 
 Depending on the category, the exercise page may include a javascript code editor.
 
+<br/>
 
 [JavaScript code runner](https://www.npmjs.com/package/javascript-code-runner) used in code editor is isolated from the global JavaScript environment. None of the DOM APIs are exposed.
+
+<div align="center">
+<img alt="javascript code editor" height="500" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/editor.gif"/>
+</div>
 
 The code editor uses a [dedicated web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#dedicated_workers). That allows us to stop running some poorly written algorithms, for example, infinite loops. 
 Another reason for using a web worker is performance. A web worker performs tasks in the background, preventing the UI from freezing up. Web worker [browser support](https://caniuse.com/webworkers) is good, starting from IE10. 
@@ -125,6 +146,12 @@ Jest also collects code coverage information.
 
 These tests are written with [cypress](https://www.cypress.io/) and [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/). End-to-end tests live in the `cypress/e2e` folder. Use `npm run test:e2e:dev` commands to open and add more tests if you want.
 > Note. Change your "baseUrl" in `cypress.json` to `http://localhost:3000` for local testing.
+ 
+ <div align="center">
+<img alt="Lighthouse 100 Test Exercise Page" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/cypress.jpg"/>
+</div>
+<br/>
+<br/>
 
 Please, use the following command to run static, unit, and integration tests:
 
