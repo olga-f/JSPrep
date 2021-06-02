@@ -26,7 +26,7 @@ const UnitPage = ({ exercises }: ExercisesProps): JSX.Element => {
   )?.unit;
   const title = unit?.title ?? "";
   const path = unit?.slug ?? "";
-  const description = unit?.description ?? title;
+  const description = unit?.description ? "" : title;
   const URL = process.env.SITE_URL;
   return (
     <Layout>
