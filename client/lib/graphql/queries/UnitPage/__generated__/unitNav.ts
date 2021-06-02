@@ -9,6 +9,10 @@
 
 export interface unitNav_unitList {
   __typename: "UnitType";
+  /**
+   * _id
+   */
+  id: string | null;
   title: string;
   itemId: string;
 }
