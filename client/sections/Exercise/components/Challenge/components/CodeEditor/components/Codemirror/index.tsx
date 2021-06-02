@@ -97,8 +97,8 @@ const Codemirror: React.FC<{ initialValue: string }> = ({ initialValue }) => {
   const resetCode = () => {
     workerRef.current?.terminate();
     setState(initialValue);
-
     setLoading(false);
+    setOutput(initialOutput);
     initEditorView();
   };
 
