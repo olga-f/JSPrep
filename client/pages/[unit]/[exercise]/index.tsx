@@ -49,7 +49,7 @@ const ExercisePage = ({ exercise }: ExerciseData): JSX.Element => {
           description: description,
           images: [
             {
-              url: `${URL}default.svg`,
+              url: `${URL}default.jpg`,
               width: 1200,
               height: 630,
               alt: "JavaScript Prep",
