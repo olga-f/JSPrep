@@ -28,7 +28,7 @@ const HomePage = ({ units }: UnitsProps): JSX.Element => {
           description: "Run JavaScript, Practice Problems on JSPrep.org",
           images: [
             {
-              url: `${URL}default.jpg`,
+              url: `${URL}jsprep.jpg`,
               width: 1200,
               height: 630,
               alt: "JavaScript Prep",
