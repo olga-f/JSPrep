@@ -58,7 +58,7 @@ The web application uses [React](https://reactjs.org/), [GraphQL](https://graphq
 <br/>
 <br/>
 <div align="center">
-<img alt="JS Prep.org" height="450" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/movil.png"/>
+<img alt="JS Prep.org" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/movil.png"/>
 </div>
 <br/>
 <br/>
@@ -126,7 +126,7 @@ Depending on the category, the exercise page may include a javascript code edito
 [JavaScript code runner](https://www.npmjs.com/package/javascript-code-runner) used in code editor is isolated from the global JavaScript environment. None of the DOM APIs are exposed.
 
 <div align="center">
-<img alt="javascript code editor" height="500" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/editor.gif"/>
+<img alt="javascript code editor" width="490" height="427" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/editor.gif"/>
 </div>
 
 The code editor uses a [dedicated web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#dedicated_workers). That allows us to stop running some poorly written algorithms, for example, infinite loops. 
