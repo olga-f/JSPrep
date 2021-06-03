@@ -46,7 +46,7 @@ const UnitPage = ({ exercises }: ExercisesProps): JSX.Element => {
           description: description,
           images: [
             {
-              url: `${URL}default.jpg`,
+              url: `${URL}jsprep.jpg`,
               width: 1200,
               height: 630,
               alt: "JavaScript Prep",
