@@ -1,10 +1,10 @@
-django==3.2
+django==3.2.4
 graphene-django==2.15.0
 graphene-mongo==0.2.13
 python-decouple==3.4
-mongoengine==0.23.0
+mongoengine==0.23.1
 dnspython==2.1.0
-pytest==6.2.3
-pytest-django==4.1.0
-mongomock==3.22.1
+pytest==6.2.4
+pytest-django==4.4.0
+mongomock==3.23.0
 django-cors-headers==3.7.0
