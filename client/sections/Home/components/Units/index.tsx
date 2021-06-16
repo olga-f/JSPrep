@@ -1,10 +1,9 @@
 import { Button, SIZE } from "baseui/button";
-import { ChevronRight } from "baseui/icon";
 import { Cell, Grid } from "baseui/layout-grid";
+import { ChevronRight } from "baseui/icon";
 import { Label4 } from "baseui/typography";
 import { useRouter } from "next/router";
-
-import { UnitListProps } from "../../../../lib/types";
+import type { UnitListProps } from "../../../../lib/types";
 import {
   Card,
   CardBackground,
