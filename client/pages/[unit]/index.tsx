@@ -1,24 +1,22 @@
-import {
+import Layout from '../../lib/components/Layout';
+import React from 'react';
+import { CourseJsonLd, NextSeo } from 'next-seo';
+import { EXERCISE_LIST, UNIT_PATHS } from '../../lib/graphql/queries';
+import { UnitExerciseList } from '../../sections/Unit/components/UnitMain';
+import type {
   GetStaticPaths,
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
-import { CourseJsonLd, NextSeo } from "next-seo";
-import { ParsedUrlQuery } from "querystring";
-import React from "react";
-
-import { NormalizedCacheObject } from "@apollo/client/cache/inmemory/types";
-
-import Layout from "../../lib/components/Layout";
+import type { ParsedUrlQuery } from "querystring";
+import type { NormalizedCacheObject } from "@apollo/client/cache/inmemory/types";
 import {
   addApolloState,
   initializeApollo,
 } from "../../lib/graphql/apolloClient";
-import { EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
-import { unitPaths_unitList } from "../../lib/graphql/queries/UnitPage/__generated__/unitPaths";
-import { ExercisesProps } from "../../lib/types";
-import { UnitExerciseList } from "../../sections/Unit/components/UnitMain";
+import type { unitPaths_unitList } from "../../lib/graphql/queries/UnitPage/__generated__/unitPaths";
+import type { ExercisesProps } from "../../lib/types";
 
 const UnitPage = ({ exercises }: ExercisesProps): JSX.Element => {
   const unit = exercises.data.exerciseListByUnitSlug?.find(

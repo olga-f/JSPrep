@@ -1,12 +1,12 @@
-import { useStyletron } from "baseui";
+import beautify from "js-beautify";
 import { Button, KIND, SIZE } from "baseui/button";
 import { Cell, Grid } from "baseui/layout-grid";
+import { Compartment, EditorState } from "@codemirror/state";
+import { EditorView } from "@codemirror/view";
 import { KIND as TYPE, Notification } from "baseui/notification";
 import { useEffect, useRef, useState } from "react";
-
-import { Compartment, EditorState } from "@codemirror/state";
-import { EditorView, ViewUpdate } from "@codemirror/view";
-import beautify from "js-beautify";
+import { useStyletron } from "baseui";
+import type { ViewUpdate } from "@codemirror/view";
 
 const ERROR_RUNNING = "An Error occurred while running.";
 const sleep = (time: number) =>

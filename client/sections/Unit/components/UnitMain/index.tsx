@@ -1,9 +1,7 @@
 import { Cell, Grid } from "baseui/layout-grid";
-import React from "react";
-
-import { ExercisesProps } from "../../../../lib/types";
 import { Exercises } from "../Exercises";
 import { SideNav } from "../SideNav";
+import type { ExercisesProps } from "../../../../lib/types";
 
 export const UnitExerciseList = ({
   exercises,

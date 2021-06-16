@@ -1,6 +1,5 @@
-import { useStyletron } from "baseui";
-
-import { CardProps } from "../types";
+import { useStyletron } from 'baseui';
+import type { CardProps } from "../types";
 
 export const CardFeatures = ({ children }: CardProps): JSX.Element => {
   const [css] = useStyletron();
