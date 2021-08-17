@@ -1,9 +1,9 @@
-import Layout from '../lib/components/Layout';
-import React from 'react';
-import { addApolloState, initializeApollo } from '../lib/graphql/apolloClient';
-import { CourseJsonLd, NextSeo } from 'next-seo';
-import { HomeUnitList } from '../sections/Home/components/HomeMain';
-import { UNIT_LIST } from '../lib/graphql/queries';
+import Layout from "../lib/components/Layout";
+import React from "react";
+import { addApolloState, initializeApollo } from "../lib/graphql/apolloClient";
+import { CourseJsonLd, NextSeo } from "next-seo";
+import { HomeUnitList } from "../sections/Home/components/HomeMain";
+import { UNIT_LIST } from "../lib/graphql/queries";
 import type { GetStaticProps } from "next";
 import type { UnitsProps } from "../lib/types";
 
