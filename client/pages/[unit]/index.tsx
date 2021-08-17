@@ -1,8 +1,8 @@
-import Layout from '../../lib/components/Layout';
-import React from 'react';
-import { CourseJsonLd, NextSeo } from 'next-seo';
-import { EXERCISE_LIST, UNIT_PATHS } from '../../lib/graphql/queries';
-import { UnitExerciseList } from '../../sections/Unit/components/UnitMain';
+import Layout from "../../lib/components/Layout";
+import React from "react";
+import { CourseJsonLd, NextSeo } from "next-seo";
+import { EXERCISE_LIST, UNIT_PATHS } from "../../lib/graphql/queries";
+import { UnitExerciseList } from "../../sections/Unit/components/UnitMain";
 import type {
   GetStaticPaths,
   GetStaticPathsResult,

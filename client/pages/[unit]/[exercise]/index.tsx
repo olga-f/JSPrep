@@ -1,10 +1,10 @@
-import Layout from '../../../lib/components/Layout';
-import { Breadcrumbs } from 'baseui/breadcrumbs';
-import { CourseJsonLd, NextSeo } from 'next-seo';
-import { EXERCISE_PATHS, GET_EXERCISE } from '../../../lib/graphql/queries';
-import { ExerciseMain } from '../../../sections/Exercise/components/ExerciseMain';
-import { StyledLink } from 'baseui/link';
-import { useStyletron } from 'baseui';
+import Layout from "../../../lib/components/Layout";
+import { Breadcrumbs } from "baseui/breadcrumbs";
+import { CourseJsonLd, NextSeo } from "next-seo";
+import { EXERCISE_PATHS, GET_EXERCISE } from "../../../lib/graphql/queries";
+import { ExerciseMain } from "../../../sections/Exercise/components/ExerciseMain";
+import { StyledLink } from "baseui/link";
+import { useStyletron } from "baseui";
 import type {
   GetStaticPaths,
   GetStaticPathsResult,

@@ -1,8 +1,8 @@
-import CodeEditor from './components/CodeEditor';
-import Markdown from 'react-markdown';
-import { Cell, Grid } from 'baseui/layout-grid';
-import { H1, Paragraph2 } from 'baseui/typography';
-import { useStyletron } from 'baseui';
+import CodeEditor from "./components/CodeEditor";
+import Markdown from "react-markdown";
+import { Cell, Grid } from "baseui/layout-grid";
+import { H1, Paragraph2 } from "baseui/typography";
+import { useStyletron } from "baseui";
 import type { ExerciseProps } from "../../../../lib/types";
 
 export const Challenge = ({ exercise }: ExerciseProps): JSX.Element => {

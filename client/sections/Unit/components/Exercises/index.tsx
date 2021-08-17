@@ -1,12 +1,12 @@
-import { Button } from 'baseui/button';
-import { Cell, Grid } from 'baseui/layout-grid';
-import { Check, CheckIndeterminate, Grab } from 'baseui/icon';
-import { CodeIcon } from '../../assets/code-icon';
-import { H1, Paragraph3 } from 'baseui/typography';
-import { ListItem, ListItemLabel } from 'baseui/list';
-import { mq } from '../../../../util/media';
-import { useRouter } from 'next/router';
-import { useStyletron } from 'baseui';
+import { Button } from "baseui/button";
+import { Cell, Grid } from "baseui/layout-grid";
+import { Check, CheckIndeterminate, Grab } from "baseui/icon";
+import { CodeIcon } from "../../assets/code-icon";
+import { H1, Paragraph3 } from "baseui/typography";
+import { ListItem, ListItemLabel } from "baseui/list";
+import { mq } from "../../../../util/media";
+import { useRouter } from "next/router";
+import { useStyletron } from "baseui";
 import type { ExerciseListProps } from "../../../../lib/types";
 
 export const Exercises = ({ list }: ExerciseListProps): JSX.Element => {
