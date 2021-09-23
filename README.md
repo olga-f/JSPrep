@@ -88,7 +88,7 @@ First, you'll need to get the source of the project. Do this by cloning the whol
 git clone git@github.com:olga-f/jsprep.org.git
 ```
 
-Before running your front-end application, first, you will need to run a [Server](#server).
+Before running your front-end application, you will need to run a [Server](#server).
 
 After, please go to the front-end source folder: /client
 
