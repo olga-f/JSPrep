@@ -1,4 +1,4 @@
-django==3.2.11
+django==3.2.12
 graphene-django==2.15.0
 graphene-mongo==0.2.13
 python-decouple==3.4
