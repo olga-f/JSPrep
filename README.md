@@ -1,13 +1,8 @@
-<div align="right">
 
-[![Build Status](https://dev.azure.com/olga-f/JSPrep.org/_apis/build/status/olga-f.jsprep-server?branchName=main)](https://dev.azure.com/olga-f/JSPrep.org/_build/latest?definitionId=36&branchName=main)
-![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=jsprep-org)
-
-</div>
 <div align="center">
 <img alt="JS Prep logo" height="250" src="https://raw.githubusercontent.com/olga-f/olga-f/master/img/jsprep/jsprep.jpg"/>
 <h4 align="center"> <i>Practice JavaScript coding</i> </h4>
-<strong><a href="https://jsprep.org"><b>jsprep.org</b></a></strong>
+
 </div>
 
 ---
@@ -37,9 +32,7 @@
   - [GraphQL Query and Mutation Examples](#graphql-query-and-mutation-examples)
   - [Testing](#testing)
 
-## Description
 
-This repository holds the source code for the [https://jsprep.org site](https://jsprep.org).
 
 ### Distinctiveness and Complexity
 
