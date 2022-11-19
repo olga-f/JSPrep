@@ -35,7 +35,7 @@
     "javascript-code-runner": "^1.0.8",
     "js-beautify": "^1.13.13",
     "lodash": "^4.17.21",
-    "next": "^11.1.3",
+    "next": "^13.0.4",
     "next-seo": "^4.24.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
